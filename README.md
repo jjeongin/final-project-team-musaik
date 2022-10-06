@@ -8,6 +8,12 @@ New music discovery is a souless, intensive experience. If you want to find new 
 
 ### Core team members
 the core team members, including links to their GitHub accounts and any other web presence they have
+- Ahmad Almesned https://github.com/Ahmadhcs
+- Alima Zhagufarova https://github.com/alima2104
+- Chinedu Nnorom https://github.com/chinedunnorom
+- Jeongin Lee https://github.com/jjeongin
+- Ryan Rochmanofenna https://github.com/ryanroch
+- Zain Faruqi https://github.com/zain-faruqi
 
 ### History and Collaboration
 a short history of how the project came to be and information about how to contribute to the project (i.e. a link to the CONTRIBUTING.md document)
