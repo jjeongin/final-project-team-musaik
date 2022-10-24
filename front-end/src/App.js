@@ -1,28 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './App.css';
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Profile from './pages/Profile'
-import Radio from './pages/Radio'
-import Search from './pages/Search'
+import './App.css'
 
-function App() {
+const App = props => {
   return (
-    <Router>
-      <Routes>
-        {/* a route for the home page */}
-        <Route path="/" element={<Home />} />
-
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/profile" element={<Profile />} />
-
-        <Route path="/radio" element={<Radio />} />
-
-        <Route path="/search" element={<Search />} />
-      </Routes>
-    </Router>
-  );
+    <div>
+      <Router>
+        <Header />
+        <main>
+          <Routes>
+      
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
+    </div>
+  )
 }
 
-export default App;
+export default App
+
