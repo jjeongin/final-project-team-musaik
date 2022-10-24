@@ -64,7 +64,7 @@ export default function Post({ post }) {
             <span className="postDate">{post.date}</span>
           </div>
           <div className="postTopRight">
-          <span className="postCommentText"> Currently listening: {post.comment}</span>
+          {/* <span className="postCommentText"> Currently listening: {post.comment}</span> */}
             {/* <MoreVert /> */}
           </div>
         </div>
@@ -80,11 +80,14 @@ export default function Post({ post }) {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img className="likeIcon" src={post.like_img} onClick={likeHandler} alt="" />
+            
+            <span className="postCommentText"> Currently listening: {post.comment}</span>
             {/* <img className="likeIcon" src="assets/heart.png" onClick={likeHandler} alt="" /> */}
-            <span className="postLikeCounter">{like} people like it</span>
+            
           </div>
           <div className="postBottomRight">
+             <img className="likeIcon" src={post.like_img} onClick={likeHandler} alt="" />
+             <span className="postLikeCounter">{like} people like it</span>
             {/* <span className="postCommentText">{post.comment} comments</span> */}
           </div>
         </div>
