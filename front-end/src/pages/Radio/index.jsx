@@ -1,5 +1,5 @@
 import NavBar from '../../NavBar';
-import 'front-end\src\pages\Radio\index.css'
+import './index.css'
 
 
 
