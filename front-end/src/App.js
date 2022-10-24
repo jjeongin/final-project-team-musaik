@@ -15,7 +15,7 @@ const App = props => {
             {/* a route for each page */}
             <Route path="/" element={<Home />} />
 
-            <Route path="/log-in" element={<Login />} />
+            <Route path="/login" element={<Login />} />
 
             <Route path="/profile" element={<Profile />} />
 
