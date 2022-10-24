@@ -1,0 +1,13 @@
+.Avatar-Picture{
+    width: 80px;
+    height:80px;
+    border-radius:40px;
+}
+
+.Avatar{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
