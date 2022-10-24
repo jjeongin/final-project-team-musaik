@@ -11,3 +11,218 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200&display=swap');
+
+.homeContainer{
+  display: flex;
+  width: 100%;
+  color: #FFFFFF
+}
+
+.feed{
+  flex:5.5
+}
+
+.feedWrapper{
+  padding: 20px;
+}
+
+.post {
+  width: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: 30px 0;
+}
+
+.postWrapper {
+  padding: 10px;
+}
+
+.postTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postTopLeft {
+  display: flex;
+  align-items: center;
+}
+
+.postProfileImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.postUsername {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 10px;
+}
+
+.postDate{
+    font-size: 12px;
+}
+
+.postCenter{
+    margin: 20px 0;
+}
+
+.postImg{
+    margin-top: 20px;
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.postBottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postBottomLeft{
+    display: flex;
+    align-items: center;   
+}
+
+.likeIcon{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.postLikeCounter{
+    font-size: 15px;
+}
+
+.postCommentText{
+    cursor: pointer;
+    border-bottom: 1px dashed gray;
+    font-size: 15px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+body {
+    background-color: #535353;
+
+}
+
+.App {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+
+.c-player {
+    display: block;
+    background-color: #212121;
+    padding: 50px;
+    border-radius: 16px;
+}
+
+.c-player h3{
+    color: #FFFFFF;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+}
+
+.c-player h4{
+    color: #FFFFFF;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.c-player p {
+    color: #AAA;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.c-player--details .details-img {
+    position: relative;
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.c-player--details .details-img img{
+    display: block;
+    margin: 0px auto;
+    width: 100%;
+    max-width: 250px;
+    border-radius: 50%;
+
+}
+
+.c-player--details .details-title {
+    color: #EEE;
+    font-size: 28px;
+    text-align: center;
+    margin: 0 10px
+}
+
+.c-player--details .details-artist {
+    color: #FFFFFF;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.c-player--controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.c-player--controls .play-btn {
+    display: flex;
+    margin: 0 30px;
+    padding: 20px;
+    border-radius: 50%;
+
+    border: none;
+    outline: none;
+    background-color: #FFF;
+    color:  #212121;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.c-player--controls .skp-btn {
+    display: flex;
+    margin: 0 5px;
+    padding: 15px;
+    background: none;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+   
+    border: none;
+    outline: none;
+    background-color: #212121;
+    color: #FFF;
+    cursor: pointer;
+}

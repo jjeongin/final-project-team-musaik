@@ -3,7 +3,7 @@ import './App.css';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
-import Radio from './pages/Radio'
+import Radio from './pages/Radio/Radio'
 import Search from './pages/Search'
 
 function App() {
