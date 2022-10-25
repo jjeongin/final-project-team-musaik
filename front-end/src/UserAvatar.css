@@ -1,13 +1,15 @@
 .Avatar-Picture{
-    width: 80px;
-    height:80px;
-    border-radius:40px;
+    width: 50px;
+    height:50px;
+    border-radius:25px;
 }
 
 .Avatar{
-    padding-top: 20px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: white;
+
 }
