@@ -5,6 +5,8 @@ import Player from './Player';
 import App from "../App";
 import PlayerDetails from "./PlayerDetails";
 import { songs } from "./dummyData";
+import {Dropdown} from './Dropdown.js'
+import {Element} from './Element.js'
 
 export default function Post({ post }) {
     
@@ -36,6 +38,9 @@ export default function Post({ post }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
+          <Dropdown>
+          <Element/>
+          </Dropdown>
             <img
               className="postProfileImg"
               src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
