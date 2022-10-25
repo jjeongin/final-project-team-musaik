@@ -1,0 +1,10 @@
+.Profile{
+    background-color: rgb(197,180,227);
+}
+
+.Album-Card{
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+}
