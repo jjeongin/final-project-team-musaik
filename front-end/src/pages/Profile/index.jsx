@@ -7,7 +7,6 @@ import NavBar from '../../NavBar';
 
 function Profile() {
   return (
-    <>
     <div className="Profile">
         <UserAvatar text={"Ahmahcs"} />
         <UserNumbers followers={300} following={200}/>
@@ -15,14 +14,9 @@ function Profile() {
         <div className='Album-Card'>
           <Albums text={"Favorites"}/>
           <Albums text={"Recently Played"}/>
-
         </div>
        <NavBar />
-
-        
     </div>
-
-    </>
   );
 }
 
