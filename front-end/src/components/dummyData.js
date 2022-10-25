@@ -1,11 +1,12 @@
-import image1 from './images/beyonce.jpeg'
+import image1 from './images/profile_pic.jpeg'
 import likeImage from './images/heartt.png'
+import headphonesImage from './images/headphone.png'
 
 export const Users = [
     {
       id:1,
       profilePicture: image1,
-      username: "Alima Zhagufarova",
+      username: "Homer Simpson",
     },
     // {
     //   id:2,
@@ -18,11 +19,11 @@ export const Users = [
     {
       id: 1,
       desc: "Obsessed with these songs lately!",
-      photo: "assets/post/1.jpeg",
       date: "5 mins ago",
       userId: 1,
       like: 32,
       like_img: likeImage,
+      h_img: headphonesImage,
       comment: 9,
     },
     // {
