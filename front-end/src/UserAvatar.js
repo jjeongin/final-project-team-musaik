@@ -7,7 +7,7 @@ function UserAvatar({text}){
 
         <div className='Avatar'>
             <img src={avi} alt="Avatar PlaceHolder" className='Avatar-Picture' />
-            <h3>@{text}</h3>
+            <h4>@{text}</h4>
         </div>
 
 
