@@ -2,7 +2,7 @@ import Albums from '../../Albums';
 import UserAvatar from '../../UserAvatar';
 import UserNumbers from '../../UserNumbers'
 import './styles.css'
-
+import SearchBar from '../../SearchBar';
 import NavBar from '../../NavBar';
 
 function Profile() {
@@ -15,7 +15,9 @@ function Profile() {
           <Albums text={"Favorites"}/>
           <Albums text={"Recently Played"}/>
         </div>
+        <SearchBar />
        <NavBar />
+
     </div>
   );
 }
