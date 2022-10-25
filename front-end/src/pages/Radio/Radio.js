@@ -1,5 +1,3 @@
-
-// import Feed from "../../components/feeed";
 import Post from "../../components/post";
 import NavBar from '../../NavBar';
 
@@ -15,9 +13,9 @@ export default function Radio() {
         ))}
       </div>
 
-       {/* <div className="Radio">
+       <div className="Radio">
         <NavBar />
-     </div>  */}
+     </div>  
     </>
   );
 }

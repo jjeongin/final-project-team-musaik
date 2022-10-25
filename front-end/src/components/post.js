@@ -1,51 +1,34 @@
-// import { MoreVert } from "@material-ui/icons";
 import { Users } from "./dummyData";
-import { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import Player from './Player';
 import App from "../App";
 import PlayerDetails from "./PlayerDetails";
-import image from './images/beyonce.jpeg'
-
-
-
+import { songs } from "./dummyData";
 
 export default function Post({ post }) {
-    const [songs, setSongs] = useState([
-        {
-          title: "CUFF IT",
-          artist: "Beyonce",
-          img_src: image,
-          src: ""
-        },
-        {
-          title: "About Damn Time",
-          artist: "Lizzo",
-          img_src: "./images/beyonce.jpeg",
-          src: ""
-        },
-        {
-          title: "Glimpse of Us",
-          artist: "Joji",
-          img_src: "./images/beyonce.jpeg",
-          src: ""
-        },
-        {
-          title: "As It Was",
-          artist: "Harry Styles",
-          img_src: "./images/beyonce.jpeg",
-          src: ""
-        }
-      ]);
+    
     
       const [currentSongIndex, setCurrentSongIndex]= useState(0);
       const [nextSongIndex, setNextSongIndex]= useState(currentSongIndex+1);
     
-  const [like,setLike] = useState(post.like)
-  const [isLiked,setIsLiked] = useState(false)
+      const [like,setLike] = useState(post.like)
+      const [isLiked,setIsLiked] = useState(false)
 
-  const likeHandler =()=>{
-    setLike(isLiked ? like-1 : like+1)
-    setIsLiked(!isLiked)
+     useEffect(() => {
+        setNextSongIndex(() => {
+           if (currentSongIndex + 1 > songs.length - 1) {
+            return 0;
+           } else {
+             return currentSongIndex + 1;
+           }
+        });
+      }, [currentSongIndex]);
+
+
+      const LikeHandler =()=>{
+      setLike(isLiked ? like-1 : like+1)
+      setIsLiked(!isLiked)
   }
   return (
     
@@ -64,31 +47,28 @@ export default function Post({ post }) {
             <span className="postDate">{post.date}</span>
           </div>
           <div className="postTopRight">
-          {/* <span className="postCommentText"> Currently listening: {post.comment}</span> */}
-            {/* <MoreVert /> */}
+            
+            <img className="headphonesIcon" src={post.h_img} onClick={LikeHandler} alt="" />
+            <span className="postCommentText"> {post.comment}  </span>
+
+            <img className="likeIcon" id="likeIcon" onClick={LikeHandler} src={!isLiked ? post.like_img_before : post.like_img_after} alt="" />
+            <span className="postLikeCounter"> {like}</span>
           </div>
         </div>
         
         <div className="postCenter">
         <span className="postText">{post?.desc}</span>
             <Player 
-             song={songs[currentSongIndex]}
-             nextSong={songs[nextSongIndex]}
+               currentSongIndex={currentSongIndex} 
+               setCurrentSongIndex={setCurrentSongIndex} 
+               nextSongIndex={nextSongIndex} 
+               songs={songs}
              />
-    
-          {/* <img className="postImg" src={post.photo} alt="" /> */}
         </div>
         <div className="postBottom">
-          <div className="postBottomLeft">
-            
-            <span className="postCommentText"> Currently listening: {post.comment}</span>
-            {/* <img className="likeIcon" src="assets/heart.png" onClick={likeHandler} alt="" /> */}
-            
+          <div className="postBottomLeft">   
           </div>
           <div className="postBottomRight">
-             <img className="likeIcon" src={post.like_img} onClick={likeHandler} alt="" />
-             <span className="postLikeCounter">{like} people like it</span>
-            {/* <span className="postCommentText">{post.comment} comments</span> */}
           </div>
         </div>
       </div>
