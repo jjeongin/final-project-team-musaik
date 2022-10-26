@@ -1,5 +1,4 @@
 import './UserAvatar.css';
-import avi from "./img/avi.png";
 
 
 function UserAvatar({text,image}){

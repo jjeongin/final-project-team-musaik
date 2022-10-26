@@ -5,6 +5,7 @@ import Profile from './pages/Profile'
 import Radio from './pages/Radio'
 import Search from './pages/Search'
 import './App.css'
+import img from './img/album.jpeg'
 
 const App = props => {
   return (
@@ -19,7 +20,7 @@ const App = props => {
 
             <Route path="/profile" element={<Profile />} />
 
-            <Route path="/radio" element={<Radio />} />
+            <Route path="/radio" element={<Radio />} image={img} />
 
             <Route path="/search" element={<Search />} />
           </Routes>
