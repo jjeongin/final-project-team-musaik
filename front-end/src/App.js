@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css';
+import CurrentStation from './pages/CurrentStation/CurrentStation';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
-import Radio from './pages/Radio/Radio'
+import Radio from './pages/Radio'
 import Search from './pages/Search'
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
 
         <Route path="/radio" element={<Radio />} />
+
+        <Route path="/currentStation" element={<CurrentStation />} />
 
         <Route path="/search" element={<Search />} />
       </Routes>

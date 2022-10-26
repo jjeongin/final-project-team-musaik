@@ -1,10 +1,10 @@
 import Post from "../../components/post";
 import NavBar from '../../NavBar';
-
 import { Posts } from "../../components/dummyData";
+import './index.css'
 
 
-export default function Radio() {
+export default function CurrentStation() {
   return (
     <> 
       <div className="homeContainer">
@@ -19,6 +19,3 @@ export default function Radio() {
     </>
   );
 }
-
-
-

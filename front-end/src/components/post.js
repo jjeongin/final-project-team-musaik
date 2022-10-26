@@ -2,15 +2,10 @@ import { Users } from "./dummyData";
 import React from "react";
 import { useState, useEffect } from "react";
 import Player from './Player';
-import App from "../App";
-import PlayerDetails from "./PlayerDetails";
 import { songs } from "./dummyData";
-import {Dropdown} from './Dropdown.js'
-import {Element} from './Element.js'
 
 export default function Post({ post }) {
-    
-    
+
       const [currentSongIndex, setCurrentSongIndex]= useState(0);
       const [nextSongIndex, setNextSongIndex]= useState(currentSongIndex+1);
     
@@ -32,15 +27,12 @@ export default function Post({ post }) {
       setLike(isLiked ? like-1 : like+1)
       setIsLiked(!isLiked)
   }
+
   return (
-    
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-          <Dropdown>
-          <Element/>
-          </Dropdown>
             <img
               className="postProfileImg"
               src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
@@ -51,8 +43,7 @@ export default function Post({ post }) {
             </span>
             <span className="postDate">{post.date}</span>
           </div>
-          <div className="postTopRight">
-            
+          <div className="postTopRight">    
             <img className="headphonesIcon" src={post.h_img} onClick={LikeHandler} alt="" />
             <span className="postCommentText"> {post.comment}  </span>
 
@@ -71,10 +62,6 @@ export default function Post({ post }) {
              />
         </div>
         <div className="postBottom">
-          <div className="postBottomLeft">   
-          </div>
-          <div className="postBottomRight">
-          </div>
         </div>
       </div>
     </div>

@@ -1,10 +1,11 @@
-import { useState } from 'react'
 import image1 from './images/profile_pic.jpeg'
 import likeImageBefore from './images/heart_before.png'
 import likeImageAfter from './images/heart_after.png'
 import headphonesImage from './images/headphone.png'
 import image from './images/beyonce.jpeg'
 import image2 from './images/lizzo.png'
+import image3 from './images/joji.png'
+import image4 from './images/harry.jpeg'
 
 export const Users = [
     {
@@ -19,7 +20,6 @@ export const Users = [
     // },
   ];
 
-  // export const [songs, setSongs] = useState([
     export const songs = [
     {
       title: "CUFF IT",
@@ -36,13 +36,13 @@ export const Users = [
     {
       title: "Glimpse of Us",
       artist: "Joji",
-      img_src: "./images/beyonce.jpeg",
+      img_src: image3,
       src: ""
     },
     {
       title: "As It Was",
       artist: "Harry Styles",
-      img_src: "./images/beyonce.jpeg",
+      img_src: image4,
       src: ""
     }
   ];

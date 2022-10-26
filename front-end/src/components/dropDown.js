@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {DropdownButton} from './DropdownButton.js';
+// import {DropdownButton} from './DropdownButton.js';
 function Dropdown(props) {
     const [display, setDisplay] = useState('none')
     function handleClick(){
@@ -27,5 +27,3 @@ function Dropdown(props) {
 export {Dropdown}
 
 
-
-import Dropdown from 'react-bootstrap/Dropdown';
