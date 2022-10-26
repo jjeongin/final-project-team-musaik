@@ -1,5 +1,5 @@
 import "./SearchBar.css"
-import back from "./img/arrow_back.png"
+import back from "../../img/arrow_back.png"
 
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 

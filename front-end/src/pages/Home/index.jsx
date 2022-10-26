@@ -1,12 +1,21 @@
-import NavBar from '../../NavBar';
-
-import SearchBar from '../../SearchBar';
-
+import NavBar from '../../components/NavBar/NavBar';
+import Albums from '../../components/Albums/Albums';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import placeHolder from '../../img/album.jpeg';
+import './index.css'
+import RadioMatch from '../../components/RadioMatch';
 function Home() {
+
   return (
+
     <div className="Home">
-      <NavBar />
       <SearchBar />
+      <RadioMatch img1={placeHolder} img2={placeHolder} />
+      <Albums text={"Recently Played"}/>
+      <Albums text={"Favorites"} />
+      
+      <NavBar />
+      
     </div>
   );
 }

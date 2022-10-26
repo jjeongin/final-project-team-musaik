@@ -1,12 +1,10 @@
 .User-Card{
     display: flex;
-
-
-
+    justify-content: center;
 }
 
 .Followers-Container{
-    margin-left: 50px;
+    
     margin-top: 0px;
     color: white;
 
@@ -34,5 +32,4 @@ h4{
 
 .Following-Container{
     color: white;
-    margin-right: 20px;
 }
