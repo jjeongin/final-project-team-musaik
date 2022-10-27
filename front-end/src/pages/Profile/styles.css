@@ -1,11 +1,16 @@
 .Profile{
     background-color: rgb(102, 51, 153);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .Album-Card{
     background-color: rgb(60, 60, 60);
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
+    width: 100%;
     height: 80vh;
-
 }

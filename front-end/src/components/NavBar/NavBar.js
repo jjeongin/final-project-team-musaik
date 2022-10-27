@@ -1,8 +1,8 @@
 import './NavBar.css';
 import { Link } from 'react-router-dom'
-import home from './img/home.svg'
-import radio from './img/radio.svg'
-import user from './img/user.svg'
+import home from '../../img/home.svg'
+import radio from '../../img/radio.svg'
+import user from '../../img/user.svg'
 
 function NavBar() {
     return (

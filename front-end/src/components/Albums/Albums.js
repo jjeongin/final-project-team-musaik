@@ -1,5 +1,5 @@
 import './Albums.css';
-import placeHolder from './img/album.jpeg'
+import placeHolder from '../../img/album.jpeg'
 
 
 
@@ -11,7 +11,6 @@ function Albums({text}){
             <img src={placeHolder} alt="Album PlaceHolder" className='Album-PlaceHolder'/>
             <img src={placeHolder} alt="Album PlaceHolder" className='Album-PlaceHolder'/>
             <img src={placeHolder} alt="Album PlaceHolder" className='Album-PlaceHolder'/>
-
         </div>
 
     )
