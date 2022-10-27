@@ -1,5 +1,4 @@
 import NavBar from '../../components/NavBar/NavBar';
-import './index.css'
 import BigBubbles from '../../components/BigBubbles/BigBubbles';
 import album from '../../img/album.jpeg'
 

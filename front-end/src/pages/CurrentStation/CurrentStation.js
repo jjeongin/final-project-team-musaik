@@ -1,5 +1,5 @@
 import Post from "../../components/post";
-import NavBar from '../../NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import { Posts } from "../../components/dummyData";
 import './index.css'
 

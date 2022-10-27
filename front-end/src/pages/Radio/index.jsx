@@ -1,5 +1,4 @@
-import NavBar from '../../NavBar';
-import './index.css'
+import NavBar from '../../components/NavBar/NavBar';
 import cover_one from '../../img/bubblecover1.jpeg'
 import cover_two from '../../img/bubblecover2.jpeg'
 import cover_three from '../../img/bubblecover3.jpg'
