@@ -1,55 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .Login {
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    background-color: #E6DFF1;
-;
+    justify-content: space-evenly;
+    background-color: #3F414E;
+    font-family: 'Roboto', sans-serif;
 }
 
-.Login img {
-    width: 400px;
-}
-
-.login-social {
-    min-height: 20vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.login-social p {
-    font-size: 20px;
-    padding: 0 20px;
+.musaik-logo {
+    width: 300px;
+    height: 150px;
 }
 
 .login-spotify {
-    width: 400px;
-    height: 60px;
-    background-color: white;
+    width: 300px;
+    height: 50px;
+    background-color: black;
     border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.login-spotify p {
+    font-size: 18px;
+    padding: 0 20px;
+    color: white;
 }
 
 .login-spotify img {
-    width: 30px;
-}
-
-.login-apple-music {
-    width: 400px;
-    height: 60px;
-    background-color: white;
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-apple-music img {
-    width: 30px;
+    width: 25px;
+    height: 25px;
+    padding: 0;
 }
