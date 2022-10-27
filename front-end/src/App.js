@@ -1,17 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+import Radio from './pages/Radio'
 
 const App = props => {
   return (
     <div>
       <Router>
-        <Header />
         <main>
           <Routes>
-      
+            <Route path="/radio" element={<Radio />} />
           </Routes>
         </main>
-        <Footer />
       </Router>
     </div>
   )

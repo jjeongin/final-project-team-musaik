@@ -1,7 +1,96 @@
-.RadioBubbles {
-    height: 10vh;
-    width: 10vh;
+
+.bubble_div {
+    width: 100%; 
+    display: inline;
+}
+
+.float-child{
+    float: left;
+}
+
+.bubble_one {
+    width: 24vh;
+    height: 24vh;
+    border: 2px solid;
     border-radius: 100%;
     color: black;
-    
+    margin: 0 3vh 0 0;
+    overflow: hidden;
+}
+
+.bubble_two {
+    width: 21vh;
+    height: 21vh;
+    border: 2px solid;
+    border-radius: 100%;
+    color: black;
+    margin: 0 0 0 -1vh;
+    overflow: hidden;
+
+}
+
+.bubble_three {
+    width: 19vh;
+    height: 19vh;
+    border: 2px solid;
+    border-radius: 100%;
+    color: black;
+    margin: 0 0 0 0;
+    overflow: hidden;
+
+}
+
+.bubble_four {
+    width: 17vh;
+    height: 17vh;
+    border: 2px solid;
+    border-radius: 100%;
+    color: black;
+    margin: -3vh 0 0 4vh;
+    overflow: hidden;
+
+}
+
+.bubble_five {
+    width: 16vh;
+    height: 16vh;
+    border: 2px solid;
+    border-radius: 100%;
+    color: black;
+    margin: -4vh 2vh 0 0;
+    overflow: hidden;
+
+}
+
+.bubble_six {
+    width: 15vh;
+    height: 15vh;
+    border: 2px solid;
+    border-radius: 100%;
+    color: black;
+    margin: -6vh 0 0 0;
+    overflow: hidden;
+
+}
+
+.bubble_seven {
+    width: 14vh;
+    height: 14vh;
+    border: 2px solid;
+    border-radius: 100%;
+    color: black;
+    margin-top: -4vh;
+    overflow: hidden;
+
+}
+
+.bubble_eight {
+    width: 13vh;
+    height: 13vh;
+    border: 2px solid;
+    border-radius: 100%;
+    color: black;
+    margin: -1vh 0 0 4vh;
+    overflow: hidden;
+
 }
