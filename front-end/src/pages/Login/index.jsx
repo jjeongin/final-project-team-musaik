@@ -1,7 +1,6 @@
 import './index.css'
 import logo from '../../img/musaik-logo-new.svg'
 import spotify from '../../img/spotify-icon.png'
-import apple from '../../img/apple-music-icon.svg'
 
 function Login() {
   return (
