@@ -1,0 +1,47 @@
+.bubble {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 0;
+    position: absolute;
+}
+
+.bubble-1 {
+    width: 90px;
+    height: 90px;
+    left: 30px;
+    top: 30px;
+}
+
+.bubble-2 {
+    width: 200px;
+    height: 200px;
+    right: 20px;
+    top: 20px;
+}
+
+.bubble-3 {
+    width: 170px;
+    height: 170px;
+    left: 20px;
+    top: 200px;
+}
+
+.bubble-4 {
+    width: 110px;
+    height: 110px;
+    right: 40px;
+    top: 300px;
+}
+
+.bubble-5 {
+    width: 130px;
+    height: 130px;
+    left: 20px;
+    bottom: 100px;
+}
+
+.bubble-6 {
+    right: 40px;
+    bottom: 60px;
+}
