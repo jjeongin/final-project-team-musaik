@@ -5,6 +5,7 @@ import './styles.css'
 import SearchBar from '../../components/SearchBar/SearchBar';
 import NavBar from '../../components/NavBar/NavBar';
 import avi from "../../img/avi.png";
+import placeHolder from '../../img/album.jpeg'
 
 
 function Profile() {
@@ -15,8 +16,8 @@ function Profile() {
         <UserNumbers followers={300} following={200}/>
 
         <div className='Album-Card'>
-          <Albums text={"Favorites"}/>
-          <Albums text={"Recently Played"}/>
+          <Albums text={"Favorites"} image={placeHolder}/>
+          <Albums text={"Recently Played"} image={placeHolder}/>
         </div>
        <NavBar />
 
