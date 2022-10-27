@@ -2,7 +2,6 @@ import Albums from '../../Albums';
 import UserAvatar from '../../UserAvatar';
 import UserNumbers from '../../UserNumbers'
 import './styles.css'
-import SearchBar from '../../SearchBar';
 import NavBar from '../../NavBar';
 import avi from "../../img/avi.png";
 
