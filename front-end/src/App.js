@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './App.css';
 import CurrentStation from './pages/CurrentStation/CurrentStation';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
-import Radio from './pages/Radio'
+import Radio from './pages/RadioBubbles'
 import Search from './pages/Search'
+import './App.css'
+import img from './img/album.jpeg'
 
-function App() {
+const App = props => {
   return (
     <Router>
       <Routes>
@@ -28,4 +29,5 @@ function App() {
   );
 }
 
-export default App;
+export default App
+

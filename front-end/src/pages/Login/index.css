@@ -1,0 +1,55 @@
+.Login {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #E6DFF1;
+;
+}
+
+.Login img {
+    width: 400px;
+}
+
+.login-social {
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-social p {
+    font-size: 20px;
+    padding: 0 20px;
+}
+
+.login-spotify {
+    width: 400px;
+    height: 60px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-spotify img {
+    width: 30px;
+}
+
+.login-apple-music {
+    width: 400px;
+    height: 60px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-apple-music img {
+    width: 30px;
+}
