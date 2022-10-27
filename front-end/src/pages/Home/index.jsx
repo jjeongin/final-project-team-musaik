@@ -6,17 +6,13 @@ import './index.css'
 import RadioMatch from '../../components/RadioMatch';
 
 function Home() {
-
   return (
-
     <div className="Home">
       <SearchBar />
       <RadioMatch img1={placeHolder} img2={placeHolder} />
       <Albums text={"Recently Played"} image={placeHolder}/>
       <Albums text={"Favorites"} image={placeHolder}/>
-      
       <NavBar />
-      
     </div>
   );
 }
