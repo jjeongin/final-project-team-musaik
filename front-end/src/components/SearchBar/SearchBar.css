@@ -10,6 +10,7 @@
 .Search-Burger{
     padding-top: 20px;
     display: flex;
+    position: fixed;
 }
 
 input{

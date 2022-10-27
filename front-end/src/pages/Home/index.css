@@ -4,5 +4,10 @@
     align-items: center;
     text-align: center;
     background-color: rgb(60, 60, 60);
-    height: 95vh;
+    height: 90vh;
+    overflow: scroll;
+}
+
+.home-content {
+    padding-top: 55px; /* search bar size */
 }
