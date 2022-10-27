@@ -9,10 +9,12 @@ function Home() {
   return (
     <div className="Home">
       <SearchBar />
-      <RadioMatch img1={placeHolder} img2={placeHolder} />
-      <Albums text={"Recently Played"} image={placeHolder}/>
-      <Albums text={"Favorites"} image={placeHolder}/>
-      <NavBar />
+      <div className="home-content">
+        <RadioMatch img1={placeHolder} img2={placeHolder} />
+        <Albums text={"Recently Played"} image={placeHolder}/>
+        <Albums text={"Favorites"} image={placeHolder}/>
+      </div>
+      <NavBar /> 
     </div>
   );
 }

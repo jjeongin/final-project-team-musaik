@@ -8,7 +8,7 @@ function Albums({text, image}){
     return(
 
         <div className='Carousel'>
-            <h1 className='Category-Name'>{text}</h1>
+            <h2 className='Category-Name'>{text}</h2>
             <img src={image} alt="Album PlaceHolder" className='Album-PlaceHolder'/>
             <img src={image} alt="Album PlaceHolder" className='Album-PlaceHolder'/>
             <img src={image} alt="Album PlaceHolder" className='Album-PlaceHolder'/>
