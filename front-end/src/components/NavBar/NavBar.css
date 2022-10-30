@@ -3,6 +3,7 @@
     min-height: 5vh;
     position: fixed;
     bottom: 0;
+    z-index: 2;
 }
 
 .nav-links {

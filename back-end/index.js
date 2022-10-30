@@ -1,4 +1,6 @@
 require('dotenv').config({ path: 'config.env' });
+const cors = require('cors');
+
 // database setup
 //require('./db');
 //const mongoose = require('mongoose');
@@ -7,6 +9,11 @@ require('dotenv').config({ path: 'config.env' });
 const express = require('express');
 const app = express();
 
+
+//middleware
+app.use(express.json());
+app.use(cors());
+
 // static files
 const path = require("path");
 
@@ -14,7 +21,11 @@ const path = require("path");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// routes
+//app.use('/api', require('./routes/api'));
 
+
+// for deployment, ignore
 if (process.env.NODE_ENV == 'production') {
     console.log(__dirname);
     app.use(express.static(path.join(__dirname, '../front-end/build')));
