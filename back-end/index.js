@@ -14,12 +14,19 @@ const app = express();
 
 //middleware
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+   optionsSuccessStatus: 200,
+   credentials: true,
+ }
+app.use(cors(corsOptions));
 app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  //cookie: { secure: true }
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    
+    cookie: {
+        secure: false,
+    }
 }))
 
 // static files
@@ -65,6 +72,8 @@ app.get('/auth', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
 
+
+
 // callback
 app.get('/callback', (req, res) => {
     const error = req.query.error;
@@ -87,31 +96,31 @@ app.get('/callback', (req, res) => {
             spotifyApi.setAccessToken(access_token);
             spotifyApi.setRefreshToken(refresh_token);
 
-            req.session.access_token = access_token;
-            req.session.refresh_token = refresh_token;
-
-            console.log('access_token:', access_token);
-            console.log('refresh_token:', refresh_token);
+            req.session.user = {
+                access_token: access_token,
+                refresh_token: refresh_token
+            };
+        
+            console.log('user:', req.session.user);
 
             console.log(
                 `Sucessfully retreived access token. Expires in ${expires_in} s.`
             );
-
-
             res.redirect("/profile");
         })
 });
 
 // refresh
 app.get('/refresh', (req, res) => {
-    const refreshToken = req.query.refresh_token;
+    const refreshToken = req.session.user.refresh_token;
     spotifyApi.setRefreshToken(refreshToken);
     spotifyApi.refreshAccessToken().then(
         data => {
-            res.json({
-                access_token: data.body['access_token'],
-                expires_in: data.body['expires_in']
-            });
+            req.session.user = {
+                access_token: data.body.access_token,
+                refresh_token: refreshToken,
+            };
+            res.send(req.session.user).status(200);
         }
     ).catch(
         err => {
