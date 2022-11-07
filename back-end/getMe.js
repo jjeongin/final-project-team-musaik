@@ -1,6 +1,6 @@
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQBylZuhJJUniFeFcz1CcjR6cIkw2_yt78LbfD-aZgW191ztcfA9bVDMy6W4yhCdBy8eQx3Mrfc9rrKcrgFMQVRg_NNt_ZMINLZeH9CaOorINJnT43ZBM9o6NqY2tMOVudyAB_MZtcxftuzrd_YOkg1gyW6WNGz1EMyUH6pmCPgtblnRPdHMObw4wDzwd9_qkY16VL7QeQM3Ywxl523QLlCD8OY";
+const token = "xxx";
 
 const spotifyApi = new SpotifyWebApi();
 spotifyApi.setAccessToken(token);
