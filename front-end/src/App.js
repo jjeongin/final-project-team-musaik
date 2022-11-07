@@ -26,7 +26,7 @@ const App = props => {
 
         <Route path="/currentStation" element={<CurrentStation />} />
 
-        <Route path="/search" element={<Search />} />
+        {/* <Route path="/search" element={<Search />} /> */}
       </Routes>
     </Router>
   );
