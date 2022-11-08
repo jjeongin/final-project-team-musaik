@@ -11,12 +11,12 @@ function NavBar() {
 			<nav className="NavBar">
 				<ul className="nav-links">
 					<li className="nav-item">
-						<Link to="/" className="home-icon"> {/* this is the same router route indicated in App.js */}
+						<Link to="/home" className="home-icon"> {/* this is the same router route indicated in App.js */}
 							<img src={home} alt="Home Icon"/>
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link to="/radio" className="radio-icon">
+						<Link to="/radio-bubbles" className="radio-icon">
 							<img src={radio} alt="Radio Icon"/>
 						</Link>
 					</li>

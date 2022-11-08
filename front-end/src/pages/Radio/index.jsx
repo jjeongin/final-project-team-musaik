@@ -17,7 +17,7 @@ function Radio() {
     const createStation = async () => {
         const res = await axios.post(`/create-session`);
         console.log(res);
-        window.location = `/currentRadio`;
+        window.location = `/current-radio`;
     }
 
     return (

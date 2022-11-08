@@ -21,11 +21,7 @@ const App = props => {
 
         <Route path="/profile" element={<Profile />} />
 
-        <Route path="/radio" element={<Radio />} />
-
         <Route path="/radio-bubbles" element={<RadioBubbles />} />
-
-        <Route path="/currentStation" element={<CurrentStation />} />
 
         <Route path="/current-radio" element={<WebPlayback />} />
 
