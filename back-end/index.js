@@ -23,7 +23,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    
+    httpOnly: true,
     cookie: {
         secure: false,
     }
@@ -37,7 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-//app.use('/api', require('./routes/api'));
+app.use('/api', require('./routes/api'));
 
 
 // spotify api
@@ -102,10 +102,6 @@ app.get('/callback', (req, res) => {
             };
         
             console.log('user:', req.session.user);
-
-            console.log(
-                `Sucessfully retreived access token. Expires in ${expires_in} s.`
-            );
             res.redirect("/profile");
         })
 });
@@ -131,8 +127,6 @@ app.get('/refresh', (req, res) => {
 });
 
 
-
-// for deployment, ignore
 if (process.env.NODE_ENV == 'production') {
     console.log(__dirname);
     app.use(express.static(path.join(__dirname, '../front-end/build')));
@@ -140,7 +134,6 @@ if (process.env.NODE_ENV == 'production') {
         res.sendFile(path.join(__dirname, '../front-end', 'build', 'index.html'));
     });
 } else {
-    // development
     app.get('/', (req, res) => {
         res.send(process.env.NODE_ENV);
     });
