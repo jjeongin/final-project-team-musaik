@@ -1,7 +1,6 @@
 const router = require('express').Router();
 
-
-router.post('/createSession', async (req, res) => { 
+router.post('/create-session', async (req, res) => { 
     const host = req.session.user;
 
     const spotifyApi = new SpotifyWebApi({
