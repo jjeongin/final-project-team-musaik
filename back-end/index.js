@@ -22,7 +22,7 @@ const corsOptions = {
  }
 app.use(cors(corsOptions));
 app.use(session({
-    secret: "e3b81a092f95422eba29e89172e51152",
+    secret: "XXX",
     resave: false,
     saveUninitialized: false,
     
@@ -44,8 +44,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // spotify api
 const spotifyApi = new SpotifyWebApi({
-  clientId: "2a2ddce3c04344908d99af046bf27af6" ,
-  clientSecret: "e3b81a092f95422eba29e89172e51152",
+  clientId: "XXX" ,
+  clientSecret: "XXX",
   redirectUri: 'http://localhost:8080/callback/'
 });
 

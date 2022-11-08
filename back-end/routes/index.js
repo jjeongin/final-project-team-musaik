@@ -7,8 +7,8 @@ router.get('/', (req,res) =>{
     const host = req.session.user;
 
     const spotifyApi = new SpotifyWebApi({
-        clientId: "2a2ddce3c04344908d99af046bf27af6",
-        clientSecret: "e3b81a092f95422eba29e89172e51152",
+        clientId: "XXX",
+        clientSecret: "XXX",
         redirectUri: process.env.SPOTIFY_REDIRECT_URI
     });
 
