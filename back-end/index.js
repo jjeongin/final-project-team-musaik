@@ -4,6 +4,8 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const express = require('express');
 const session = require('express-session');
 
+const test = require('./routes/index.js')
+
 // database setup
 //require('./db');
 //const mongoose = require('mongoose');
@@ -20,7 +22,7 @@ const corsOptions = {
  }
 app.use(cors(corsOptions));
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: "e3b81a092f95422eba29e89172e51152",
     resave: false,
     saveUninitialized: false,
     
@@ -42,9 +44,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // spotify api
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  redirectUri: 'http://localhost:8080/callback'
+  clientId: "2a2ddce3c04344908d99af046bf27af6" ,
+  clientSecret: "e3b81a092f95422eba29e89172e51152",
+  redirectUri: 'http://localhost:8080/callback/'
 });
 
 const scopes = [
@@ -72,7 +74,7 @@ app.get('/auth', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
 
-
+app.use('/', test)
 
 // callback
 app.get('/callback', (req, res) => {
@@ -110,6 +112,70 @@ app.get('/callback', (req, res) => {
         })
 });
 
+
+
+// app.get('/profile', (req,res) =>{
+    
+//     function getMyData() {
+//         (async () => {
+//           const me = await spotifyApi.getMe();
+//           getMyTopArtists()
+//         })().catch(e => {
+//           console.error(e);
+//         });
+//       }
+      
+      
+//       async function getMyTopArtists(userName){
+//         const data = await spotifyApi.getMyTopArtists()
+//         let topArtists = data.body.items;
+//         let myArtists = []
+//         for(let i=0; i<5;i++){
+//           myArtists.push(topArtists[i].name)
+          
+      
+//         }
+
+//         res.send(myArtists)
+      
+      
+//       }
+       
+//       getMyData();
+
+    
+// })
+
+// app.get('/api/profile', (req,res) =>{
+//     function getMyData() {
+//             (async () => {
+//               const me = await spotifyApi.getMe();
+//               getMyTopArtists()
+//             })().catch(e => {
+//               console.error(e);
+//             });
+//           }
+          
+          
+//           async function getMyTopArtists(userName){
+//             const data = await spotifyApi.getMyTopArtists()
+//             let topArtists = data.body.items;
+//             let myTopArtists = []
+//             for(let i=0; i<5;i++){
+//               myTopArtists.push(topArtists[i].name)
+//               console.log(topArtists[i])
+          
+//             }
+    
+//             res.json(myTopArtists)
+          
+          
+//           }
+           
+//           getMyData();
+    
+// })
+
 // refresh
 app.get('/refresh', (req, res) => {
     const refreshToken = req.session.user.refresh_token;
@@ -143,10 +209,19 @@ if (process.env.NODE_ENV == 'production') {
     // development
     app.get('/', (req, res) => {
         res.send(process.env.NODE_ENV);
+    
     });
 }
+
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
+
+
+
+// clientId:'2a2ddce3c04344908d99af046bf27af6',
+//     clientSecret:'e3b81a092f95422eba29e89172e51152',
+
