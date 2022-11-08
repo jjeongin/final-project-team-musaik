@@ -5,6 +5,8 @@ import radio from '../../img/radio.svg'
 import user from '../../img/user.svg'
 
 function NavBar() {
+
+	
     return (
 			<nav className="NavBar">
 				<ul className="nav-links">

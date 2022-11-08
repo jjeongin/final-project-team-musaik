@@ -7,9 +7,24 @@ import cover_five from '../../img/bubblecover5.jpeg'
 import cover_six from '../../img/bubblecover6.jpg'
 import cover_seven from '../../img/bubblecover7.jpg'
 import cover_eight from '../../img/bubblecover8.jpg'
+import radio from '../../img/radio.svg'
+import { Link } from 'react-router-dom'
+import axios from 'axios';
+import './index.css'
 
 function Radio() {
+
+    const createStation = async () => {
+        const res = await axios.post(`/create-session`);
+        console.log(res);
+        window.location = `/currentRadio`;
+    }
+
     return (
+        <>
+        <div onClick ={createStation}>
+          <img src={radio} />
+        </div>
         <div className="Radio">
             <div className="bubble_div" style = {{display: 'flex', flexDirection: 'column'}}>
                 <div style = {{display: 'flex', flexDirection: 'row', justifyContent: 'center',margin: '3vh 0 1vh 0'}}>
@@ -62,7 +77,8 @@ function Radio() {
                 </div>    
             </div>
             <NavBar/>
-        </div>
+            </div>
+        </>
     );
 }
 

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import CurrentStation from './pages/CurrentStation/CurrentStation';
+import CurrentStation from './pages/CurrentStation';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
@@ -8,6 +8,7 @@ import RadioBubbles from './pages/Radio'
 import Search from './pages/Search'
 import './App.css'
 import img from './img/album.jpeg'
+import WebPlayback from './pages/WebPlayback';
 
 const App = props => {
   return (
@@ -25,6 +26,8 @@ const App = props => {
         <Route path="/radio-bubbles" element={<RadioBubbles />} />
 
         <Route path="/currentStation" element={<CurrentStation />} />
+
+        <Route path="/current-radio" element={<WebPlayback />} />
 
         <Route path="/search" element={<Search />} />
       </Routes>
