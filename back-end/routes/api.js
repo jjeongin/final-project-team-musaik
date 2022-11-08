@@ -1,7 +1,6 @@
 const router = require('express').Router();
 
 /*
-
 Acceptance criteria: user can create a listening session, save current song, access tokens of users who have joined, access token of host user.
 
 -get host’s current playback state: playback = spotifyApi.getMyCurrentPlaybackState()
@@ -13,7 +12,6 @@ access tokens
 spotifyAPI.addToQueue(playback.item.uri)
 
 */
-
 
 router.post('/createSession', async (req, res) => { 
     const host = req.session.user;
@@ -49,11 +47,5 @@ router.post('/getSession', (req, res) => {
         session: session
     });
 });
-
-
-
-
-
-
 
 module.exports = router;
