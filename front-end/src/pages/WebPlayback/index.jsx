@@ -16,21 +16,23 @@ const track = {
 function WebPlayback(props) {
 
     const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        if (!user) {
-            axios.get('/user').then((res) => {
-                setUser(res.data.user);
-            });
-        }
-    }, []);
-
     const [is_paused, setPaused] = useState(false);
     const [is_active, setActive] = useState(false);
     const [player, setPlayer] = useState(undefined);
     const [current_track, setTrack] = useState(track);
 
+    const auth = () => {
+        if (!user) {
+            axios.get('/user').then((res) => {
+                setUser(res.data);
+                console.log("user", user);
+            });
+        }
+    };
+
     useEffect(() => {
+
+       
 
         const script = document.createElement("script");
         script.src = "https://sdk.scdn.co/spotify-player.js";
@@ -74,7 +76,7 @@ function WebPlayback(props) {
             player.connect();
 
         };
-    }, []);
+    },[user]);
 
     if (!is_active) { 
         return (
@@ -82,6 +84,7 @@ function WebPlayback(props) {
                 <div className="container">
                     <div className="main-wrapper">
                         <b> Instance not active. Transfer your playback using your Spotify app </b>
+                        <button onClick={auth}>Auth</button>
                     </div>
                 </div>
             </>)

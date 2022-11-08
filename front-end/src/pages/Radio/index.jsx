@@ -15,9 +15,9 @@ import './index.css'
 function Radio() {
 
     const createStation = async () => {
-        const res = await axios.post(`/create-session`);
+        const res = await axios.post(`/api/create-session`);
         console.log(res);
-        window.location = `/current-radio`;
+        window.location = `/web-playback`;
     }
 
     return (

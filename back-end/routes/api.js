@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const SpotifyWebApi = require('spotify-web-api-node');
 
 router.post('/create-session', async (req, res) => { 
     const host = req.session.user;
@@ -15,6 +16,7 @@ router.post('/create-session', async (req, res) => {
     const playback = await spotifyApi.getMyCurrentPlaybackState();
     const currentSong = playback.body.item.uri;
 
+
     const session = {
         host: host,
         currentSong: currentSong,
@@ -28,14 +30,14 @@ router.post('/create-session', async (req, res) => {
     });
 });
 
-router.post('/getSession', (req, res) => {
+router.post('/get-session', (req, res) => {
     const session = req.session.session;
     res.json({
         session: session
     });
 });
 
-router.post('/changeSong', async (req, res) => {
+router.post('/change-song', async (req, res) => {
     const session = req.session.session;
     const users = session.joined_users;
     const host = session.host;

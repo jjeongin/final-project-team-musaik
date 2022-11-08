@@ -131,6 +131,7 @@ app.get('/refresh', (req, res) => {
 // get user
 app.get('/user', (req, res) => {
     res.send(req.session.user).status(200);
+    console.log('user:', req.session.user);
 });
 
 app.post('/create-session', async (req, res) => { 
