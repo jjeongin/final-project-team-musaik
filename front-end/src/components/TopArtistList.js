@@ -25,6 +25,7 @@ export default class TopArtistList extends React.Component {
         ))[this.props.number]}
 
         </div>  
+        
       )
     }
   }

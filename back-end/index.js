@@ -99,7 +99,8 @@ var spotifyApi = new SpotifyWebApi({
 
 
   app.get('/top_artists', (req, res) => {
-    const token = "BQC-jOHLKB23ha6MC5TKqk_9zFMaypyswYpDEzYTGuLGr1CvYE-V5-A8ncW_po-Lud7CpazGVNwlKbj3AnOw9E1bPYiR4ykA6Wl73jPsSl1v4N_9O-UGbbUaxpODeA7OlgOH-AIPDUjOvv4XUTOIL9DmgGIM1dEcH7PCpmX0l5JxgNennY_xFl4VVtUCubMhuQ1P55vCCrX-n9qjp2isoOd4vi-l0yd2FbIt5OiM4s7qZXn-LosonZcA3nYWqRlyndt0l-4QdFB-7FLWgHiLH6k7I7IF2W1yMoN1EsP6N6mJEPkSYlyXaqkyE9MebewnsYsdlReKg8_6Fo8NSErmr429";
+    const token = "BQDQLMf3fvppCJNO-AoiUsrMi7AJ-_C2gJGvIB24JBDOupVEqHjmUs_mqh4_Ow07R7u92rL4BjGanZbtNAqTZIhCVWy_NZnGpM3fVHkTpg8lRZIuvbeyfCHEFA3XebXHUw2xrzZll4Nrn2qSRbystOpJNBIJMl-fHArnnxNtdFVhzOay5J5syX523OstWJ6iCE8N10E2D4_zIaCDADIohKSCN_nvpwRTycwMC-Cw9ZnJ90yzi-jUwm-F3Oy-ODTBom1_QmPH8n7_dLwa277__8qd87u_-kyexSTcnsq0n0WE93PnM4U3Yvf5sMLKHi4_0t1P0lF2OGXe5CQ-ruijaHFB";
+     
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyTopArtists({
       limit: 3,
@@ -112,11 +113,11 @@ var spotifyApi = new SpotifyWebApi({
     }, function(err) {
       console.log('Something went wrong!', err);
   })
-    
-  });
+
+ });
 
   app.get('/top_artists_pics', (req, res) => {
-    const token = "BQC-jOHLKB23ha6MC5TKqk_9zFMaypyswYpDEzYTGuLGr1CvYE-V5-A8ncW_po-Lud7CpazGVNwlKbj3AnOw9E1bPYiR4ykA6Wl73jPsSl1v4N_9O-UGbbUaxpODeA7OlgOH-AIPDUjOvv4XUTOIL9DmgGIM1dEcH7PCpmX0l5JxgNennY_xFl4VVtUCubMhuQ1P55vCCrX-n9qjp2isoOd4vi-l0yd2FbIt5OiM4s7qZXn-LosonZcA3nYWqRlyndt0l-4QdFB-7FLWgHiLH6k7I7IF2W1yMoN1EsP6N6mJEPkSYlyXaqkyE9MebewnsYsdlReKg8_6Fo8NSErmr429";
+    const token = "BQDQLMf3fvppCJNO-AoiUsrMi7AJ-_C2gJGvIB24JBDOupVEqHjmUs_mqh4_Ow07R7u92rL4BjGanZbtNAqTZIhCVWy_NZnGpM3fVHkTpg8lRZIuvbeyfCHEFA3XebXHUw2xrzZll4Nrn2qSRbystOpJNBIJMl-fHArnnxNtdFVhzOay5J5syX523OstWJ6iCE8N10E2D4_zIaCDADIohKSCN_nvpwRTycwMC-Cw9ZnJ90yzi-jUwm-F3Oy-ODTBom1_QmPH8n7_dLwa277__8qd87u_-kyexSTcnsq0n0WE93PnM4U3Yvf5sMLKHi4_0t1P0lF2OGXe5CQ-ruijaHFB";
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyTopArtists({
       limit: 3,
