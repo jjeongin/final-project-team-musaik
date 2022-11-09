@@ -1,9 +1,6 @@
 import './Albums.css';
 import placeHolder from '../../img/album.jpeg'
 
-
-
-
 function Albums({text, image}){
     return(
 

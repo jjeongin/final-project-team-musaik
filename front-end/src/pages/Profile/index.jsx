@@ -6,7 +6,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import NavBar from '../../components/NavBar/NavBar';
 import avi from "../../img/avi.png";
 import placeHolder from '../../img/album.jpeg'
-
+import FavArtists from '../../components/Albums/FavArtists';
 
 function Profile() {
   return (
@@ -14,9 +14,8 @@ function Profile() {
       <SearchBar />
         <UserAvatar text={"Ahmahcs"} image={avi} />
         <UserNumbers followers={300} following={200}/>
-
         <div className='Album-Card'>
-          <Albums text={"Favorites"} image={placeHolder}/>
+          <FavArtists text={"Favorite Artists"} image={placeHolder} label = {''}/>
           <Albums text={"Recently Played"} image={placeHolder}/>
         </div>
        <NavBar />
