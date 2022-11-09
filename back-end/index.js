@@ -22,7 +22,7 @@ const corsOptions = {
  }
 app.use(cors(corsOptions));
 app.use(session({
-    secret: "XXX",
+    secret: "e3b81a092f95422eba29e89172e51152",
     resave: false,
     saveUninitialized: false,
     
@@ -44,8 +44,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // spotify api
 const spotifyApi = new SpotifyWebApi({
-  clientId: "XXX" ,
-  clientSecret: "XXX",
+  clientId: "2a2ddce3c04344908d99af046bf27af6" ,
+  clientSecret: "e3b81a092f95422eba29e89172e51152",
   redirectUri: 'http://localhost:8080/callback/'
 });
 
@@ -74,7 +74,10 @@ app.get('/auth', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
 
-app.use('/', test)
+// app.use('/api/profile', test)
+
+
+// app.use('/profile', test)
 
 // callback
 app.get('/callback', (req, res) => {
@@ -112,39 +115,83 @@ app.get('/callback', (req, res) => {
         })
 });
 
+app.get('/api/get_saved', (req, res) =>{
+    spotifyApi.setAccessToken("BQAQ4-xSMaB9Bv7u8MEQBCW0TkPz_ss-JbXBfgvfPHeN3XbXXnP-kMGo3O54SV_bftCp22ciatMjmmqSsoFM_WpPVX99dQtl-s4azNlsSGo--BPFhUqGN7X8qmo7YebikriZXatlqL1fG5WRkd86sSotf0qm6nGYR3Ky6u2CLORG3xavFpjnC9rwKjb7qkhMBBD5DPNEAEZT3sgvKZ4wJGZTs7OJCkKt26Z2aRKHduclu0U31MylBWs3UZl_cXZCx_hShWlkI6EMJfahottqw6BpMjIv-4MbkjeX4RQOeNRHisBbCKrlbXaPgKKx6eqrMHprQyivn0Cr9sn7b-YL");
+    spotifyApi.setRefreshToken("AQCddjzAWY6RLM_629Uxpzb7c_dPXVtysYc2K6FAUMXlMqJTvrzVdZe8u89rej57rFhtm9caquYLqpxySE2H37RIOwcDoIf96fPpe3eFxMLVEUHEpEb7xvIlMjAeqkiqfEU");
 
+    spotifyApi.getMyRecentlyPlayedTracks({
+        limit : 5
+      }).then(function(data) {
+        let songs =[]
+        let images  = []
+        let song = data.body.items 
+        for(let i=0; i<5;i++){
+            //songs.push(song[i].track['album']['artists'][0].name) returns names of recently played
+            // songs.push(song[i].track.name)
+            images.push(song[i].track.album.images[0].url)
 
-// app.get('/profile', (req,res) =>{
+        
+        
+          }
+          res.json(images)
+
     
-//     function getMyData() {
-//         (async () => {
-//           const me = await spotifyApi.getMe();
-//           getMyTopArtists()
-//         })().catch(e => {
-//           console.error(e);
-//         });
-//       }
+      })
+
+         
+           
+
+    
+    
+})
+
+
+app.get('/api/profile', (req,res) =>{
+ 
+    // const host = req.session.user;
+
+    // const spotifyApi = new SpotifyWebApi({
+    //     clientId: "2a2ddce3c04344908d99af046bf27af6",
+    //     clientSecret: "e3b81a092f95422eba29e89172e51152",
+    //     redirectUri: 'http://localhost:8080/callback/'
+    // });
+
+    // // spotifyApi.setAccessToken(host.access_token);
+    // spotifyApi.setRefreshToken(host.refresh_token);
+
+    spotifyApi.setAccessToken("BQCjCzEDXl89l_lkEOZmadTloupU2FlOApWiwEmeBfnI7JF9SG5k2cLwmWaKzGlg1vKYFAGjy-UAfSgvaIn4yzOo4EOBy6EK7xA0_qWtQ9oKVVXl2JMDJdtwgpLZojkFxY7LC_axtxffRlO2K2C-oSSHjpzpp0Yfrbf5sd5Tmhz5YjhYc4YnUQ6v8PFpo4UEtQ6baU_bPuInl2NJWlFoNcQTS6vD-Ohmof56aUrEATKqZ3OEaAMMQcCIjhVCF1WSCRAte1UvGz6Iq9QbRWraoYNTObNoO1cpxyU_QEA2yfo6rurDkG2ISnJOelAJj3vdpkD4ZJKgHFEW0WjSgoda");
+    spotifyApi.setRefreshToken("AQA0xr6AOWGPZiE9H75NXfIr_Ivw-HC05mQKCIo2wxH6Fh0ozUaVoBTY5-2sjdw8Psb67x4rz8N44Vdh3X0Xp82WpD3SsbPlnp9vxWr8h6AdxBnIteN8xdE2Yosk2UdjqGo");
+
+    
+    function getMyData() {
+        (async () => {
+          const me = await spotifyApi.getMe();
+          getMyTopArtists()
+        })().catch(e => {
+          console.error(e);
+        });
+      }
       
       
-//       async function getMyTopArtists(userName){
-//         const data = await spotifyApi.getMyTopArtists()
-//         let topArtists = data.body.items;
-//         let myArtists = []
-//         for(let i=0; i<5;i++){
-//           myArtists.push(topArtists[i].name)
+      async function getMyTopArtists(userName){
+        const data = await spotifyApi.getMyTopArtists()
+        let topArtists = data.body.items;
+        let myArtists = []
+        for(let i=0; i<5;i++){
+          myArtists.push(topArtists[i].images[0]["url"])
           
       
-//         }
+        }
 
-//         res.send(myArtists)
+        res.json(myArtists)
+   
       
-      
-//       }
+      }
        
-//       getMyData();
+      getMyData();
 
     
-// })
+})
 
 // app.get('/api/profile', (req,res) =>{
 //     function getMyData() {
@@ -215,9 +262,14 @@ if (process.env.NODE_ENV == 'production') {
 
 
 
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
+});
+
+app.get('/express_backend', (req, res) => { //Line 9
+    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
 });
 
 

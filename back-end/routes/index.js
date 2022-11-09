@@ -3,13 +3,13 @@ const SpotifyWebApi = require('spotify-web-api-node');
 
 
 
-router.get('/', (req,res) =>{
+router.get('/api/profile', (req,res) =>{
     const host = req.session.user;
 
     const spotifyApi = new SpotifyWebApi({
-        clientId: "XXX",
-        clientSecret: "XXX",
-        redirectUri: process.env.SPOTIFY_REDIRECT_URI
+        clientId: "2a2ddce3c04344908d99af046bf27af6",
+        clientSecret: "e3b81a092f95422eba29e89172e51152",
+        redirectUri: 'http://localhost:8080/callback/'
     });
 
     spotifyApi.setAccessToken(host.access_token);
@@ -27,18 +27,16 @@ router.get('/', (req,res) =>{
       async function getMyTopArtists(userName){
         const data = await spotifyApi.getMyTopArtists()
         let topArtists = data.body.items;
-        let myTopArtists = []
-        for(let i=0; i<5;i++){
-          myTopArtists.push(topArtists[i].name)
-          console.log(topArtists[i])
-      
+        let myTopFive = []
+
+        for(let i = 0; i< 4; i++){
+          myTopFive.push(topArtists[i])
         }
 
-        res.json(myTopArtists)
+        res.json(myTopFive)
       
       
       }
-        console.log(';')
       getMyData();
 })
 
