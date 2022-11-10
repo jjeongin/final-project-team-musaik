@@ -16,7 +16,7 @@ const corsOptions = {
  }
 app.use(cors(corsOptions));
 app.use(session({
-    secret: "463201981ff0483aa5361b4d5039113b",
+    secret: "",
     resave: false,
     saveUninitialized: false,
     httpOnly: true,
@@ -39,8 +39,8 @@ app.use('/api', api);
 
 // spotify api
 const spotifyApi = new SpotifyWebApi({
-  clientId: "916ccfa1c6494c258979b38d9a540ea8" ,
-  clientSecret: "463201981ff0483aa5361b4d5039113b",
+  clientId: "",
+  clientSecret: "",
   redirectUri: 'http://localhost:8080/callback/'
 });
 
@@ -111,7 +111,7 @@ app.get('/callback', (req, res) => {
 
 app.get('/api/rec', (req, res) =>{
 
-    spotifyApi.setAccessToken("BQAJoeVsUXlrEa3jGsKG_3n_26HEDcXbs8RICwzTVVrnA8uMzbKXF1zzK-v9jF77KqXqJ3Rc4RI-xVdzXfMFI3CDEPuWNE1NPaNnBXsR4VnlnmKQIiCbhmjzE3ytS_pPuIj7pm8PhEiv7Uz9UtOHvwlPpbcHTdC5-RASk5ZXHg3aWIfym4cf4b96Fr81jTq8d2qJupTbuCZoaX46Ts0xiQutV9vTX0yJmj5dMB89zAIg42qqamZaMaVOPnP8SAoIuUF6A3YfsKYUFuugStIEjpcHss0vGj5SV5Ivw44oPOtMM09NTQGqwHZWDSIKT_gZuBUcgIs5T-s8AYNO1Js");
+    spotifyApi.setAccessToken("BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E");
     //spotifyApi.setRefreshToken("AQAJRpQunC3Ngm-pW26a9P37fcKaDmhSKKj2Ln1mQfsKOR07bTozm2lAvkWVSpDpJY-_0oCBMLEvDG1VHzMQYI-9MDZ_SIXA8n_DTRTrtU_SYX3laNhFudeTjrWC_5OmnLs");
     function getMyData() {
         (async () => {
@@ -155,7 +155,7 @@ app.get('/api/rec', (req, res) =>{
 })
 
 app.get('/api/user_info', (req,res) =>{
-    spotifyApi.setAccessToken("BQAJoeVsUXlrEa3jGsKG_3n_26HEDcXbs8RICwzTVVrnA8uMzbKXF1zzK-v9jF77KqXqJ3Rc4RI-xVdzXfMFI3CDEPuWNE1NPaNnBXsR4VnlnmKQIiCbhmjzE3ytS_pPuIj7pm8PhEiv7Uz9UtOHvwlPpbcHTdC5-RASk5ZXHg3aWIfym4cf4b96Fr81jTq8d2qJupTbuCZoaX46Ts0xiQutV9vTX0yJmj5dMB89zAIg42qqamZaMaVOPnP8SAoIuUF6A3YfsKYUFuugStIEjpcHss0vGj5SV5Ivw44oPOtMM09NTQGqwHZWDSIKT_gZuBUcgIs5T-s8AYNO1Js");
+    spotifyApi.setAccessToken("BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E");
     //spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
    spotifyApi.getMe()
   .then(function(data) {
@@ -167,7 +167,7 @@ app.get('/api/user_info', (req,res) =>{
 
 
 app.get('/api/get_saved', (req, res) =>{
-    spotifyApi.setAccessToken("BQAJoeVsUXlrEa3jGsKG_3n_26HEDcXbs8RICwzTVVrnA8uMzbKXF1zzK-v9jF77KqXqJ3Rc4RI-xVdzXfMFI3CDEPuWNE1NPaNnBXsR4VnlnmKQIiCbhmjzE3ytS_pPuIj7pm8PhEiv7Uz9UtOHvwlPpbcHTdC5-RASk5ZXHg3aWIfym4cf4b96Fr81jTq8d2qJupTbuCZoaX46Ts0xiQutV9vTX0yJmj5dMB89zAIg42qqamZaMaVOPnP8SAoIuUF6A3YfsKYUFuugStIEjpcHss0vGj5SV5Ivw44oPOtMM09NTQGqwHZWDSIKT_gZuBUcgIs5T-s8AYNO1Js");
+    spotifyApi.setAccessToken("BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E");
   //spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
     spotifyApi.getMyRecentlyPlayedTracks({
         limit : 5
@@ -291,34 +291,34 @@ app.get('/user', (req, res) => {
     console.log('user:', req.session.user);
 });
 
-app.post('/create-session', async (req, res) => { 
-    const host = req.session.user;
+// app.post('/create-session', async (req, res) => { 
+//     const host = req.session.user;
 
-    const spotifyApi = new SpotifyWebApi({
-        clientId: process.env.SPOTIFY_CLIENT_ID,
-        clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-        redirectUri: process.env.SPOTIFY_REDIRECT_URI
-    });
+//     const spotifyApi = new SpotifyWebApi({
+//         clientId: "2a2ddce3c04344908d99af046bf27af6",
+//         clientSecret: "e3b81a092f95422eba29e89172e51152",
+//         redirectUri:'http://localhost:8080/callback/'
+//     });
 
-    spotifyApi.setAccessToken(host.access_token);
-    spotifyApi.setRefreshToken(host.refresh_token);
+//     spotifyApi.setAccessToken(host.access_token);
+//     spotifyApi.setRefreshToken(host.refresh_token);
 
-    const playback = await spotifyApi.getMyCurrentPlaybackState();
-    console.log (playback.body.item);
-    const currentSong = playback.body.item.uri;
+//     const playback = await spotifyApi.getMyCurrentPlaybackState();
+//     console.log (playback.body.item);
+//     const currentSong = playback.body.item.uri;
 
-    const session = {
-        host: host,
-        currentSong: currentSong,
-        joined_users: []
-    };
+//     const session = {
+//         host: host,
+//         currentSong: currentSong,
+//         joined_users: []
+//     };
 
-    req.session.session = session;
+//     req.session.session = session;
 
-    res.json({
-        session: session
-    });
-});
+//     res.json({
+//         session: session
+//     });
+// });
 
 if (process.env.NODE_ENV == 'production') {
     console.log(__dirname);
@@ -334,8 +334,8 @@ if (process.env.NODE_ENV == 'production') {
 
 
   app.get('/top_artists', (req, res) => {
-    const token = "BQAJoeVsUXlrEa3jGsKG_3n_26HEDcXbs8RICwzTVVrnA8uMzbKXF1zzK-v9jF77KqXqJ3Rc4RI-xVdzXfMFI3CDEPuWNE1NPaNnBXsR4VnlnmKQIiCbhmjzE3ytS_pPuIj7pm8PhEiv7Uz9UtOHvwlPpbcHTdC5-RASk5ZXHg3aWIfym4cf4b96Fr81jTq8d2qJupTbuCZoaX46Ts0xiQutV9vTX0yJmj5dMB89zAIg42qqamZaMaVOPnP8SAoIuUF6A3YfsKYUFuugStIEjpcHss0vGj5SV5Ivw44oPOtMM09NTQGqwHZWDSIKT_gZuBUcgIs5T-s8AYNO1Js";
-     
+    const token = "BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E";
+ 
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyTopArtists({
       limit: 3,
@@ -352,7 +352,8 @@ if (process.env.NODE_ENV == 'production') {
  });
 
   app.get('/top_artists_pics', (req, res) => {
-    const token = "BQAJoeVsUXlrEa3jGsKG_3n_26HEDcXbs8RICwzTVVrnA8uMzbKXF1zzK-v9jF77KqXqJ3Rc4RI-xVdzXfMFI3CDEPuWNE1NPaNnBXsR4VnlnmKQIiCbhmjzE3ytS_pPuIj7pm8PhEiv7Uz9UtOHvwlPpbcHTdC5-RASk5ZXHg3aWIfym4cf4b96Fr81jTq8d2qJupTbuCZoaX46Ts0xiQutV9vTX0yJmj5dMB89zAIg42qqamZaMaVOPnP8SAoIuUF6A3YfsKYUFuugStIEjpcHss0vGj5SV5Ivw44oPOtMM09NTQGqwHZWDSIKT_gZuBUcgIs5T-s8AYNO1Js";
+    const token = "BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E";
+ 
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyTopArtists({
       limit: 3,

@@ -91,7 +91,7 @@ useEffect(() => {
 
         <div className='Album-Card'>
           <FavArtists text={"Favorite Artists"} image={placeHolder} label = {''}/>
-          <Albums text={"Recently Played"} image={placeHolder}/>
+          <Albums text={"Recently Played"} image1={songs[0]} image2={songs[1]} image3={songs[2]}/>
         </div>
        <NavBar />
     </div>
