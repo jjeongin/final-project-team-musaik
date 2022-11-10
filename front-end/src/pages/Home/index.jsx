@@ -27,7 +27,7 @@ function Home() {
       <div className="home-content">
         <RadioMatch img1={placeHolder} img2={placeHolder} />
         <Albums text={"Recently Played"} image={placeHolder}/>
-        <Albums text={"Recommendations Based on Your Taste"} image1={recs[2]}  image2={recs[4]} image3={recs[0]}/>
+        <Albums text={"Recommendations Based on Your Taste"} image1={recs[4]}  image2={recs[0]} image3={recs[2]}/>
       </div>
       <NavBar /> 
     </div>

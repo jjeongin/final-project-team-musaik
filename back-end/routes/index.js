@@ -5,8 +5,8 @@ router.get('/api/profile', (req,res) =>{
     const host = req.session.user;
 
     const spotifyApi = new SpotifyWebApi({
-      clientId: "916ccfa1c6494c258979b38d9a540ea8" ,
-      clientSecret: "463201981ff0483aa5361b4d5039113b",
+      clientId: "XXX" ,
+      clientSecret: "XXX",
       redirectUri: 'http://localhost:8080/callback/'
     });
 

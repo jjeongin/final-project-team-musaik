@@ -111,7 +111,7 @@ app.get('/callback', (req, res) => {
 
 app.get('/api/rec', (req, res) =>{
 
-    spotifyApi.setAccessToken("BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E");
+    spotifyApi.setAccessToken("XXX");
     //spotifyApi.setRefreshToken("AQAJRpQunC3Ngm-pW26a9P37fcKaDmhSKKj2Ln1mQfsKOR07bTozm2lAvkWVSpDpJY-_0oCBMLEvDG1VHzMQYI-9MDZ_SIXA8n_DTRTrtU_SYX3laNhFudeTjrWC_5OmnLs");
     function getMyData() {
         (async () => {
@@ -156,7 +156,7 @@ app.get('/api/rec', (req, res) =>{
 })
 
 app.get('/api/user_info', (req,res) =>{
-    spotifyApi.setAccessToken("BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E");
+    spotifyApi.setAccessToken("XXX");
     //spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
    spotifyApi.getMe()
   .then(function(data) {
@@ -168,7 +168,7 @@ app.get('/api/user_info', (req,res) =>{
 
 
 app.get('/api/get_saved', (req, res) =>{
-    spotifyApi.setAccessToken("BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E");
+    spotifyApi.setAccessToken("XXX");
   //spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
     spotifyApi.getMyRecentlyPlayedTracks({
         limit : 5
@@ -189,82 +189,6 @@ app.get('/api/get_saved', (req, res) =>{
 })
 
 
-// app.get('/api/profile', (req,res) =>{
- 
-//     // const host = req.session.user;
-
-//     // const spotifyApi = new SpotifyWebApi({
-//     //     clientId: "2a2ddce3c04344908d99af046bf27af6",
-//     //     clientSecret: "e3b81a092f95422eba29e89172e51152",
-//     //     redirectUri: 'http://localhost:8080/callback/'
-//     // });
-
-//     // // spotifyApi.setAccessToken(host.access_token);
-//     // spotifyApi.setRefreshToken(host.refresh_token);
-
-//     spotifyApi.setAccessToken("BQDZilz37mSQEZ8AzgRXlrymFL_bHGnTWVHlOp9PAylB8y4sH0WgnKU33Qlq0ULwRgxqkQSXcOmwUii_bcDkxGTJNlbzLYsY9Oe7BrhnqHOPAskISu7G0eLwRzcntqEm36wuBCC-S9O8LpklmecMa-L0xjd9vOq7E2o5bpWRqmJZ115qBNbmd7MKYOrJs5Y-BD0yEyFhZvCbImjhpY4bkxLZ00VBZUHrmHwJHHY-dsw-dRWBMNkV2klE2zgm-iZ2JU0QY18MzkkyD0ma4kg-qLXh5w2PW8ScZ3ktvuZcF20uh2riSj-JpYs15yAz3RVjVfj6i3v05x6uRSTainge");
-//     spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
-
-    
-//     function getMyData() {
-//         (async () => {
-//           const me = await spotifyApi.getMe();
-//           getMyTopArtists()
-//         })().catch(e => {
-//           console.error(e);
-//         });
-//       }
-      
-      
-//       async function getMyTopArtists(userName){
-//         const data = await spotifyApi.getMyTopArtists()
-//         let topArtists = data.body.items;
-//         let myArtists = []
-//         for(let i=0; i<5;i++){
-//           myArtists.push(topArtists[i].images[0]["url"])
-          
-      
-//         }
-
-//         res.json(myArtists)
-   
-      
-//       }
-       
-//       getMyData();
-
-    
-// })
-
-// app.get('/api/profile', (req,res) =>{
-//     function getMyData() {
-//             (async () => {
-//               const me = await spotifyApi.getMe();
-//               getMyTopArtists()
-//             })().catch(e => {
-//               console.error(e);
-//             });
-//           }
-          
-          
-//           async function getMyTopArtists(userName){
-//             const data = await spotifyApi.getMyTopArtists()
-//             let topArtists = data.body.items;
-//             let myTopArtists = []
-//             for(let i=0; i<5;i++){
-//               myTopArtists.push(topArtists[i].name)
-//               console.log(topArtists[i])
-          
-//             }
-    
-//             res.json(myTopArtists)
-          
-          
-//           }
-           
-//           getMyData();
-    
-// })
 
 // refresh
 app.get('/refresh', (req, res) => {
@@ -292,34 +216,7 @@ app.get('/user', (req, res) => {
     console.log('user:', req.session.user);
 });
 
-// app.post('/create-session', async (req, res) => { 
-//     const host = req.session.user;
 
-//     const spotifyApi = new SpotifyWebApi({
-//         clientId: "2a2ddce3c04344908d99af046bf27af6",
-//         clientSecret: "e3b81a092f95422eba29e89172e51152",
-//         redirectUri:'http://localhost:8080/callback/'
-//     });
-
-//     spotifyApi.setAccessToken(host.access_token);
-//     spotifyApi.setRefreshToken(host.refresh_token);
-
-//     const playback = await spotifyApi.getMyCurrentPlaybackState();
-//     console.log (playback.body.item);
-//     const currentSong = playback.body.item.uri;
-
-//     const session = {
-//         host: host,
-//         currentSong: currentSong,
-//         joined_users: []
-//     };
-
-//     req.session.session = session;
-
-//     res.json({
-//         session: session
-//     });
-// });
 
 if (process.env.NODE_ENV == 'production') {
     console.log(__dirname);
@@ -335,7 +232,7 @@ if (process.env.NODE_ENV == 'production') {
 
 
   app.get('/top_artists', (req, res) => {
-    const token = "BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E";
+    const token = "XXX";
  
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyTopArtists({
@@ -353,7 +250,7 @@ if (process.env.NODE_ENV == 'production') {
  });
 
   app.get('/top_artists_pics', (req, res) => {
-    const token = "BQDymdIMzyfZJWHMDcVbaURjYF917Cq4UksQC6DpHD3SctDMaV6pG6BiQJ9iWFR45Y4dl4YZ4dzqSnNaHk_OzynhhJa0ahuArrki13KsOjs-ATvI8n4UdK5HNca-TFYBW4xLuyY2V4Sc6ZvXdXQOGy7rWs0jqwPFKZW3zzWj_49VAdRzF4yKZgvkWbbRDdZTL_YruPO81oB8BhWyYoDats1zi9bEB3EK943xJL9c_pGPlZ5vCBuHrXtY_bXc0zvQ8Ze8vEihN6Yy9MxfFOiuIpSjpsVHW4s9gBX9oiSAjEceNBiodRyFj9xTJVVKwOq4SbdYvA__WmkGK8E";
+    const token = "XXX";
  
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyTopArtists({

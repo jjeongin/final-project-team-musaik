@@ -30,18 +30,6 @@ function Profile() {
 
 
 
-//   const [artists, setArtists] = useState([]);
-
-
-
-//   useEffect(() => {
-//     axios.get('http://localhost:8080/api/profile')
-//         .then(res => {
-//           console.log(res.data)
-//           setArtists([...artists,...res.data])
-//         });
-// }, []);
-
 const [user, setUser] = useState([]);
 
 
@@ -91,7 +79,7 @@ useEffect(() => {
 
         <div className='Album-Card'>
           <FavArtists text={"Favorite Artists"} image={placeHolder} label = {''}/>
-          <Albums text={"Recently Played"} image1={songs[2]} image2={songs[0]} image3={songs[1]}/>
+          <Albums text={"Recently Played"} image1={songs[1]} image2={songs[2]} image3={songs[0]}/>
         </div>
        <NavBar />
     </div>
