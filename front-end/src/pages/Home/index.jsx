@@ -1,17 +1,16 @@
+import React, { Component } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import Albums from '../../components/Albums/Albums';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import placeHolder from '../../img/album.jpeg';
 import './index.css'
 import RadioMatch from '../../components/RadioMatch';
-import React, {useEffect,useState} from 'react';
+import {useEffect,useState} from 'react';
 import axios from 'axios';
 
 function Home() {
 
   const [recs, setRecs] = useState([]);
-
-
 
   useEffect(() => {
     axios.get('http://localhost:8080/api/rec')

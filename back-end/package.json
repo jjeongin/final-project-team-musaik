@@ -2,7 +2,7 @@
   "name": "back-end",
   "version": "1.0.0",
   "description": "The back-end of your project will live in this directory.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon index.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd .. && cd front-end && npm install --prefix front-end && npm run build --prefix front-end"
@@ -16,6 +16,7 @@
     "express-router": "^0.0.1",
     "express-session": "^1.17.3",
     "nodemon": "^2.0.20",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "spotify-web-api-node": "^5.0.2"
   }
 }

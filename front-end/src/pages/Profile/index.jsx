@@ -9,7 +9,7 @@ import placeHolder from '../../img/album.jpeg'
 import React, {useEffect,useState} from 'react';
 import axios from 'axios';
 
-
+import FavArtists from '../../components/Albums/FavArtists';
 
 function Profile() {
 
@@ -42,11 +42,7 @@ function Profile() {
 //         });
 // }, []);
 
-
-
-
 const [user, setUser] = useState([]);
-
 
 
   useEffect(() => {
@@ -70,15 +66,7 @@ const [followers, setFollowers] = useState([]);
 }, []);
 
 
-
-
-
-
-
 const [profile, setProfile] = useState([]);
-
-
-
   useEffect(() => {
     axios.get('http://localhost:8080/api/user_info')
         .then(res => {
@@ -95,9 +83,6 @@ useEffect(() => {
 }, [profile])
 
 
-
-
-
   return (
     <div className="Profile">
       <SearchBar />
@@ -105,8 +90,8 @@ useEffect(() => {
         <UserNumbers followers={followers[1]} following={followers[1]}/>
 
         <div className='Album-Card'>
-          <Albums text={"Favorites"} image1={placeHolder} image2={placeHolder} image3={placeHolder}/>
-          <Albums text={"Recently Played"} image1={songs[0]} image2={songs[1]} image3={songs[2]}/>
+          <FavArtists text={"Favorite Artists"} image={placeHolder} label = {''}/>
+          <Albums text={"Recently Played"} image={placeHolder}/>
         </div>
        <NavBar />
     </div>

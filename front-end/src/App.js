@@ -9,7 +9,7 @@ import RadioBubbles from './pages/Radio'
 import Search from './pages/Search'
 import './App.css'
 import img from './img/album.jpeg'
-import Player from './pages/Player';
+// import Player from './pages/Player';
 import axios from 'axios';
 import WebPlayback from './pages/WebPlayback';
 
@@ -32,7 +32,7 @@ const App = props => {
         
         <Route path="/web-playback" element={<WebPlayback />} />
 
-        <Route path="/search" element={<Search />} />
+        {/* <Route path="/search" element={<Search />} /> */}
       </Routes>
     </Router>
   );

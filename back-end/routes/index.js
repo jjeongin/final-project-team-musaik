@@ -1,15 +1,13 @@
 const router = require('express').Router();
 const SpotifyWebApi = require('spotify-web-api-node');
 
-
-
 router.get('/api/profile', (req,res) =>{
     const host = req.session.user;
 
     const spotifyApi = new SpotifyWebApi({
-        clientId: "2a2ddce3c04344908d99af046bf27af6",
-        clientSecret: "e3b81a092f95422eba29e89172e51152",
-        redirectUri: 'http://localhost:8080/callback/'
+      clientId: "916ccfa1c6494c258979b38d9a540ea8" ,
+      clientSecret: "463201981ff0483aa5361b4d5039113b",
+      redirectUri: 'http://localhost:8080/callback/'
     });
 
     spotifyApi.setAccessToken(host.access_token);
@@ -24,7 +22,7 @@ router.get('/api/profile', (req,res) =>{
       }
       
       
-      async function getMyTopArtists(userName){
+      async function getMyTopArtists(){
         const data = await spotifyApi.getMyTopArtists()
         let topArtists = data.body.items;
         let myTopFive = []
@@ -34,8 +32,7 @@ router.get('/api/profile', (req,res) =>{
         }
 
         res.json(myTopFive)
-      
-      
+ 
       }
       getMyData();
 })
