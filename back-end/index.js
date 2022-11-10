@@ -6,6 +6,7 @@ const session = require('express-session');
 
 const test = require('./routes/index.js')
 
+
 // database setup
 //require('./db');
 //const mongoose = require('mongoose');
@@ -25,7 +26,7 @@ app.use(session({
     secret: "e3b81a092f95422eba29e89172e51152",
     resave: false,
     saveUninitialized: false,
-    
+    httpOnly: true,
     cookie: {
         secure: false,
     }
@@ -39,7 +40,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-//app.use('/api', require('./routes/api'));
+const api = require('./routes/api');
+app.use('/api', api);
 
 
 // spotify api
@@ -107,10 +109,6 @@ app.get('/callback', (req, res) => {
             };
         
             console.log('user:', req.session.user);
-
-            console.log(
-                `Sucessfully retreived access token. Expires in ${expires_in} s.`
-            );
             res.redirect("/profile");
         })
 });
@@ -303,9 +301,41 @@ app.get('/refresh', (req, res) => {
     );
 });
 
+// get user
+app.get('/user', (req, res) => {
+    res.send(req.session.user).status(200);
+    console.log('user:', req.session.user);
+});
 
+app.post('/create-session', async (req, res) => { 
+    const host = req.session.user;
 
-// for deployment, ignore
+    const spotifyApi = new SpotifyWebApi({
+        clientId: process.env.SPOTIFY_CLIENT_ID,
+        clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+        redirectUri: process.env.SPOTIFY_REDIRECT_URI
+    });
+
+    spotifyApi.setAccessToken(host.access_token);
+    spotifyApi.setRefreshToken(host.refresh_token);
+
+    const playback = await spotifyApi.getMyCurrentPlaybackState();
+    console.log (playback.body.item);
+    const currentSong = playback.body.item.uri;
+
+    const session = {
+        host: host,
+        currentSong: currentSong,
+        joined_users: []
+    };
+
+    req.session.session = session;
+
+    res.json({
+        session: session
+    });
+});
+
 if (process.env.NODE_ENV == 'production') {
     console.log(__dirname);
     app.use(express.static(path.join(__dirname, '../front-end/build')));
@@ -313,7 +343,6 @@ if (process.env.NODE_ENV == 'production') {
         res.sendFile(path.join(__dirname, '../front-end', 'build', 'index.html'));
     });
 } else {
-    // development
     app.get('/', (req, res) => {
         res.send(process.env.NODE_ENV);
     
