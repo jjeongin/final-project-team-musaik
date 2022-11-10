@@ -6,21 +6,109 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import NavBar from '../../components/NavBar/NavBar';
 import avi from "../../img/avi.png";
 import placeHolder from '../../img/album.jpeg'
+import React, {useEffect,useState} from 'react';
+import axios from 'axios';
+
 
 
 function Profile() {
+
+  const [songs, setSongs] = useState([]);
+
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/get_saved')
+        .then(res => {
+          console.log(res.data)
+          setSongs([...songs,...res.data])
+        });
+}, []);
+
+
+
+
+
+
+//   const [artists, setArtists] = useState([]);
+
+
+
+//   useEffect(() => {
+//     axios.get('http://localhost:8080/api/profile')
+//         .then(res => {
+//           console.log(res.data)
+//           setArtists([...artists,...res.data])
+//         });
+// }, []);
+
+
+
+
+const [user, setUser] = useState([]);
+
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/user_info')
+        .then(res => {
+          console.log(res.data['country'])
+          setUser([user,[res.data['display_name']]])
+        });
+}, []);
+
+const [followers, setFollowers] = useState([]);
+
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/user_info')
+        .then(res => {
+          console.log(res.data['country'])
+          setFollowers([followers,res.data['followers']['total']])
+        });
+}, []);
+
+
+
+
+
+
+
+const [profile, setProfile] = useState([]);
+
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/user_info')
+        .then(res => {
+          console.log(res.data['country'])
+          setProfile([profile,res.data['images'][0]['url']])
+        });
+}, []);
+
+
+useEffect(() => {
+
+  console.log("Changed artists: ", profile)
+
+}, [profile])
+
+
+
+
+
   return (
     <div className="Profile">
       <SearchBar />
-        <UserAvatar text={"Ahmahcs"} image={avi} />
-        <UserNumbers followers={300} following={200}/>
+        <UserAvatar text={user[1]} image={profile[1]} />
+        <UserNumbers followers={followers[1]} following={followers[1]}/>
 
         <div className='Album-Card'>
-          <Albums text={"Favorites"} image={placeHolder}/>
-          <Albums text={"Recently Played"} image={placeHolder}/>
+          <Albums text={"Favorites"} image1={placeHolder} image2={placeHolder} image3={placeHolder}/>
+          <Albums text={"Recently Played"} image1={songs[0]} image2={songs[1]} image3={songs[2]}/>
         </div>
        <NavBar />
-
     </div>
   );
 }
