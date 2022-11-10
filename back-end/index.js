@@ -16,7 +16,7 @@ const corsOptions = {
  }
 app.use(cors(corsOptions));
 app.use(session({
-    secret: "",
+    secret: "XXX",
     resave: false,
     saveUninitialized: false,
     httpOnly: true,
@@ -39,8 +39,8 @@ app.use('/api', api);
 
 // spotify api
 const spotifyApi = new SpotifyWebApi({
-  clientId: "",
-  clientSecret: "",
+  clientId: "XXX" ,
+  clientSecret: "XXX",
   redirectUri: 'http://localhost:8080/callback/'
 });
 
@@ -137,10 +137,11 @@ app.get('/api/rec', (req, res) =>{
           })
         .then(function(data) {
           let recommendations = data.body;
-          console.log(recommendations);
           let top3 = []
           for(let i =0; i<3; i++){
-                top3.push(recommendations.tracks[i].album.images[0]['url'])
+                console.log(recommendations.tracks[i].href);
+
+                top3.push(recommendations.tracks[i].album.images[0]['url'], recommendations.tracks[i].href)
           }
            res.json(top3)
         }, function(err) {
