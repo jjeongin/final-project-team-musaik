@@ -30,17 +30,17 @@ function Profile() {
 
 
 
-  const [artists, setArtists] = useState([]);
+//   const [artists, setArtists] = useState([]);
 
 
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/profile')
-        .then(res => {
-          console.log(res.data)
-          setArtists([...artists,...res.data])
-        });
-}, []);
+//   useEffect(() => {
+//     axios.get('http://localhost:8080/api/profile')
+//         .then(res => {
+//           console.log(res.data)
+//           setArtists([...artists,...res.data])
+//         });
+// }, []);
 
 
 
@@ -105,7 +105,7 @@ useEffect(() => {
         <UserNumbers followers={followers[1]} following={followers[1]}/>
 
         <div className='Album-Card'>
-          <Albums text={"Favorites"} image1={artists[0]} image2={artists[1]} image3={artists[2]}/>
+          <Albums text={"Favorites"} image1={placeHolder} image2={placeHolder} image3={placeHolder}/>
           <Albums text={"Recently Played"} image1={songs[0]} image2={songs[1]} image3={songs[2]}/>
         </div>
        <NavBar />
