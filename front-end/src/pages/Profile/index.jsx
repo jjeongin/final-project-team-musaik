@@ -25,11 +25,7 @@ function Profile() {
         });
 }, []);
 
-useEffect(() => {
 
-  console.log("Recent Songs: ", songs)
-
-}, [songs])
 
 
 
@@ -46,19 +42,67 @@ useEffect(() => {
         });
 }, []);
 
+
+
+
+const [user, setUser] = useState([]);
+
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/user_info')
+        .then(res => {
+          console.log(res.data['country'])
+          setUser([user,[res.data['display_name']]])
+        });
+}, []);
+
+const [followers, setFollowers] = useState([]);
+
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/user_info')
+        .then(res => {
+          console.log(res.data['country'])
+          setFollowers([followers,res.data['followers']['total']])
+        });
+}, []);
+
+
+
+
+
+
+
+const [profile, setProfile] = useState([]);
+
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/user_info')
+        .then(res => {
+          console.log(res.data['country'])
+          setProfile([profile,res.data['images'][0]['url']])
+        });
+}, []);
+
+
 useEffect(() => {
 
-  console.log("Changed artists: ", artists)
+  console.log("Changed artists: ", profile)
 
-}, [artists])
+}, [profile])
+
+
 
 
 
   return (
     <div className="Profile">
       <SearchBar />
-        <UserAvatar text={"hh"} image={avi} />
-        <UserNumbers followers={300} following={200}/>
+        <UserAvatar text={user[1]} image={profile[1]} />
+        <UserNumbers followers={followers[1]} following={followers[1]}/>
 
         <div className='Album-Card'>
           <Albums text={"Favorites"} image1={artists[0]} image2={artists[1]} image3={artists[2]}/>

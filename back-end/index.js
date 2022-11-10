@@ -115,10 +115,37 @@ app.get('/callback', (req, res) => {
         })
 });
 
-app.get('/api/get_saved', (req, res) =>{
-    spotifyApi.setAccessToken("BQAQ4-xSMaB9Bv7u8MEQBCW0TkPz_ss-JbXBfgvfPHeN3XbXXnP-kMGo3O54SV_bftCp22ciatMjmmqSsoFM_WpPVX99dQtl-s4azNlsSGo--BPFhUqGN7X8qmo7YebikriZXatlqL1fG5WRkd86sSotf0qm6nGYR3Ky6u2CLORG3xavFpjnC9rwKjb7qkhMBBD5DPNEAEZT3sgvKZ4wJGZTs7OJCkKt26Z2aRKHduclu0U31MylBWs3UZl_cXZCx_hShWlkI6EMJfahottqw6BpMjIv-4MbkjeX4RQOeNRHisBbCKrlbXaPgKKx6eqrMHprQyivn0Cr9sn7b-YL");
-    spotifyApi.setRefreshToken("AQCddjzAWY6RLM_629Uxpzb7c_dPXVtysYc2K6FAUMXlMqJTvrzVdZe8u89rej57rFhtm9caquYLqpxySE2H37RIOwcDoIf96fPpe3eFxMLVEUHEpEb7xvIlMjAeqkiqfEU");
+app.get('/api/rec', (req, res) =>{
 
+    spotifyApi.setAccessToken("BQDZilz37mSQEZ8AzgRXlrymFL_bHGnTWVHlOp9PAylB8y4sH0WgnKU33Qlq0ULwRgxqkQSXcOmwUii_bcDkxGTJNlbzLYsY9Oe7BrhnqHOPAskISu7G0eLwRzcntqEm36wuBCC-S9O8LpklmecMa-L0xjd9vOq7E2o5bpWRqmJZ115qBNbmd7MKYOrJs5Y-BD0yEyFhZvCbImjhpY4bkxLZ00VBZUHrmHwJHHY-dsw-dRWBMNkV2klE2zgm-iZ2JU0QY18MzkkyD0ma4kg-qLXh5w2PW8ScZ3ktvuZcF20uh2riSj-JpYs15yAz3RVjVfj6i3v05x6uRSTainge");
+    spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
+   spotifyApi.getMe()
+    spotifyApi.getAvailableGenreSeeds()
+  .then(function(data) {
+    let genreSeeds = data.body;
+    console.log(genreSeeds);
+    res.json(genreSeeds)
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+
+})
+
+app.get('/api/user_info', (req,res) =>{
+    spotifyApi.setAccessToken("BQDZilz37mSQEZ8AzgRXlrymFL_bHGnTWVHlOp9PAylB8y4sH0WgnKU33Qlq0ULwRgxqkQSXcOmwUii_bcDkxGTJNlbzLYsY9Oe7BrhnqHOPAskISu7G0eLwRzcntqEm36wuBCC-S9O8LpklmecMa-L0xjd9vOq7E2o5bpWRqmJZ115qBNbmd7MKYOrJs5Y-BD0yEyFhZvCbImjhpY4bkxLZ00VBZUHrmHwJHHY-dsw-dRWBMNkV2klE2zgm-iZ2JU0QY18MzkkyD0ma4kg-qLXh5w2PW8ScZ3ktvuZcF20uh2riSj-JpYs15yAz3RVjVfj6i3v05x6uRSTainge");
+    spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
+   spotifyApi.getMe()
+  .then(function(data) {
+    res.json(data.body)
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+})
+
+
+app.get('/api/get_saved', (req, res) =>{
+    spotifyApi.setAccessToken("BQDZilz37mSQEZ8AzgRXlrymFL_bHGnTWVHlOp9PAylB8y4sH0WgnKU33Qlq0ULwRgxqkQSXcOmwUii_bcDkxGTJNlbzLYsY9Oe7BrhnqHOPAskISu7G0eLwRzcntqEm36wuBCC-S9O8LpklmecMa-L0xjd9vOq7E2o5bpWRqmJZ115qBNbmd7MKYOrJs5Y-BD0yEyFhZvCbImjhpY4bkxLZ00VBZUHrmHwJHHY-dsw-dRWBMNkV2klE2zgm-iZ2JU0QY18MzkkyD0ma4kg-qLXh5w2PW8ScZ3ktvuZcF20uh2riSj-JpYs15yAz3RVjVfj6i3v05x6uRSTainge");
+    spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
     spotifyApi.getMyRecentlyPlayedTracks({
         limit : 5
       }).then(function(data) {
@@ -159,8 +186,8 @@ app.get('/api/profile', (req,res) =>{
     // // spotifyApi.setAccessToken(host.access_token);
     // spotifyApi.setRefreshToken(host.refresh_token);
 
-    spotifyApi.setAccessToken("BQCjCzEDXl89l_lkEOZmadTloupU2FlOApWiwEmeBfnI7JF9SG5k2cLwmWaKzGlg1vKYFAGjy-UAfSgvaIn4yzOo4EOBy6EK7xA0_qWtQ9oKVVXl2JMDJdtwgpLZojkFxY7LC_axtxffRlO2K2C-oSSHjpzpp0Yfrbf5sd5Tmhz5YjhYc4YnUQ6v8PFpo4UEtQ6baU_bPuInl2NJWlFoNcQTS6vD-Ohmof56aUrEATKqZ3OEaAMMQcCIjhVCF1WSCRAte1UvGz6Iq9QbRWraoYNTObNoO1cpxyU_QEA2yfo6rurDkG2ISnJOelAJj3vdpkD4ZJKgHFEW0WjSgoda");
-    spotifyApi.setRefreshToken("AQA0xr6AOWGPZiE9H75NXfIr_Ivw-HC05mQKCIo2wxH6Fh0ozUaVoBTY5-2sjdw8Psb67x4rz8N44Vdh3X0Xp82WpD3SsbPlnp9vxWr8h6AdxBnIteN8xdE2Yosk2UdjqGo");
+    spotifyApi.setAccessToken("BQDZilz37mSQEZ8AzgRXlrymFL_bHGnTWVHlOp9PAylB8y4sH0WgnKU33Qlq0ULwRgxqkQSXcOmwUii_bcDkxGTJNlbzLYsY9Oe7BrhnqHOPAskISu7G0eLwRzcntqEm36wuBCC-S9O8LpklmecMa-L0xjd9vOq7E2o5bpWRqmJZ115qBNbmd7MKYOrJs5Y-BD0yEyFhZvCbImjhpY4bkxLZ00VBZUHrmHwJHHY-dsw-dRWBMNkV2klE2zgm-iZ2JU0QY18MzkkyD0ma4kg-qLXh5w2PW8ScZ3ktvuZcF20uh2riSj-JpYs15yAz3RVjVfj6i3v05x6uRSTainge");
+    spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
 
     
     function getMyData() {
