@@ -1,12 +1,11 @@
 import './index.css'
-import logo from '../../img/musaik-logo-new.svg'
 import mainlogo from '../../img/logo.png'
 import spotify from '../../img/spotify-icon.png'
 
 function Login() {
   
   const SpotifyLogin = () => {
-        window.open('/auth', '_self');
+        window.open('/login', '_self');
     }
 
   return (

@@ -42,11 +42,7 @@ function Profile() {
 //         });
 // }, []);
 
-
-
-
 const [user, setUser] = useState([]);
-
 
 
   useEffect(() => {
@@ -70,15 +66,7 @@ const [followers, setFollowers] = useState([]);
 }, []);
 
 
-
-
-
-
-
 const [profile, setProfile] = useState([]);
-
-
-
   useEffect(() => {
     axios.get('http://localhost:8080/api/user_info')
         .then(res => {
@@ -93,9 +81,6 @@ useEffect(() => {
   console.log("Changed artists: ", profile)
 
 }, [profile])
-
-
-
 
 
   return (
