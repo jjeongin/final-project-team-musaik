@@ -1,6 +1,6 @@
 const fs = require('fs')
 const SpotifyWebApi = require('spotify-web-api-node');
-const token = "BQDJqXuS37TLYBLcOSIxp6qL2KquWEQ3MAgQ8apZlSiQqZM9LXwhoNkFQWG_XwYZ_04niW7cWmutrImGyKuGwFXnkuWKJtpHcyTpJO2aGGWVk5J9iweqHZvHGS5hwP9_yEDI_dXNGPZZ_-gt374_r_1sq6pT13neDUh3mle5yms9OpXUu6VJw1NU-IweRiAWQVbDbL04bd_jArwB6wPrQ-9cQaWiPEhzhaopuNsAXoO1uZZ7P5-QkvZWyLWg8684cbTudri-aTJS1j8xXzyvvCrCGSBuaA69-IPQ8ABPRB9JY_61y2wNI12XUVcZaKbS6Fs0jqEqO2dbM2H-rWE9";
+const token = "BQBHFk672_NZvNJ5XvX08aw9dad9fy196WeyU2IJhSHPhYcHi1xIDCLD4xgGtLEFEBgdHLGIikmzSf-OE7WuvPkWqF5zmRGGdfQ066UZxGTke5CjI1n_huwrS-s6ABFFiJcfwwjW2BnvDni8MQY3MHnIQPulXKtSNHwSwYABLHadoNzPPV40BbGh9jUO2PQB4keM4aMiCM_yqVDc9TtwFwk74GVS3bq60g7Qr3Wbq0SDWq4I3TCFjIY2iQd0G6mLCJXYViz166LmnF_UZaMaBNJifKTcd3Mk-f3ATXvSe3J4WpA2SZH5fcM1LnuWfyugw5qp66XtZN4AWJtTi5ze";
 
 const spotifyApi = new SpotifyWebApi();
 spotifyApi.setAccessToken(token);
@@ -33,29 +33,7 @@ async function getUserPlaylists(userName) {
 
   }
 
-  
-
-
-
-    // let playlists = await getPlaylist(playlist.id, playlist.name);
-
-    // const playlistsJSON = { playlists }
-    // let data = JSON.stringify(playlistsJSON)
-    // fs.writeFileSync(playlist.name+'.json', data);
-  }
-
-    
-
-// async function getPlaylist(playlistId, playlistName) {
-
-//   const data = await spotifyApi.getPlaylist(playlistId, {
-//     offset: 1,
-//     limit: 10,
-//     fields: 'items'
-//   })
-// }
-
-
+}
 
   
 
