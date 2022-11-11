@@ -19,8 +19,6 @@ function Home() {
           setRecs([...recs,...res.data])
         });
 }, []);
-
-
   return (
     <div className="Home">
       <SearchBar />

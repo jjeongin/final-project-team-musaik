@@ -8,25 +8,43 @@ import cover_six from '../../img/bubblecover6.jpg'
 import cover_seven from '../../img/bubblecover7.jpg'
 import cover_eight from '../../img/bubblecover8.jpg'
 import radio from '../../img/radio.svg'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import SpotPlayer from '../../components/SpotPlayer';
 import './index.css'
 
 function Radio() {
 
-    const createStation = async () => {
-        const res = await axios.post(`/api/create-session`);
-        console.log(res);
-        window.location = `/web-playback`;
+  
+
+  const getUser = async () => {
+    const user = await axios.get('/user');
+    return user.data;
+  };
+
+    const [user, setUser] = useState(null);
+    const [accessToken, setAccessToken] = useState(null);
+    const [trackUri, setTrackUri] = useState("");
+
+    useEffect(() => {
+        getUser().then((user) => {
+            setUser(user);
+            setAccessToken(user.access_token);
+            console.log("user", user);
+        });
+    }, []);
+
+    const setTrack = () => {
+        setTrackUri("spotify:track:4iV5W9uYEdYUVa79Axb7Rh");
+        console.log("trackUri", trackUri);
     }
+    
 
     return (
         <>
-        <div onClick ={createStation}>
-          <img src={radio} />
-        </div>
+        <button onClick={setTrack}>CLICK ME</button>
         <div className="Radio">
-            <div className="bubble_div" style = {{display: 'flex', flexDirection: 'column'}}>
+                <div className="bubble_div" style = {{display: 'flex', flexDirection: 'column'}}>
                 <div style = {{display: 'flex', flexDirection: 'row', justifyContent: 'center',margin: '3vh 0 1vh 0'}}>
                     <div className="float-child">
                         <div className="bubble_one">
@@ -75,7 +93,10 @@ function Radio() {
                         </div>
                     </div>
                 </div>    
-            </div>
+                </div>
+                <div className="Player-Container">
+                    <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
+                </div>
             <NavBar/>
             </div>
         </>

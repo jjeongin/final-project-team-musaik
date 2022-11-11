@@ -1,5 +1,10 @@
 const express = require("express") 
 const session = require('express-session');
+
+// database setup
+//require('./db');
+//const mongoose = require('mongoose');
+
 const port = process.env.PORT || 8080;
 var cors = require("cors");
 const SpotifyWebApi = require('spotify-web-api-node');
@@ -34,8 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 const api = require('./routes/api');
-app.use('/api', api);
-
+app.use('/sessions', api);
 
 // spotify api
 const spotifyApi = new SpotifyWebApi({
@@ -69,6 +73,7 @@ app.get('/auth', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
 
+//callback
 app.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
@@ -213,9 +218,7 @@ app.get('/refresh', (req, res) => {
 // get user
 app.get('/user', (req, res) => {
     res.send(req.session.user).status(200);
-    console.log('user:', req.session.user);
 });
-
 
 
 if (process.env.NODE_ENV == 'production') {
