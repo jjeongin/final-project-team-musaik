@@ -4,14 +4,11 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const express = require('express');
 const session = require('express-session');
 
-
 // database setup
 //require('./db');
 //const mongoose = require('mongoose');
 
-
 const app = express();
-
 
 //middleware
 app.use(express.json());
@@ -39,8 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 const api = require('./routes/api');
-app.use('/api', api);
-
+app.use('/sessions', api);
 
 // spotify api
 const spotifyApi = new SpotifyWebApi({
@@ -73,8 +69,6 @@ const scopes = [
 app.get('/auth', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
-
-
 
 // callback
 app.get('/callback', (req, res) => {
@@ -131,37 +125,8 @@ app.get('/refresh', (req, res) => {
 // get user
 app.get('/user', (req, res) => {
     res.send(req.session.user).status(200);
-    console.log('user:', req.session.user);
 });
 
-app.post('/create-session', async (req, res) => { 
-    const host = req.session.user;
-
-    const spotifyApi = new SpotifyWebApi({
-        clientId: process.env.SPOTIFY_CLIENT_ID,
-        clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-        redirectUri: process.env.SPOTIFY_REDIRECT_URI
-    });
-
-    spotifyApi.setAccessToken(host.access_token);
-    spotifyApi.setRefreshToken(host.refresh_token);
-
-    const playback = await spotifyApi.getMyCurrentPlaybackState();
-    console.log (playback.body.item);
-    const currentSong = playback.body.item.uri;
-
-    const session = {
-        host: host,
-        currentSong: currentSong,
-        joined_users: []
-    };
-
-    req.session.session = session;
-
-    res.json({
-        session: session
-    });
-});
 
 if (process.env.NODE_ENV == 'production') {
     console.log(__dirname);

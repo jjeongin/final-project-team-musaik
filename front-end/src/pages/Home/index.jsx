@@ -6,6 +6,7 @@ import './index.css'
 import RadioMatch from '../../components/RadioMatch';
 
 function Home() {
+
   return (
     <div className="Home">
       <SearchBar />
