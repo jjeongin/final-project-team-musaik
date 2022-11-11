@@ -1,3 +1,19 @@
+.PlayerRSWP{
+   
+        margin-bottom: 0px !important;
+        width: 90% !important;
+        margin-left: 5% !important;
+        background-color: rgb(60, 60, 60) !important;
+}
+
+.Player-Container{
+    position: fixed ;
+    bottom: 10vh ;
+    margin: 0px;
+    padding:0;
+    background-color: rgb(60, 60, 60);
+    width: 100%;
+}
 
 .bubble_div {
     width: 100%; 
@@ -6,6 +22,10 @@
 
 .float-child{
     float: left;
+}
+
+.float-child:hover{
+    cursor: pointer;
 }
 
 .bubble_one {

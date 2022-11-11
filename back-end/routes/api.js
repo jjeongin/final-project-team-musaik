@@ -13,9 +13,9 @@
 //     spotifyApi.setAccessToken(host.access_token);
 //     spotifyApi.setRefreshToken(host.refresh_token);
 
-//     const playback = await spotifyApi.getMyCurrentPlaybackState();
-//     const currentSong = playback.body.item.uri;
-
+//     const playback = spotifyApi.getMyCurrentPlaybackState();
+//     
+    const currentSong = (playback.body.item.uri ? playback.body.item.uri : null);
 
 //     const session = {
 //         host: host,
@@ -69,6 +69,8 @@
 // });
 
 // module.exports = router;
+
+
 
 
 
