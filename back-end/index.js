@@ -1,17 +1,14 @@
-const express = require("express") 
+require('dotenv').config({ path: 'config.env' });
+const cors = require('cors');
+const SpotifyWebApi = require('spotify-web-api-node');
+const express = require('express');
 const session = require('express-session');
 
 // database setup
 //require('./db');
 //const mongoose = require('mongoose');
 
-const port = process.env.PORT || 8080;
-var cors = require("cors");
-const SpotifyWebApi = require('spotify-web-api-node');
-const test = require('./routes/index.js')
 const app = express();
-
-// This file is copied from: https://github.com/thelinmichael/spotify-web-api-node/blob/master/examples/tutorial/00-get-access-token.js
 
 //middleware
 app.use(express.json());
@@ -21,7 +18,7 @@ const corsOptions = {
  }
 app.use(cors(corsOptions));
 app.use(session({
-    secret: "XXX",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     httpOnly: true,
@@ -43,9 +40,9 @@ app.use('/sessions', api);
 
 // spotify api
 const spotifyApi = new SpotifyWebApi({
-  clientId: "XXX" ,
-  clientSecret: "XXX",
-  redirectUri: 'http://localhost:8080/callback/'
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  redirectUri: 'http://localhost:8080/callback'
 });
 
 const scopes = [
@@ -73,15 +70,15 @@ app.get('/auth', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
 
-//callback
+// callback
 app.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
     const state = req.query.state;
 
     if (error) {
-        console.error('Callback Error:', error);
-        res.redirect('/auth');
+        console.log('Callback Error:', error);
+        res.redirect('/login');
         return;
     }
 
@@ -101,24 +98,35 @@ app.get('/callback', (req, res) => {
             };
         
             console.log('user:', req.session.user);
-            res.redirect("/top_artists");
-            setInterval(async () => {
-              const data = await spotifyApi.refreshAccessToken();
-              const access_token = data.body['access_token'];
-      
-              console.log('The access token has been refreshed!');
-              console.log('access_token:', access_token);
-              spotifyApi.setAccessToken(access_token);
-            }, expires_in / 2 * 1000);
-            
+            res.redirect("/profile");
         })
 });
 
-app.get('/api/rec', (req, res) =>{
+// refresh
+app.get('/refresh', (req, res) => {
+    const refreshToken = req.session.user.refresh_token;
+    spotifyApi.setRefreshToken(refreshToken);
+    spotifyApi.refreshAccessToken().then(
+        data => {
+            req.session.user = {
+                access_token: data.body.access_token,
+                refresh_token: refreshToken,
+            };
+            res.send(req.session.user).status(200);
+        }
+    ).catch(
+        err => {
+            console.log(err);
+            res.sendStatus(400);
+        }
+    );
+});
 
-    spotifyApi.setAccessToken("XXX");
-    //spotifyApi.setRefreshToken("AQAJRpQunC3Ngm-pW26a9P37fcKaDmhSKKj2Ln1mQfsKOR07bTozm2lAvkWVSpDpJY-_0oCBMLEvDG1VHzMQYI-9MDZ_SIXA8n_DTRTrtU_SYX3laNhFudeTjrWC_5OmnLs");
-    function getMyData() {
+const test = require('./routes/index.js')
+app.get('/api/rec', (req, res) =>{
+  const user = req.session.user;
+    spotifyApi.setAccessToken(user.access_token);
+   function getMyData() {
         (async () => {
           const me = await spotifyApi.getMe();
           getMyTopArtists()
@@ -154,15 +162,13 @@ app.get('/api/rec', (req, res) =>{
         });
     
       }
-
     getMyData();
-
-
 })
 
 app.get('/api/user_info', (req,res) =>{
-    spotifyApi.setAccessToken("XXX");
-    //spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
+  const user = req.session.user;
+  
+  spotifyApi.setAccessToken(user.access_token);
    spotifyApi.getMe()
   .then(function(data) {
     res.json(data.body)
@@ -173,9 +179,9 @@ app.get('/api/user_info', (req,res) =>{
 
 
 app.get('/api/get_saved', (req, res) =>{
-    spotifyApi.setAccessToken("XXX");
-  //spotifyApi.setRefreshToken("AQBiRUMbyeA2lqnDcwbjClW13zF05qGsMhHEzPGwQxXI0pcvtslZrRSobcGEdbe7dFef9-abADDuMY15zdd6sSWZpNxeCr30T4UC3_EJTrIQqV08jhNPfWS43AyY6w6wTKo");
-    spotifyApi.getMyRecentlyPlayedTracks({
+  const user = req.session.user;
+  spotifyApi.setAccessToken(user.access_token);
+   spotifyApi.getMyRecentlyPlayedTracks({
         limit : 5
       }).then(function(data) {
         let songs =[]
@@ -221,21 +227,8 @@ app.get('/user', (req, res) => {
 });
 
 
-if (process.env.NODE_ENV == 'production') {
-    console.log(__dirname);
-    app.use(express.static(path.join(__dirname, '../front-end/build')));
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../front-end', 'build', 'index.html'));
-    });
-} else {
-    app.get('/', (req, res) => {
-        res.send(process.env.NODE_ENV);
-    
-    });
-
-
   app.get('/top_artists', (req, res) => {
-    const token = "XXX";
+    const token = req.session.user.access_token;
  
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyTopArtists({
@@ -253,7 +246,7 @@ if (process.env.NODE_ENV == 'production') {
  });
 
   app.get('/top_artists_pics', (req, res) => {
-    const token = "XXX";
+    const token = req.session.user.access_token;
  
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyTopArtists({
@@ -273,10 +266,21 @@ if (process.env.NODE_ENV == 'production') {
   })
 
   });
-  app.listen(8080, () =>
-    console.log(
-      'HTTP Server up. Now go to http://localhost:8080/auth in your browser.'
-    )
-  );
-    }
-  module.exports = app
+
+
+if (process.env.NODE_ENV == 'production') {
+    console.log(__dirname);
+    app.use(express.static(path.join(__dirname, '../front-end/build')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../front-end', 'build', 'index.html'));
+    });
+} else {
+    app.get('/', (req, res) => {
+        res.send(process.env.NODE_ENV);
+    });
+}
+  
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});

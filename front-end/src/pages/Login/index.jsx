@@ -5,7 +5,7 @@ import spotify from '../../img/spotify-icon.png'
 function Login() {
   
   const SpotifyLogin = () => {
-        window.open('/login', '_self');
+        window.open('/auth', '_self');
     }
 
   return (
