@@ -2,7 +2,6 @@
   "name": "front-endd",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8080",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
@@ -17,6 +16,7 @@
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "^5.0.1",
+    "react-onclickoutside":"4.1.1",
     "react-slick": "^0.29.0",
     "react-spotify-web-playback": "^0.10.0",
     "slick": "^1.12.2",

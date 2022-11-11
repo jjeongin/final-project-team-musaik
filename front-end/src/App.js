@@ -23,7 +23,7 @@ const App = props => {
 
         <Route path="/radio-bubbles" element={<RadioBubbles />} />
 
-        <Route path="/search" element={<Search />} />
+        {/* <Route path="/search" element={<Search />} /> */}
       </Routes>
     </Router>
   );
