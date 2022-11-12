@@ -22,17 +22,13 @@ async function getUserPlaylists(userName) {
 
   console.log("---------------+++++++++++++++++++++++++")
   let playlists = data.body.items;
-
   for (let playlist of data.body.items) {
-    
     console.log(playlist.name + ": " + playlist.id)
-  //console.log(playlists[playlist])
+    //console.log(playlists[playlist])
 
-  // for(let i=0; i<3;i++){
-  //   console.log(playlists[i])
-
+    // for(let i=0; i<3;i++){
+    //   console.log(playlists[i])
   }
-
 }
 
   
