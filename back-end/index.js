@@ -68,6 +68,17 @@ const scopes = [
     'user-follow-modify'
 ];
 
+// base url
+app.get('/', (req, res) => {
+    console.log(req.session.user);
+    if (req.session.user) {
+        res.redirect('/home'); // redirect to home only if the user has logged in
+    }
+    else {
+        res.redirect('/login'); // if not, redirect to login page
+    }
+});
+
 // login
 app.get('/auth', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));

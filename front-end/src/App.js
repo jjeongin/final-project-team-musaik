@@ -7,15 +7,10 @@ import Search from './pages/Search'
 import './App.css'
 
 const App = props => {
-
-  
-
-  
   return (
     <Router>
       <Routes>
-        {/* a route for the home page */}
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
         <Route path="/home" element={<Home />} />
 
