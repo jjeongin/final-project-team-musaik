@@ -37,6 +37,9 @@ app.use(express.urlencoded({ extended: true }));
 // routes
 const api = require('./routes/api');
 app.use('/sessions', api);
+const playlists = require('./routes/pinPlaylistRoute');
+app.use('/playlists', playlists);
+
 
 // spotify api
 const spotifyApi = new SpotifyWebApi({

@@ -4,6 +4,7 @@
   "description": "The back-end of your project will live in this directory.",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd .. && cd front-end && npm install --prefix front-end && npm run build --prefix front-end"
   },
@@ -13,10 +14,13 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "express-router": "^0.0.1",
     "express-session": "^1.17.3",
-    "nodemon": "^2.0.20",
     "path": "^0.12.7",
+    "save": "^2.9.0",
+    "spotify-web-api-node": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
     "spotify-web-api-node": "^5.0.2"
   }
 }
