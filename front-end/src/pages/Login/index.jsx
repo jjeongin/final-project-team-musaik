@@ -3,10 +3,9 @@ import mainlogo from '../../img/logo.png'
 import spotify from '../../img/spotify-icon.png'
 
 function Login() {
-  
   const SpotifyLogin = () => {
-        window.open('/auth', '_self');
-    }
+    window.open('/auth', '_self');
+  }
 
   return (
     <div className="Login">

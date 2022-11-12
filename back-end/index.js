@@ -70,7 +70,6 @@ const scopes = [
 
 // base url
 app.get('/', (req, res) => {
-    console.log(req.session.user);
     if (req.session.user) {
         res.redirect('/home'); // redirect to home only if the user has logged in
     }
@@ -191,7 +190,6 @@ app.get('/api/user_info', (req,res) =>{
   });
 })
 
-
 app.get('/api/get_saved', (req, res) =>{
   const user = req.session.user;
   spotifyApi.setAccessToken(user.access_token);
@@ -212,8 +210,6 @@ app.get('/api/get_saved', (req, res) =>{
       })
     
 })
-
-
 
 // refresh
 app.get('/refresh', (req, res) => {
@@ -241,45 +237,43 @@ app.get('/user', (req, res) => {
 });
 
 
-  app.get('/top_artists', (req, res) => {
-    const token = req.session.user.access_token;
- 
-    spotifyApi.setAccessToken(token);
-    spotifyApi.getMyTopArtists({
-      limit: 3,
-      offset: 0,
-      time_range: 'long_term'
+app.get('/top_artists', (req, res) => {
+const token = req.session.user.access_token;
+
+spotifyApi.setAccessToken(token);
+spotifyApi.getMyTopArtists({
+        limit: 3,
+        offset: 0,
+        time_range: 'long_term'
     })
     .then(function(data) {
-      let topArtists = data.body.items;
-      res.send(topArtists);
+        let topArtists = data.body.items;
+        res.send(topArtists);
     }, function(err) {
-      console.log('Something went wrong!', err);
-  })
+        console.log('Something went wrong!', err);
+    })
+});
 
- });
-
-  app.get('/top_artists_pics', (req, res) => {
+app.get('/top_artists_pics', (req, res) => {
     const token = req.session.user.access_token;
- 
+
     spotifyApi.setAccessToken(token);
     spotifyApi.getMyTopArtists({
-      limit: 3,
-      offset: 0,
-      time_range: 'long_term'
+        limit: 3,
+        offset: 0,
+        time_range: 'long_term'
     })
     .then(function(data) {
-      let topArtists = data.body.items;
-      let topArtistsPics=[]
-      topArtists.forEach(function(artist, index) {
+        let topArtists = data.body.items;
+        let topArtistsPics=[]
+        topArtists.forEach(function(artist, index) {
         topArtistsPics[index]=artist.images[0].url
-      })
-      res.send(topArtistsPics)
+        })
+        res.send(topArtistsPics)
     }, function(err) {
-      console.log('Something went wrong!', err);
-  })
-
-  });
+        console.log('Something went wrong!', err);
+    })
+});
 
 
 if (process.env.NODE_ENV == 'production') {
