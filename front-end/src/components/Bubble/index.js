@@ -1,4 +1,4 @@
-import './Bubble.css'
+import './index.css'
 
 function Bubble({img, id}){
     return(
