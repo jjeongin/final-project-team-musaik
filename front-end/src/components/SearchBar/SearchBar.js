@@ -26,7 +26,7 @@ function SearchBar() {
     return(
 
         <div className="Search-Burger">
-            <Link to="/">
+            <Link to="/home">
                 <img src={back} alt="back Icon"/>
             </Link>
 

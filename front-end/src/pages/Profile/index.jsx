@@ -12,63 +12,44 @@ import axios from 'axios';
 import FavArtists from '../../components/Albums/FavArtists';
 
 function Profile() {
-
+  // get recently played songs
   const [songs, setSongs] = useState([]);
-
-
+  useEffect(() => {
+      axios.get('http://localhost:8080/api/get_saved')
+          .then(res => {
+            console.log(res.data)
+            setSongs([...songs,...res.data])
+          });
+  }, []);
+  // get user name
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+      axios.get('http://localhost:8080/api/user_info')
+          .then(res => {
+            setUser([user,[res.data['display_name']]])
+          });
+  }, []);
+  // get user follower info
+  const [followers, setFollowers] = useState([]);
+  useEffect(() => {
+      axios.get('http://localhost:8080/api/user_info')
+          .then(res => {
+            console.log(res.data['country'])
+            setFollowers([followers,res.data['followers']['total']])
+          });
+  }, []);
+  // get user profile image
+  const [profile, setProfile] = useState([]);
+    useEffect(() => {
+      axios.get('http://localhost:8080/api/user_info')
+          .then(res => {
+            setProfile([profile,res.data['images'][0]['url']])
+          });
+  }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/get_saved')
-        .then(res => {
-          console.log(res.data)
-          setSongs([...songs,...res.data])
-        });
-}, []);
-
-
-
-
-
-
-const [user, setUser] = useState([]);
-
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/user_info')
-        .then(res => {
-          console.log(res.data['country'])
-          setUser([user,[res.data['display_name']]])
-        });
-}, []);
-
-const [followers, setFollowers] = useState([]);
-
-
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/user_info')
-        .then(res => {
-          console.log(res.data['country'])
-          setFollowers([followers,res.data['followers']['total']])
-        });
-}, []);
-
-
-const [profile, setProfile] = useState([]);
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/user_info')
-        .then(res => {
-          console.log(res.data['country'])
-          setProfile([profile,res.data['images'][0]['url']])
-        });
-}, []);
-
-
-useEffect(() => {
-
-  console.log("Changed artists: ", profile)
-
-}, [profile])
+    console.log("Changed artists: ", profile)
+  }, [profile])
 
 
   return (

@@ -9,12 +9,19 @@ import {useEffect,useState} from 'react';
 import axios from 'axios';
 
 function Home() {
-
+  // get recently played songs
+  const [songs, setSongs] = useState([]);
+  useEffect(() => {
+      axios.get('http://localhost:8080/api/get_saved')
+          .then(res => {
+            console.log(res.data)
+            setSongs([...songs,...res.data])
+          });
+  }, []);
+  // get recommendations
   const [recs, setRecs] = useState([]);
   const [lists, setLists] = useState([]);
-
-
-
+  // get playlists
   useEffect(() => {
     axios.get('/playlists/pin-playlists')
       .then(res => {
@@ -33,8 +40,6 @@ function Home() {
 
 
 // {unreadMessages.length > 0 &&        <h2>          You have {unreadMessages.length} unread messages.        </h2>      }
-
-
 
   return (
     <div className="Home">
