@@ -35,8 +35,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 const api = require('./routes/api');
-app.use('/sessions', api);
 const playlists = require('./routes/pinPlaylistRoute');
+app.use('/sessions', api);
 app.use('/playlists', playlists);
 
 
@@ -310,3 +310,5 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
+
+module.exports = app;
