@@ -1,18 +1,9 @@
 import NavBar from '../../components/NavBar/NavBar';
-import cover_one from '../../img/bubblecover1.jpeg'
-import cover_two from '../../img/bubblecover2.jpeg'
-import cover_three from '../../img/bubblecover3.jpg'
-import cover_four from '../../img/bubblecover4.png'
-import cover_five from '../../img/bubblecover5.jpeg'
-import cover_six from '../../img/bubblecover6.jpg'
-import cover_seven from '../../img/bubblecover7.jpg'
-import cover_eight from '../../img/bubblecover8.jpg'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Bubble from '../../components/Bubble';
 import SpotPlayer from '../../components/SpotPlayer';
 import './index.css';
-import { songs } from '../../components/dummyData';
 
 function Radio(props) {
     const getUser = async () => {
@@ -60,16 +51,15 @@ function Radio(props) {
         <div className="Radio">
             {/* radio bubbles */}
             {sessions.map((session, i) => (
-                <button onClick={() => changeCurrentSession(session)}>
-                    <Bubble session={session} id={i+1}/>
-                </button>
+                <Bubble className={`bubble_${i+1}`} click={() => changeCurrentSession(session)} session={session} id={i+1}/>
             ))}
             {/* player on the bottom */}
-            <div className="Player-Container">
-                <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
-            </div>
-            <NavBar/>
+           
         </div>
+         <div className="Player-Container">
+            <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
+        </div>
+        <NavBar/>
         </>
     );
 }

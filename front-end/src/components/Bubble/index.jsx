@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react';
 import './index.css'
 
-function Bubble({session, id}){
+function Bubble({session, id, click}){
     /*
     session is a json containing info about each radio session
     */
@@ -20,7 +20,7 @@ function Bubble({session, id}){
             {
                 currentTrack != null 
                 ? 
-                <div className={`bubble bubble-${id}`} style={{backgroundImage:`url(${currentTrack['album']['images'][0]['url']})`}}>
+                    <div onClick={click} className={`bubble bubble-${id}`} style={{backgroundImage:`url(${currentTrack['album']['images'][0]['url']})`}}>
                     <p className='host'>@{hostId} is playing</p>
                     <p className='track-title'>{currentTrack['name']}</p>
                     <p className='track-artist'>by {currentTrack['artists'][0]['name']}</p>
