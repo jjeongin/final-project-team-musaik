@@ -9,19 +9,6 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 function SearchBar() {
     
-    const search = async (e) => {
-        e.preventDefault();
-        console.log("searching");
-        try {
-            const res = await axios.get(`/refresh`);
-            console.log(res);
-
-        } catch (err) {
-            console.log(err);
-        }
-         
-    }
-
 
     return(
 
@@ -30,9 +17,8 @@ function SearchBar() {
                 <img src={back} alt="back Icon"/>
             </Link>
 
-            <form onSubmit={search}>
+            <form>
                 <input type="text" id="home-search" placeholder="Search" name="search" />
-                <button type="submit">Search</button>
             </form>
         </div>
     )

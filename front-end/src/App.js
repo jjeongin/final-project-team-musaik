@@ -4,7 +4,6 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import RadioBubbles from './pages/Radio'
 import CurrentStation from './pages/CurrentStation'
-import Search from './pages/Search'
 import './App.css'
 
 const App = props => {
@@ -20,8 +19,6 @@ const App = props => {
         <Route path="/radio-bubbles" element={<RadioBubbles />} />
 
         <Route path="/current-station" element={<CurrentStation />} />
-
-        {/* <Route path="/search" element={<Search />} /> */}
       </Routes>
     </Router>
   );
