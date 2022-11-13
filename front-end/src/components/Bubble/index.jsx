@@ -28,7 +28,7 @@ function Bubble({session, id}){
     }
     */
     const current_track_id = session.playlist[0].track_id; // currently playing track of the session
-    const host = session.host;
+    const host_id = session.host.id;
     const [current_track, setTrack] = useState(null); // get track info using spotify api
     useEffect(() => {
         axios.get('/api/track', { params: { track_id: current_track_id } }).then(res => {
@@ -42,7 +42,7 @@ function Bubble({session, id}){
                 current_track != null 
                 ? 
                 <div>
-                    {/* <p className='host'>{host}'s Session</p> */}
+                    <p className='host'>{host_id} is playing</p>
                     <p className='track_title'>{current_track['name']}</p>
                     <p className='track_artist'>{current_track['artists'][0]['name']}</p>
                     <img src={current_track['album']['images'][0]['url']} alt='Album Image' className={`bubble bubble-${id}`}/>
