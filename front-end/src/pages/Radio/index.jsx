@@ -49,7 +49,8 @@ function Radio(props) {
     // use simple dummy data for now
     const sampleUserId = 'dummy_id';
     const sampleTrackId = '5hVghJ4KaYES3BFUATCYn0';
-    const session = {
+    let sessions = [];
+    let sampleSession = {
         host: {
             userId: sampleUserId
         },
@@ -70,18 +71,31 @@ function Radio(props) {
             },
         ]
     }
+    for (let i = 0; i < 6; i++) {
+        sessions.push(sampleSession);
+    }
     return (
         <>
         <div className="Radio">
-            <button onClick={() => changeCurrentSession(session)}>
-                <Bubble session={session} id='1'/>
+            <button onClick={() => changeCurrentSession(sessions[0])}>
+                <Bubble session={sessions[0]} id='1'/>
             </button>
-            <Bubble session={session} id='2' onClick={() => setTrack(session.playlist[0].trackId)}/>
-            <Bubble session={session} id='3' onClick={() => setTrack(session.playlist[0].trackId)}/>
-            <Bubble session={session} id='4' onClick={() => setTrack(session.playlist[0].trackId)}/>
-            <Bubble session={session} id='5' onClick={() => setTrack(session.playlist[0].trackId)}/>
-            <Bubble session={session} id='6' onClick={() => setTrack(session.playlist[0].trackId)}/>
-
+            <button onClick={() => changeCurrentSession(sessions[1])}>
+                <Bubble session={sessions[1]} id='2'/>
+            </button>
+            <button onClick={() => changeCurrentSession(sessions[2])}>
+                <Bubble session={sessions[2]} id='3'/>
+            </button>
+            <button onClick={() => changeCurrentSession(sessions[3])}>
+                <Bubble session={sessions[3]} id='4'/>
+            </button>
+            <button onClick={() => changeCurrentSession(sessions[4])}>
+                <Bubble session={sessions[4]} id='5'/>
+            </button>
+            <button onClick={() => changeCurrentSession(sessions[5])}>
+                <Bubble session={sessions[5]} id='6'/>
+            </button>
+            
             <div className="Player-Container">
                 <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
             </div>

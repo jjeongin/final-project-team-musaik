@@ -20,11 +20,10 @@ function Bubble({session, id}){
             {
                 currentTrack != null 
                 ? 
-                <div>
-                    <p className='host'>{hostId} is playing</p>
+                <div className={`bubble bubble-${id}`} style={{backgroundImage:`url(${currentTrack['album']['images'][0]['url']})`}}>
+                    <p className='host'>@{hostId} is playing</p>
                     <p className='track-title'>{currentTrack['name']}</p>
-                    <p className='track-artist'>{currentTrack['artists'][0]['name']}</p>
-                    <img src={currentTrack['album']['images'][0]['url']} alt='Album Image' className={`bubble bubble-${id}`}/>
+                    <p className='track-artist'>by {currentTrack['artists'][0]['name']}</p>
                 </div>
                 : <div/>
             }
