@@ -22,7 +22,8 @@ function Radio(props) {
 
     const [user, setUser] = useState(null);
     const [accessToken, setAccessToken] = useState(null);
-    const [trackUri, setTrackUri] = useState("");
+    const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
+    const [currentSession, setCurrentSession] = useState(null); // currently joined session
 
     useEffect(() => {
         getUser().then((user) => {
@@ -32,45 +33,55 @@ function Radio(props) {
         });
     }, []);
 
-    const setTrack = () => {
-        setTrackUri("spotify:track:4iV5W9uYEdYUVa79Axb7Rh");
+    // set the track to play
+    const setTrack = (trackId) => {
+        setTrackUri("spotify:track:" + trackId);
         console.log("trackUri", trackUri);
     }
 
-    const sample_user_id = 'dummy_id';
-    const sample_track_id = '5hVghJ4KaYES3BFUATCYn0';
+    // change currently playing session when each session is clicked
+    const changeCurrentSession = (session) => {
+        setCurrentSession(session);
+        setTrack(session.playlist[0].trackId);
+    }
+
     // get top six sessions from database
-    const session_one = {
+    // use simple dummy data for now
+    const sampleUserId = 'dummy_id';
+    const sampleTrackId = '5hVghJ4KaYES3BFUATCYn0';
+    const session = {
         host: {
-            id: sample_user_id
+            userId: sampleUserId
         },
         playlist: [
             {
-                track_id: sample_track_id
+                trackId: sampleTrackId
             },
             {
-                track_id: sample_track_id
+                trackId: sampleTrackId
             },
         ],
         listeners: [
             {
-                id: sample_user_id
+                userId: sampleUserId
             },
             {
-                id: sample_user_id
+                userId: sampleUserId
             },
         ]
     }
     return (
         <>
-        <button onClick={setTrack}>CLICK ME</button>
         <div className="Radio">
-            <Bubble session={session_one} id='1' />
-            <Bubble session={session_one} id='2' />
-            <Bubble session={session_one} id='3' />
-            <Bubble session={session_one} id='4' />
-            <Bubble session={session_one} id='5' />
-            <Bubble session={session_one} id='6' />
+            <button onClick={() => changeCurrentSession(session)}>
+                <Bubble session={session} id='1'/>
+            </button>
+            <Bubble session={session} id='2' onClick={() => setTrack(session.playlist[0].trackId)}/>
+            <Bubble session={session} id='3' onClick={() => setTrack(session.playlist[0].trackId)}/>
+            <Bubble session={session} id='4' onClick={() => setTrack(session.playlist[0].trackId)}/>
+            <Bubble session={session} id='5' onClick={() => setTrack(session.playlist[0].trackId)}/>
+            <Bubble session={session} id='6' onClick={() => setTrack(session.playlist[0].trackId)}/>
+
             <div className="Player-Container">
                 <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
             </div>
