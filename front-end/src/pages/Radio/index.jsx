@@ -12,8 +12,9 @@ import axios from 'axios';
 import Bubble from '../../components/Bubble';
 import SpotPlayer from '../../components/SpotPlayer';
 import './index.css';
+import { songs } from '../../components/dummyData';
 
-function Radio() {
+function Radio(props) {
     const getUser = async () => {
         const user = await axios.get('/user');
         return user.data;
@@ -35,20 +36,44 @@ function Radio() {
         setTrackUri("spotify:track:4iV5W9uYEdYUVa79Axb7Rh");
         console.log("trackUri", trackUri);
     }
+    const user_id = 'dummy_id';
+    const song = {
+        title: 'dummy_title',
+        artist: 'dummy_artist'
+    }
+    // get top six sessions from database
+    const session_one = {
+        img: cover_one,
+        host: user_id,
+        title: song.title,
+        artist: song.artist,
+    }
+    const session_two = {
+        img: cover_two,
+    }
+    const session_three = {
+        img: cover_three,
+    }
+    const session_four = {
+        img: cover_four,
+    }
+    const session_five = {
+        img: cover_five,
+    }
+    const session_six = {
+        img: cover_six,
+    }
 
-    // get top six sessions
-    
-    
     return (
         <>
         <button onClick={setTrack}>CLICK ME</button>
         <div className="Radio">
-            <Bubble img={cover_one} id='1' />
-            <Bubble img={cover_two} id='2' />
-            <Bubble img={cover_three} id='3' />
-            <Bubble img={cover_four} id='4' />
-            <Bubble img={cover_five} id='5' />
-            <Bubble img={cover_six} id='6' />
+            <Bubble session={session_one} id='1' />
+            <Bubble session={session_two} id='2' />
+            <Bubble session={session_three} id='3' />
+            <Bubble session={session_four} id='4' />
+            <Bubble session={session_five} id='5' />
+            <Bubble session={session_six} id='6' />
 
             {/* <div className="bubble_div" style = {{display: 'flex', flexDirection: 'column'}}>
             <div style = {{display: 'flex', flexDirection: 'row', justifyContent: 'center',margin: '3vh 0 1vh 0'}}>
