@@ -5,9 +5,8 @@ const express = require('express');
 const session = require('express-session');
 
 // database setup
-//require('./db');
-//const mongoose = require('mongoose');
-
+// require('./db');
+// const mongoose = require('mongoose'); // use mongoose until we have an actual database
 const app = express();
 
 //middleware
@@ -135,7 +134,7 @@ app.get('/refresh', (req, res) => {
     );
 });
 
-const test = require('./routes/index.js')
+const test = require('./routes/index.js');
 app.get('/api/rec', (req, res) =>{
   const user = req.session.user;
     spotifyApi.setAccessToken(user.access_token);
@@ -180,7 +179,6 @@ app.get('/api/rec', (req, res) =>{
 
 app.get('/api/user_info', (req,res) =>{
   const user = req.session.user;
-  
   spotifyApi.setAccessToken(user.access_token);
    spotifyApi.getMe()
   .then(function(data) {
@@ -195,63 +193,52 @@ app.get('/api/get_saved', (req, res) =>{
   spotifyApi.setAccessToken(user.access_token);
    spotifyApi.getMyRecentlyPlayedTracks({
         limit : 5
-      }).then(function(data) {
-        let songs =[]
-        let images  = []
-        let song = data.body.items 
-        for(let i=0; i<5;i++){
-            //songs.push(song[i].track['album']['artists'][0].name) returns names of recently played
-            // songs.push(song[i].track.name)
-            images.push(song[i].track.album.images[0].url)
-          }
-          res.json(images)
-
-    
-      })
-    
+    }).then(function(data) {
+    let songs =[]
+    let images  = []
+    let song = data.body.items 
+    for(let i=0; i<5;i++){
+        //songs.push(song[i].track['album']['artists'][0].name) returns names of recently played
+        // songs.push(song[i].track.name)
+        images.push(song[i].track.album.images[0].url)
+    }
+    res.json(images)
+    })
 })
 
-// refresh
-app.get('/refresh', (req, res) => {
-    const refreshToken = req.session.user.refresh_token;
-    spotifyApi.setRefreshToken(refreshToken);
-    spotifyApi.refreshAccessToken().then(
-        data => {
-            req.session.user = {
-                access_token: data.body.access_token,
-                refresh_token: refreshToken,
-            };
-            res.send(req.session.user).status(200);
-        }
-    ).catch(
-        err => {
-            console.log(err);
-            res.sendStatus(400);
-        }
-    );
-});
+app.get('/api/track', (req, res) =>{
+    const user = req.session.user;
+    spotifyApi.setAccessToken(user.access_token);
+    spotifyApi.getTrack(req.query.track_id)
+    .then(function(data) {
+        let track = data.body
+        console.log('Track information', data.body);
+        res.json(track) // send track info back
+    }, function(err) {
+        console.error(err);
+    });
+  })
 
 // get user
 app.get('/user', (req, res) => {
     res.send(req.session.user).status(200);
 });
 
-
 app.get('/top_artists', (req, res) => {
-const token = req.session.user.access_token;
+    const token = req.session.user.access_token;
 
-spotifyApi.setAccessToken(token);
-spotifyApi.getMyTopArtists({
-        limit: 3,
-        offset: 0,
-        time_range: 'long_term'
-    })
-    .then(function(data) {
-        let topArtists = data.body.items;
-        res.send(topArtists);
-    }, function(err) {
-        console.log('Something went wrong!', err);
-    })
+    spotifyApi.setAccessToken(token);
+    spotifyApi.getMyTopArtists({
+            limit: 3,
+            offset: 0,
+            time_range: 'long_term'
+        })
+        .then(function(data) {
+            let topArtists = data.body.items;
+            res.send(topArtists);
+        }, function(err) {
+            console.log('Something went wrong!', err);
+        })
 });
 
 app.get('/top_artists_pics', (req, res) => {
@@ -274,7 +261,6 @@ app.get('/top_artists_pics', (req, res) => {
         console.log('Something went wrong!', err);
     })
 });
-
 
 if (process.env.NODE_ENV == 'production') {
     console.log(__dirname);
