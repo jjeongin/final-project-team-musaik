@@ -5,47 +5,26 @@ import './index.css'
 function Bubble({session, id}){
     /*
     session is a json containing info about each radio session
-    const session_one = {
-        host: {
-            id: sample_user_id
-        },
-        playlist: [
-            {
-                track_id: sample_track_id
-            },
-            {
-                track_id: sample_track_id
-            },
-        ],
-        listeners: [
-            {
-                id: sample_user_id
-            },
-            {
-                id: sample_user_id
-            },
-        ]
-    }
     */
-    const current_track_id = session.playlist[0].track_id; // currently playing track of the session
-    const host_id = session.host.id;
-    const [current_track, setTrack] = useState(null); // get track info using spotify api
+    const currentTrackId = session.playlist[0].trackId; // currently playing track of the session
+    const hostId = session.host.userId;
+    const [currentTrack, setTrack] = useState(null); // get track info using spotify api
     useEffect(() => {
-        axios.get('/api/track', { params: { track_id: current_track_id } }).then(res => {
+        axios.get('/api/track', { params: { track_id: currentTrackId } }).then(res => {
             setTrack(res.data)
         });
-    }, [current_track_id]);
-    console.log(current_track)
+    }, [currentTrackId]);
+    console.log(currentTrack)
     return (
         <div>
             {
-                current_track != null 
+                currentTrack != null 
                 ? 
                 <div>
-                    <p className='host'>{host_id} is playing</p>
-                    <p className='track_title'>{current_track['name']}</p>
-                    <p className='track_artist'>{current_track['artists'][0]['name']}</p>
-                    <img src={current_track['album']['images'][0]['url']} alt='Album Image' className={`bubble bubble-${id}`}/>
+                    <p className='host'>{hostId} is playing</p>
+                    <p className='track-title'>{currentTrack['name']}</p>
+                    <p className='track-artist'>{currentTrack['artists'][0]['name']}</p>
+                    <img src={currentTrack['album']['images'][0]['url']} alt='Album Image' className={`bubble bubble-${id}`}/>
                 </div>
                 : <div/>
             }
