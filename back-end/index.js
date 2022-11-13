@@ -265,30 +265,29 @@ app.get('/top_artists_pics', (req, res) => {
 app.get('/top_sessions', (req, res) => {
     // get top sessions from database
     let sessions = [];
-    const sampleUserId = 'dummy_id';
-    const sampleTrackId = '5hVghJ4KaYES3BFUATCYn0';
-    let sampleSession = {
-        host: {
-            userId: sampleUserId
-        },
-        playlist: [
-            {
-                trackId: sampleTrackId
-            },
-            {
-                trackId: sampleTrackId
-            },
-        ],
-        listeners: [
-            {
-                userId: sampleUserId
-            },
-            {
-                userId: sampleUserId
-            },
-        ]
-    }
+    const sampleTrackIds = ['5hVghJ4KaYES3BFUATCYn0', '1xzi1Jcr7mEi9K2RfzLOqS', '4k6Uh1HXdhtusDW5y8Gbvy', '3xKsf9qdS1CyvXSMEid6g8', '7aHmvUghK3XCEqNRbUeAn4', '11M8c9SHQYpd8DOrmcu25k'];
     for (let i = 0; i < 6; i++) {
+        let sampleSession = {
+            host: {
+                userId: 'user_' + i+1
+            },
+            playlist: [
+                {
+                    trackId: sampleTrackIds[i]
+                },
+                {
+                    trackId: sampleTrackIds[(i+2)%6]
+                },
+            ],
+            listeners: [
+                {
+                    userId: 'user_' + (i+2)%6
+                },
+                {
+                    userId: 'user_' + (i+3)%6
+                },
+            ]
+        }
         sessions.push(sampleSession);
     }
     res.json(sessions)
