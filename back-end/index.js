@@ -262,6 +262,38 @@ app.get('/top_artists_pics', (req, res) => {
     })
 });
 
+app.get('/top_sessions', (req, res) => {
+    // get top sessions from database
+    let sessions = [];
+    const sampleUserId = 'dummy_id';
+    const sampleTrackId = '5hVghJ4KaYES3BFUATCYn0';
+    let sampleSession = {
+        host: {
+            userId: sampleUserId
+        },
+        playlist: [
+            {
+                trackId: sampleTrackId
+            },
+            {
+                trackId: sampleTrackId
+            },
+        ],
+        listeners: [
+            {
+                userId: sampleUserId
+            },
+            {
+                userId: sampleUserId
+            },
+        ]
+    }
+    for (let i = 0; i < 6; i++) {
+        sessions.push(sampleSession);
+    }
+    res.json(sessions)
+});
+
 if (process.env.NODE_ENV == 'production') {
     console.log(__dirname);
     app.use(express.static(path.join(__dirname, '../front-end/build')));

@@ -24,6 +24,7 @@ function Radio(props) {
     const [accessToken, setAccessToken] = useState(null);
     const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
     const [currentSession, setCurrentSession] = useState(null); // currently joined session
+    const [sessions, setSessions] = useState([]); // top sessions in bubbles
 
     useEffect(() => {
         getUser().then((user) => {
@@ -45,57 +46,25 @@ function Radio(props) {
         setTrack(session.playlist[0].trackId);
     }
 
-    // get top six sessions from database
-    // use simple dummy data for now
-    const sampleUserId = 'dummy_id';
-    const sampleTrackId = '5hVghJ4KaYES3BFUATCYn0';
-    let sessions = [];
-    let sampleSession = {
-        host: {
-            userId: sampleUserId
-        },
-        playlist: [
-            {
-                trackId: sampleTrackId
-            },
-            {
-                trackId: sampleTrackId
-            },
-        ],
-        listeners: [
-            {
-                userId: sampleUserId
-            },
-            {
-                userId: sampleUserId
-            },
-        ]
-    }
-    for (let i = 0; i < 6; i++) {
-        sessions.push(sampleSession);
-    }
+    // get top sessions
+    useEffect(() => {
+        axios.get('/top_sessions')
+            .then(res => {
+                setSessions(res.data)
+                console.log(sessions)
+            });
+    }, []);
+    
     return (
         <>
         <div className="Radio">
-            <button onClick={() => changeCurrentSession(sessions[0])}>
-                <Bubble session={sessions[0]} id='1'/>
-            </button>
-            <button onClick={() => changeCurrentSession(sessions[1])}>
-                <Bubble session={sessions[1]} id='2'/>
-            </button>
-            <button onClick={() => changeCurrentSession(sessions[2])}>
-                <Bubble session={sessions[2]} id='3'/>
-            </button>
-            <button onClick={() => changeCurrentSession(sessions[3])}>
-                <Bubble session={sessions[3]} id='4'/>
-            </button>
-            <button onClick={() => changeCurrentSession(sessions[4])}>
-                <Bubble session={sessions[4]} id='5'/>
-            </button>
-            <button onClick={() => changeCurrentSession(sessions[5])}>
-                <Bubble session={sessions[5]} id='6'/>
-            </button>
-            
+            {/* radio bubbles */}
+            {sessions.map((session, i) => (
+                <button onClick={() => changeCurrentSession(session)}>
+                    <Bubble session={session} id={i+1}/>
+                </button>
+            ))}
+            {/* player on the bottom */}
             <div className="Player-Container">
                 <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
             </div>
