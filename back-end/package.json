@@ -18,7 +18,6 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "mocha": "^10.1.0",
-    "nyc": "^15.1.0",
     "path": "^0.12.7",
     "save": "^2.9.0",
     "spotify-web-api-node": "^5.0.0",
@@ -26,6 +25,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20",
+    "nyc": "^15.1.0",
     "spotify-web-api-node": "^5.0.2"
   }
 }

@@ -9,10 +9,22 @@ let assert = chai.assert;
 let should = chai.use(chaiHttp).should();
 let expect = chai.expect;
 
-// let api = require('../routes/api');
-// let playlists = require('../routes/pinPlaylistRoute');
-// app.use('/sessions', api);
-// app.use('/playlists', playlists);
+let api = require('../routes/api');
+let playlists = require('../routes/pinPlaylistRoute');
+app.use('/sessions', api);
+app.use('/playlists', playlists);
+
+describe('GET something', () => {
+    it('should pin playlists on page', (done) => {
+        chai.request(api)
+        .get('/playlists/pin-playlists')
+        .redirects(0)
+        .end((err, res) => {
+            res.should.have.status()
+            done();
+        })
+    })
+})
 
 describe('GET base url - success', () => {
     it('should redirect to /home or /login', (done) => {
