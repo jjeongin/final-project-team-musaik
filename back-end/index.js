@@ -212,7 +212,6 @@ app.get('/api/track', (req, res) =>{
     spotifyApi.getTrack(req.query.track_id)
     .then(function(data) {
         let track = data.body
-        console.log('Track information', data.body);
         res.json(track) // send track info back
     }, function(err) {
         console.error(err);

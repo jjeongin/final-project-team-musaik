@@ -17,7 +17,6 @@ function Profile() {
   useEffect(() => {
       axios.get('http://localhost:8080/api/get_saved')
           .then(res => {
-            console.log(res.data)
             setSongs([...songs,...res.data])
           });
   }, []);
@@ -34,7 +33,6 @@ function Profile() {
   useEffect(() => {
       axios.get('http://localhost:8080/api/user_info')
           .then(res => {
-            console.log(res.data['country'])
             setFollowers([followers,res.data['followers']['total']])
           });
   }, []);
@@ -48,7 +46,6 @@ function Profile() {
   }, []);
 
   useEffect(() => {
-    console.log("Changed artists: ", profile)
   }, [profile])
 
 

@@ -4,25 +4,11 @@ const SpotifyWebApi = require('spotify-web-api-node');
 router.post('/create-session', async (req, res) => { 
     const host = req.session.user;
 
-    const spotifyApi = new SpotifyWebApi({
-        clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        redirectUri: 'http://localhost:8080/callback/'
-        // clientId: process.env.SPOTIFY_CLIENT_ID,
-        // clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-        // redirectUri: process.env.SPOTIFY_REDIRECT_URI
-    });
-
-    spotifyApi.setAccessToken(host.access_token);
-    spotifyApi.setRefreshToken(host.refresh_token);
-
-    const playback = spotifyApi.getMyCurrentPlaybackState();
-    
-    const currentSong = (playback.body.item.uri ? playback.body.item.uri : null);
+    const playlist = req.body.playlistId;
 
     const session = {
         host: host,
-        currentSong: currentSong,
+        playlist: playlist,
         joined_users: []
     };
 
@@ -57,9 +43,6 @@ router.post('/change-song', async (req, res) => {
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         redirectUri: 'http://localhost:8080/callback/'
-        // clientId: process.env.SPOTIFY_CLIENT_ID,
-        // clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-        // redirectUri: process.env.SPOTIFY_REDIRECT_URI
     });
 
     spotifyApi.setAccessToken(host.access_token);
@@ -79,6 +62,35 @@ router.post('/change-song', async (req, res) => {
     res.json({
         session: session
     });
+
+});
+
+router.get('/playlist-search', async (req, res) => {
+    const user = req.session.user;
+
+    const spotifyApi = new SpotifyWebApi({
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        redirectUri: 'http://localhost:8080/callback/'
+    });
+
+    spotifyApi.setAccessToken(user.access_token);
+    spotifyApi.setRefreshToken(user.refresh_token);
+
+    const userInfo = await spotifyApi.getMe();
+    const playlistsRes = await spotifyApi.getUserPlaylists(userInfo.body.id);
+    const playlists = playlistsRes.body.items;
+
+    const playlistsArray = [];
+
+    playlists.forEach((playlist) => {
+        playlistsArray.push({
+            name: playlist.name,
+            id: playlist.id,
+            img: playlist.images[0].url
+        });
+    });
+    res.json(playlistsArray);
 
 });
 
