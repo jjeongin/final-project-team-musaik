@@ -185,7 +185,7 @@ app.get('/api/rec', (req, res) =>{
 app.get('/api/user_info', (req,res) =>{
   const user = req.session.user;
   spotifyApi.setAccessToken(user.access_token);
-   spotifyApi.getMe()
+    spotifyApi.getMe()
   .then(function(data) {
     res.json(data.body)
   }, function(err) {

@@ -1,22 +1,46 @@
 const router = require('express').Router();
 const SpotifyWebApi = require('spotify-web-api-node');
+const { Session } = require('../models/Session');
+const spotifyApi = new SpotifyWebApi({
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    redirectUri: 'http://localhost:8080/callback'
+});
 
 router.post('/create-session', async (req, res) => { 
-    const host = req.session.user;
+    const accessToken = req.session.user.access_token;
+    spotifyApi.setAccessToken(accessToken);
 
-    const playlist = req.body.playlistId;
+    // get current user's id
+    const host = await spotifyApi.getMe();
+    const host_id = host.body.id;
 
-    const session = {
-        host: host,
-        playlist: playlist,
-        joined_users: []
-    };
+    // get tracks from the selected playlist
+    const playlist_tracks = await spotifyApi.getPlaylistTracks(req.body.playlistId);
+    const session_tracks = [];
+    for (let i = 0; i < playlist_tracks.body.items.length; i++) {
+        session_tracks.push(playlist_tracks.body.items[i].track.id);
+    }
 
-    req.session.session = session;
-
-    res.json({
-        session: session
-    });
+    try {
+        // save the created session to database
+        const session = await Session.create({
+            host: host_id,
+            playlist: session_tracks,
+            joined_users: [],
+        })
+        // send the created session to client
+        return res.json({
+            session: session,
+            status: 'success',
+        })
+    } catch (err) {
+        console.error(err)
+        return res.status(400).json({
+            error: err,
+            status: 'Failed to save a session to the database',
+        })
+    }
 });
 
 router.post('/get-session', (req, res) => {
@@ -38,12 +62,6 @@ router.post('/change-song', async (req, res) => {
     const session = req.session.session;
     const users = session.joined_users;
     const host = session.host;
-
-    const spotifyApi = new SpotifyWebApi({
-        clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        redirectUri: 'http://localhost:8080/callback/'
-    });
 
     spotifyApi.setAccessToken(host.access_token);
     spotifyApi.setRefreshToken(host.refresh_token);
@@ -90,15 +108,9 @@ router.get('/playlist-search', async (req, res) => {
             img: playlist.images[0].url
         });
     });
+    // console.log(playlistsArray)
     res.json(playlistsArray);
 
 });
 
 module.exports = router;
-
-
-
-
-
-
-
