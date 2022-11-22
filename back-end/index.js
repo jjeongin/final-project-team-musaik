@@ -1,15 +1,13 @@
 require('dotenv').config({ path: 'config.env' });
 const cors = require('cors');
-const SpotifyWebApi = require('spotify-web-api-node');
+const SpotifyWebApi = require('spotify-web-api-node'); // spotify api
 const express = require('express');
 const session = require('express-session');
+const mongoose = require('mongoose'); // database
 
-// database setup
-// require('./db');
-// const mongoose = require('mongoose'); // use mongoose until we have an actual database
 const app = express();
 
-//middleware
+// middleware
 app.use(express.json());
 const corsOptions = {
    optionsSuccessStatus: 200,
@@ -39,7 +37,6 @@ const playlists = require('./routes/pinPlaylistRoute');
 app.use('/sessions', api);
 app.use('/playlists', playlists);
 
-
 // spotify api
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
@@ -66,6 +63,15 @@ const scopes = [
     'user-follow-read',
     'user-follow-modify'
 ];
+
+// connect to database
+mongoose
+  .connect(`${process.env.DB_CONNECTION_STRING}`)
+  .then(data => console.log(`Connected to MongoDB`))
+  .catch(err => console.error(`Failed to connect to MongoDB: ${err}`));
+
+// load database models
+const { Session } = require('./models/Session');
 
 // base url
 app.get('/', (req, res) => {
@@ -109,7 +115,7 @@ app.get('/callback', (req, res) => {
                 refresh_token: refresh_token
             };
         
-            console.log('user:', req.session.user);
+            // console.log('user:', req.session.user);
             res.redirect("/profile");
         })
 });
@@ -164,8 +170,7 @@ app.get('/api/rec', (req, res) =>{
           let recommendations = data.body;
           let top3 = []
           for(let i =0; i<3; i++){
-                console.log(recommendations.tracks[i].href);
-
+                // console.log(recommendations.tracks[i].href);
                 top3.push(recommendations.tracks[i].album.images[0]['url'], recommendations.tracks[i].href)
           }
            res.json(top3)
@@ -180,7 +185,7 @@ app.get('/api/rec', (req, res) =>{
 app.get('/api/user_info', (req,res) =>{
   const user = req.session.user;
   spotifyApi.setAccessToken(user.access_token);
-   spotifyApi.getMe()
+    spotifyApi.getMe()
   .then(function(data) {
     res.json(data.body)
   }, function(err) {

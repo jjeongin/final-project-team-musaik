@@ -40,15 +40,12 @@ function Radio(props) {
 
     const setPlaylingList = (playlistId) => {
         setOpen(!open);
-        console.log(playlistId);
         setTrackUri("spotify:playlist:" + playlistId);
         axios.post('/sessions/create-session', {
             playlistId: playlistId,
         }).then((res) => {
             console.log(res);
             setCurrentSession(res.data);
-            
-
         });
     }
 
@@ -76,7 +73,7 @@ function Radio(props) {
     useEffect(() => {
         axios.get('/sessions/playlist-search')
             .then(res => {
-                const resLists=res.data;
+                const resLists = res.data;
                 setPlaylists(resLists);
             });
     }, []);
@@ -85,7 +82,6 @@ function Radio(props) {
         <div>
             <button className="dropdown"onClick={openDropdown}>Create a Session</button>
                 {open ? (
-                    
                     <ul className="dropdown-menu">
                         {playlists.map((playlist) => (
                             <li className="dropdown-menu-item" onClick={() => setPlaylingList(playlist.id)}>
@@ -101,8 +97,6 @@ function Radio(props) {
             {sessions.map((session, i) => (
                 <Bubble className={`bubble_${i+1}`} click={() => changeCurrentSession(session)} session={session} id={i+1}/>
             ))}
-            {/* player on the bottom */}
-           
         </div>
          <div className="Player-Container">
             <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
