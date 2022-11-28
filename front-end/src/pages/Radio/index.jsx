@@ -12,8 +12,6 @@ function Radio(props) {
         return user.data;
     };
 
-
-
     const [user, setUser] = useState(null);
     const [accessToken, setAccessToken] = useState(null);
     const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
@@ -22,8 +20,6 @@ function Radio(props) {
 
     const [playlists, setPlaylists] = useState([]);
     const [open, setOpen] = useState(false);
-
-    
 
     useEffect(() => {
         getUser().then((user) => {
@@ -34,7 +30,6 @@ function Radio(props) {
 
     // set the track to play
     const setTrack = (trackId) => {
-        console.log(trackId);
         setTrackUri("spotify:track:" + trackId);
     }
 
@@ -44,7 +39,6 @@ function Radio(props) {
         axios.post('/sessions/create-session', {
             playlistId: playlistId,
         }).then((res) => {
-            console.log(res);
             setCurrentSession(res.data);
         });
     }
@@ -52,7 +46,7 @@ function Radio(props) {
     // change currently playing session when each session is clicked
     const changeCurrentSession = (session) => {
         setCurrentSession(session);
-        setTrack(session.playlist[0].trackId);
+        setTrack(session.playlist[0]);
     }
 
     //open dropdown
