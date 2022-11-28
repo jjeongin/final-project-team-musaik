@@ -63,9 +63,9 @@ function Radio(props) {
 
     // get top sessions
     useEffect(() => {
-        axios.get('/top_sessions')
+        axios.get('/sessions/top-sessions')
             .then(res => {
-                setSessions(res.data)
+                setSessions(res.data.sessions);
             });
     }, []);
     

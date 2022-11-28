@@ -17,8 +17,9 @@ router.post('/create-session', async (req, res) => {
 
     // get tracks from the selected playlist
     const playlist_tracks = await spotifyApi.getPlaylistTracks(req.body.playlistId);
+    const playlist_length = playlist_tracks.body.items.length;
     const session_tracks = [];
-    for (let i = 0; i < playlist_tracks.body.items.length; i++) {
+    for (let i = 0; i < playlist_length; i++) {
         session_tracks.push(playlist_tracks.body.items[i].track.id);
     }
 
@@ -27,7 +28,8 @@ router.post('/create-session', async (req, res) => {
         const session = await Session.create({
             host: host_id,
             playlist: session_tracks,
-            joined_users: [],
+            listeners: [],
+            listener_count: 0,
         })
         // send the created session to client
         return res.json({
@@ -43,11 +45,24 @@ router.post('/create-session', async (req, res) => {
     }
 });
 
-router.post('/get-session', (req, res) => {
-    const session = req.session.session;
-    res.json({
-        session: session
-    });
+router.get('/top-sessions', async (req, res) => {
+    const accessToken = req.session.user.access_token;
+    spotifyApi.setAccessToken(accessToken);
+    try {
+        // retrieve top sessions from database
+        const sessions = await Session.find().sort('listener_count').limit(6);
+        // send the top sessions to client
+        return res.json({
+            sessions: sessions,
+            status: 'success',
+        })
+    } catch (err) {
+        console.error(err)
+        return res.status(400).json({
+            error: err,
+            status: 'Failed to save a session to the database',
+        })
+    }
 });
 
 router.post('/join-session', (req, res) => {

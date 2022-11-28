@@ -8,7 +8,8 @@ const sessionSchema = new Schema(
             required: true,
         },
         playlist: [String], // array of Spotify track ids
-        joined_users: [String], // array of Spotify user ids
+        listeners: [String], // array of Spotify user ids
+        listener_count: Number, // number of listeners
     },
     {
         timestamps: true,
