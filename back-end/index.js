@@ -266,37 +266,6 @@ app.get('/top_artists_pics', (req, res) => {
     })
 });
 
-app.get('/top_sessions', (req, res) => {
-    // get top sessions from database
-    let sessions = [];
-    const sampleTrackIds = ['5hVghJ4KaYES3BFUATCYn0', '1xzi1Jcr7mEi9K2RfzLOqS', '4k6Uh1HXdhtusDW5y8Gbvy', '3xKsf9qdS1CyvXSMEid6g8', '7aHmvUghK3XCEqNRbUeAn4', '11M8c9SHQYpd8DOrmcu25k'];
-    for (let i = 0; i < 6; i++) {
-        let sampleSession = {
-            host: {
-                userId: 'user_' + i+1
-            },
-            playlist: [
-                {
-                    trackId: sampleTrackIds[i]
-                },
-                {
-                    trackId: sampleTrackIds[(i+2)%6]
-                },
-            ],
-            listeners: [
-                {
-                    userId: 'user_' + (i+2)%6
-                },
-                {
-                    userId: 'user_' + (i+3)%6
-                },
-            ]
-        }
-        sessions.push(sampleSession);
-    }
-    res.json(sessions)
-});
-
 if (process.env.NODE_ENV == 'production') {
     console.log(__dirname);
     app.use(express.static(path.join(__dirname, '../front-end/build')));

@@ -6,8 +6,8 @@ function Bubble({session, id, click}){
     /*
     session is a json containing info about each radio session
     */
-    const currentTrackId = session.playlist[0].trackId; // currently playing track of the session
-    const hostId = session.host.userId;
+    const currentTrackId = session.playlist[0]; // currently playing track of the session
+    const hostId = session.host;
     const [currentTrack, setTrack] = useState(null); // get track info using spotify api
     useEffect(() => {
         axios.get('/api/track', { params: { track_id: currentTrackId } }).then(res => {
