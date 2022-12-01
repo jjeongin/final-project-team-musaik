@@ -9,3 +9,12 @@
     height: 80vh;
 
 }
+
+.Player-Container {
+    position: fixed ;
+    bottom: 8vh ;
+    margin: 0px;
+    padding:0;
+    background-color: #C1DEDC;
+    width: 100%;
+}
