@@ -7,9 +7,6 @@ router.get('/pin-playlists', async (req, res) => {
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         redirectUri: 'http://localhost:8080/callback/'
-        // clientId: process.env.SPOTIFY_CLIENT_ID,
-        // clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-        // redirectUri: process.env.SPOTIFY_REDIRECT_URI
     })
     spotifyApi.setAccessToken(user.access_token);
     spotifyApi.setRefreshToken(user.refresh_token);

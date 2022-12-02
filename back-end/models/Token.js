@@ -11,4 +11,4 @@ const Token = mongoose.model('Token', tokenSchema)
 
 module.exports = {
     Token
-}git
+}
