@@ -218,35 +218,6 @@ app.get('/api/get_saved', (req, res) =>{
     })
 })
 
-app.get('/api/getSearched', (req,res) =>{
-  const user = req.session.user;
-  spotifyApi.setAccessToken(user.access_token);
-  spotifyApi.getMySavedAlbums({
-    limit : 5,
-    offset: 0
-  })
-  .then(function(data) {
-    // Output items
-    let savedAlbums = data.body
-    res.json(savedAlbums)
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });
-
-  
-})
-
-app.get('/api/track', (req, res) =>{
-    const user = req.session.user;
-    spotifyApi.setAccessToken(user.access_token);
-    spotifyApi.getTrack(req.query.track_id)
-    .then(function(data) {
-        let track = data.body
-        res.json(track) // send track info back
-    }, function(err) {
-        console.error(err);
-    });
-  })
 
 // get user
 app.get('/user', (req, res) => {
@@ -277,6 +248,48 @@ app.get('/top_artists', (req, res) => {
             console.log('Something went wrong!', err);
         })
 });
+
+app.get('/api/top', (req,res) =>{
+  spotifyApi.getMyTopTracks()
+  .then(function(data) {
+    let topTracks = data.body.items;
+    console.log(topTracks);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+  
+})
+
+
+app.get('/api/getSearched', (req,res) =>{
+  const user = req.session.user;
+  spotifyApi.setAccessToken(user.access_token);
+  spotifyApi.getMySavedAlbums({
+    limit : 5,
+    offset: 0
+  })
+  .then(function(data) {
+    // Output items
+    let savedAlbums = data.body
+    res.json(savedAlbums)
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+
+  
+})
+
+app.get('/api/track', (req, res) =>{
+    const user = req.session.user;
+    spotifyApi.setAccessToken(user.access_token);
+    spotifyApi.getTrack(req.query.track_id)
+    .then(function(data) {
+        let track = data.body
+        res.json(track) // send track info back
+    }, function(err) {
+        console.error(err);
+    });
+  })
 
 app.get('/top_artists_pics', (req, res) => {
     const token = req.session.user.access_token;

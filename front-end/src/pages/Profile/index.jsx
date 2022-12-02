@@ -64,6 +64,19 @@ function Profile() {
     return user.data;
 };
 
+
+const [Track, SetTrack] = useState([]);
+
+    useEffect(() => {
+      axios.get('http://localhost:8080/api/track')
+          .then(res => {
+            SetTrack([res.body])
+          });
+  }, []);
+
+  useEffect(() => {
+  }, [Track])
+
 const [user, setUser] = useState(null);
 const [accessToken, setAccessToken] = useState(null);
 const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
