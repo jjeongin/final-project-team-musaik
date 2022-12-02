@@ -253,6 +253,14 @@ app.get('/user', (req, res) => {
     res.send(req.session.user).status(200);
 });
 
+
+app.get('/api/getTokens', (req, res) =>{
+  const token = req.session.user.access_token;
+  const secret = process.env.CLIENT_SECRET
+  res.send({token: token, secret:secret})
+
+})
+
 app.get('/top_artists', (req, res) => {
     const token = req.session.user.access_token;
 

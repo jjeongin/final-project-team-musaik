@@ -2,7 +2,6 @@ import Albums from '../../components/Albums/Albums';
 import UserAvatar from '../../components/UserAvatar/UserAvatar';
 import UserNumbers from '../../components/UserNumber/UserNumbers'
 import './styles.css'
-import SearchBar from '../../components/SearchBar/SearchBar';
 import NavBar from '../../components/NavBar/NavBar';
 import avi from "../../img/avi.png";
 import placeHolder from '../../img/album.jpeg'
@@ -14,6 +13,15 @@ import SpotPlayer from '../../components/SpotPlayer';
 import FavArtists from '../../components/Albums/FavArtists';
 
 function Profile() {
+
+  // get Searched songs
+  const [search, setSearch] = useState([]);
+  useEffect(() => {
+      axios.get('http://localhost:8080/api/getSearch')
+          .then(res => {
+            setSearch([...search,...res.data])
+          });
+  }, []);
   // get recently played songs
   const [songs, setSongs] = useState([]);
   useEffect(() => {
@@ -77,15 +85,7 @@ const setTrack = (trackId) => {
     setTrackUri("spotify:track:" + trackId);
 }
 
-const setPlaylingList = (playlistId) => {
-    setOpen(!open);
-    setTrackUri("spotify:playlist:" + playlistId);
-    axios.post('/sessions/create-session', {
-        playlistId: playlistId,
-    }).then((res) => {
-        setCurrentSession(res.data);
-    });
-}
+
 
 // change currently playing session when each session is clicked
 const changeCurrentSession = (session) => {
@@ -93,6 +93,16 @@ const changeCurrentSession = (session) => {
     setTrack(session.playlist[0]);
 }
 
+
+const setPlaylingList = (playlistId) => {
+  setOpen(!open);
+  setTrackUri("spotify:playlist:" + playlistId);
+  axios.post('/sessions/create-session', {
+      playlistId: playlistId,
+  }).then((res) => {
+      setCurrentSession(res.data);
+  });
+}
 //open dropdown
 const openDropdown = () => {
     setOpen(!open);
@@ -122,7 +132,6 @@ useEffect(() => {
 
   return (
     <div className="Profile">
-      <SearchBar />
         <UserAvatar text={user1[1]} image={profile[1]} />
         <UserNumbers followers={followers[1]} following={followers[1]}/>
 
