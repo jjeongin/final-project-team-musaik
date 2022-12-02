@@ -28,7 +28,7 @@
 }
 .match{
     z-index: 1;
-    margin-left: -50px;
+    margin-left: 0;
     margin-bottom: -50px;
     padding: 0;
 }
