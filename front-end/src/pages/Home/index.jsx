@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import Albums from '../../components/Albums/Albums';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import placeHolder from '../../img/album.jpeg';
 import './index.css'
 import RadioMatch from '../../components/RadioMatch';
@@ -16,7 +15,7 @@ function Home() {
   useEffect(() => {
       axios.get('http://localhost:8080/api/getSearch')
           .then(res => {
-            setSongs([...search,...res.data])
+            setSearch([...search,...res.data])
           });
   }, []);
   // get recently played songs
@@ -116,7 +115,6 @@ useEffect(() => {
 
   return (
     <><div className="Home">
-      <SearchBar />
       <div className="home-content">
         <RadioMatch img1={placeHolder} img2={placeHolder} />
         <Albums text={"Playlists"} image1={lists[1]} image2={lists[0]} image3={lists[2]} />

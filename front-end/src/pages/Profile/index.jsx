@@ -2,7 +2,6 @@ import Albums from '../../components/Albums/Albums';
 import UserAvatar from '../../components/UserAvatar/UserAvatar';
 import UserNumbers from '../../components/UserNumber/UserNumbers'
 import './styles.css'
-import SearchBar from '../../components/SearchBar/SearchBar';
 import NavBar from '../../components/NavBar/NavBar';
 import avi from "../../img/avi.png";
 import placeHolder from '../../img/album.jpeg'
@@ -20,7 +19,7 @@ function Profile() {
   useEffect(() => {
       axios.get('http://localhost:8080/api/getSearch')
           .then(res => {
-            setSongs([...search,...res.data])
+            setSearch([...search,...res.data])
           });
   }, []);
   // get recently played songs
@@ -133,7 +132,6 @@ useEffect(() => {
 
   return (
     <div className="Profile">
-      <SearchBar />
         <UserAvatar text={user1[1]} image={profile[1]} />
         <UserNumbers followers={followers[1]} following={followers[1]}/>
 
