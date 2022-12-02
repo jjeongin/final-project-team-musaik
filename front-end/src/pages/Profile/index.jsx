@@ -14,6 +14,15 @@ import SpotPlayer from '../../components/SpotPlayer';
 import FavArtists from '../../components/Albums/FavArtists';
 
 function Profile() {
+
+  // get Searched songs
+  const [search, setSearch] = useState([]);
+  useEffect(() => {
+      axios.get('http://localhost:8080/api/getSearch')
+          .then(res => {
+            setSongs([...search,...res.data])
+          });
+  }, []);
   // get recently played songs
   const [songs, setSongs] = useState([]);
   useEffect(() => {
@@ -77,15 +86,7 @@ const setTrack = (trackId) => {
     setTrackUri("spotify:track:" + trackId);
 }
 
-const setPlaylingList = (playlistId) => {
-    setOpen(!open);
-    setTrackUri("spotify:playlist:" + playlistId);
-    axios.post('/sessions/create-session', {
-        playlistId: playlistId,
-    }).then((res) => {
-        setCurrentSession(res.data);
-    });
-}
+
 
 // change currently playing session when each session is clicked
 const changeCurrentSession = (session) => {
@@ -93,6 +94,16 @@ const changeCurrentSession = (session) => {
     setTrack(session.playlist[0]);
 }
 
+
+const setPlaylingList = (playlistId) => {
+  setOpen(!open);
+  setTrackUri("spotify:playlist:" + playlistId);
+  axios.post('/sessions/create-session', {
+      playlistId: playlistId,
+  }).then((res) => {
+      setCurrentSession(res.data);
+  });
+}
 //open dropdown
 const openDropdown = () => {
     setOpen(!open);

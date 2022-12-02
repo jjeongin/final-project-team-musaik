@@ -11,6 +11,14 @@ import SpotPlayer from '../../components/SpotPlayer';
 
 
 function Home() {
+
+  const [search, setSearch] = useState([]);
+  useEffect(() => {
+      axios.get('http://localhost:8080/api/getSearch')
+          .then(res => {
+            setSongs([...search,...res.data])
+          });
+  }, []);
   // get recently played songs
   const [songs, setSongs] = useState([]);
   useEffect(() => {
