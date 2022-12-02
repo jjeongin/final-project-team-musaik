@@ -17,5 +17,5 @@ export default function SpotPlayer({ accessToken, trackUri }) {
       play={play}
       uris={trackUri ? [trackUri] : []}
     />
-  )
+  ) 
 }

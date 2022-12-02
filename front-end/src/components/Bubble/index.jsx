@@ -14,6 +14,8 @@ function Bubble({session, id, click}){
             setTrack(res.data)
         });
     }, [currentTrackId]);
+
+
     return (
         <div>
             {

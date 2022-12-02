@@ -37,6 +37,8 @@ const Client = mongoose.model('Client', cleintSchema)
 
 
 module.exports = {
+
     Token,
     Client
+
 }

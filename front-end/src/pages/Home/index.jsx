@@ -50,6 +50,14 @@ const getUser = async () => {
   return user.data;
 };
 
+const [profile, setProfile] = useState([]);
+    useEffect(() => {
+      axios.get('http://localhost:8080/api/user_info')
+          .then(res => {
+            setProfile([profile,res.data['images'][0]['url']])
+          });
+  }, []);
+
 const [user, setUser] = useState(null);
 const [accessToken, setAccessToken] = useState(null);
 const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
@@ -116,7 +124,7 @@ useEffect(() => {
   return (
     <><div className="Home">
       <div className="home-content">
-        <RadioMatch img1={placeHolder} img2={placeHolder} />
+        <RadioMatch img1={profile[1]} img2={recs[4]} />
         <Albums text={"Playlists"} image1={lists[1]} image2={lists[0]} image3={lists[2]} />
         <Albums text={"Recommendations Based on Your Taste"} image1={recs[4]} image2={recs[0]} image3={recs[2]} />
       </div>
