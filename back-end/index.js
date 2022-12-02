@@ -4,7 +4,7 @@ const SpotifyWebApi = require('spotify-web-api-node'); // spotify api
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose'); // database
-
+const MongoSessionStore = require('connect-mongodb-session')(session);
 const app = express();
 
 // middleware
@@ -13,15 +13,21 @@ const corsOptions = {
    optionsSuccessStatus: 200,
    credentials: true,
  }
+
+var store = new MongoSessionStore ({
+  uri: process.env.DB_CONNECTION_STRING,
+  collection: 'express-sessions'
+});
+
 app.use(cors(corsOptions));
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    httpOnly: true,
+    resave: true,
+    saveUninitialized: true,
     cookie: {
-        secure: false,
-    }
+    	maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    },
+    store: store
 }))
 
 // static files
@@ -114,7 +120,8 @@ app.get('/callback', (req, res) => {
                 access_token: access_token,
                 refresh_token: refresh_token
             };
-        
+            
+    	   
             // console.log('user:', req.session.user);
             res.redirect("/profile");
         })
