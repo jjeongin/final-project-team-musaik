@@ -5,16 +5,6 @@ const token = "BQBHFk672_NZvNJ5XvX08aw9dad9fy196WeyU2IJhSHPhYcHi1xIDCLD4xgGtLEFE
 const spotifyApi = new SpotifyWebApi();
 spotifyApi.setAccessToken(token);
 
-//GET MY PROFILE DATA
-function getMyData() {
-  (async () => {
-    const me = await spotifyApi.getMe();
-     console.log(me.body);
-    getUserPlaylists(me.body.id);
-  })().catch(e => {
-    console.error(e);
-  });
-}
 
 //GET MY PLAYLISTS
 async function getUserPlaylists(userName) {
@@ -30,6 +20,39 @@ async function getUserPlaylists(userName) {
     //   console.log(playlists[i])
   }
 }
+
+//GET MY PROFILE DATA
+function getMyData() {
+  (async () => {
+    const me = await spotifyApi.getMe();
+     console.log(me.body);
+    getUserPlaylists(me.body.id);
+  })().catch(e => {
+    console.error(e);
+  });
+}
+
+//Get Song
+async function getSong(userName) {
+  spotifyApi.searchArtists('No')
+  .then(function(info) {
+    console.log('Search artists by "No"', info.body);
+  }, function(err) {
+    console.error(err);
+  });
+
+  let playlists = data.body.items;
+  for (let playlist of data.body.items) {
+    console.log(playlist.name + ": " + playlist.id)
+    console.log(playlists[playlist])
+
+    for(let i=0; i<3;i++){
+      console.log(playlists[i])
+    }
+  }
+}
+
+
 
   
 
