@@ -11,7 +11,6 @@ const importData = async () => {
     try {
         await Post.create(posts);
         console.log("Data Sucessfully imported");
-        coonsole.log("Data Sucessfully imported");
 
 
         process.exit();
@@ -20,3 +19,12 @@ const importData = async () => {
         process.exit(1);
     }
     }
+
+const deleteData = async () => {
+    // try {
+    //     await Post.deleteMany({});
+    //     console.log("Data Successfully deleted");
+    //     process.exit();
+
+    // }
+}
