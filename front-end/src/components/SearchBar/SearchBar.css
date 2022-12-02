@@ -7,6 +7,16 @@
     width: 300px;
 }
 
+
+#home-send{
+    border-style: none;
+    border: black;
+    border-radius: 23px;
+    background-color: #d8d9d8;
+    height: 30px;
+    width: 30px;
+}
+
 .Search-Burger{
     padding-top: 20px;
     display: flex;
@@ -27,3 +37,11 @@ img{
 textarea:focus, input:focus{
     outline: none;
 }
+
+button{
+    margin-left: 10px;
+    border-radius: 50px;
+    border-style: none;
+    width: 70px
+}
+
