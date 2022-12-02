@@ -31,6 +31,29 @@ async function getUserPlaylists(userName) {
   }
 }
 
+
+//synchronizing music player attempt
+app.use(bodyParser.urlencoded({ extended: true }));
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname + "/index.html"));
+}).listen(12340);
+
+
+app.post("/startedPlaying", function(req, res) {
+  currTime = req.body.time;
+  res.end();
+});
+
+app.post("/retrieveTime", function(req, res) {
+  res.send(currTime);
+  res.end();
+});
+
+app.post("/retrieveId", function(req, res) {
+  id++;
+  res.send(id.toString());
+  res.end();
+});
   
 
 
