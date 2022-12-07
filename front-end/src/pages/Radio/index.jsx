@@ -4,6 +4,7 @@ import axios from 'axios';
 import Bubble from '../../components/Bubble';
 import SpotPlayer from '../../components/SpotPlayer';
 import './index.css';
+import { ClipLoader } from 'react-spinners';
 
 
 function Radio(props) {
@@ -12,6 +13,16 @@ function Radio(props) {
         return user.data;
     };
 
+    const [loading, setLoad ]= useState(false)
+
+     useEffect(() =>{
+    setLoad(true)
+
+    setTimeout(() => {
+      setLoad(false)
+
+    },750)
+  }, [])
     const [user, setUser] = useState(null);
     const [accessToken, setAccessToken] = useState(null);
     const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
@@ -72,6 +83,23 @@ function Radio(props) {
             });
     }, []);
     return (
+        <div className="app">
+    {
+
+      loading ? 
+
+      <div className="appName">
+      <ClipLoader
+        color={"#ADD8E6"}
+        loading={loading}
+        size={40}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+      </div>
+
+
+      :
         <>
         <div>
             <button className="dropdown"onClick={openDropdown}>Create a Session</button>
@@ -96,7 +124,8 @@ function Radio(props) {
             <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
         </div>
         <NavBar/>
-        </>
+        </> }
+        </div>
     );
 }
 
