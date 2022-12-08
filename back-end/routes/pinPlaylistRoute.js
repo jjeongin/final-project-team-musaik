@@ -20,9 +20,10 @@ router.get('/pin-playlists', async (req, res) => {
       
         console.log("---------------+++++++++++++++++++++++++")
         let playlists = playlist.body.items;
-      
+    
         const playlist_array =  []
-
+        // runs loop to obtain three
+        //images and place them in row
         for(let i=0; i<3;i++){
 
             playlist_array.push(playlists[i].images[0]["url"])
