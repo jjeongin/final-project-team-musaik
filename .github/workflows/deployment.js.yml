@@ -27,6 +27,7 @@ jobs:
 
     - name: Creating a Production Build of React App
       run: | 
+        cd front-end
         npm run build
         cd ..
 
