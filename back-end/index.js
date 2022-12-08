@@ -1,4 +1,5 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: `${__dirname}/../.env` });
+
 const cors = require('cors');
 const SpotifyWebApi = require('spotify-web-api-node'); // spotify api
 const express = require('express');
