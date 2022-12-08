@@ -53,5 +53,6 @@ jobs:
     - name: Deploy to production 
       # Starts your node js app in 'PM2'
       run: |
-        pm2 restart index
+        pm2 stop deployment.config.js
+        pm2 start deployment.config.js
         pm2 save
