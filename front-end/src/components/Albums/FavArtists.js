@@ -9,8 +9,8 @@ export default class FavArtists extends React.Component{
     }
     componentDidMount() {
         Promise.all([
-            axios.get(`http://localhost:8080/top_artists_pics`),
-            axios.get(`http://localhost:8080/top_artists_links`)
+            axios.get(`/top_artists_pics`),
+            axios.get(`/top_artists_links`)
             
           ]).then(([res1, res2]) => {
             const artists = res1.data;
