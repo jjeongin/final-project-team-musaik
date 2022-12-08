@@ -6,7 +6,6 @@ const spotifyApi = new SpotifyWebApi();
 spotifyApi.setAccessToken(token);
 
 
-//GET MY PLAYLISTS
 async function getUserPlaylists(userName) {
   const data = await spotifyApi.getUserPlaylists(userName)
 
@@ -14,14 +13,10 @@ async function getUserPlaylists(userName) {
   let playlists = data.body.items;
   for (let playlist of data.body.items) {
     console.log(playlist.name + ": " + playlist.id)
-    //console.log(playlists[playlist])
-
-    // for(let i=0; i<3;i++){
-    //   console.log(playlists[i])
+console.log(playlists[i])
   }
 }
 
-//GET MY PROFILE DATA
 function getMyData() {
   (async () => {
     const me = await spotifyApi.getMe();
