@@ -2,24 +2,11 @@ import './Albums.css';
 import TopArtistList from '../../components/TopArtistList';
 import React from 'react';
 import axios from 'axios';
-
-import TopArtistsLinks from '../TopArtistsLinks';
-// import { timeStamp } from 'console';
-
 export default class FavArtists extends React.Component{
     state = {
         artists: [],
         artistsLinks: []
     }
-    // componentDidMount() {
-    //     axios.get(`http://localhost:8080/top_artists_pics`)
-    //       .then(res => {
-    //         const artists = res.data;
-    //         this.setState({ artists });
-    //       })
-    // }    
-
-
     componentDidMount() {
         Promise.all([
             axios.get(`http://localhost:8080/top_artists_pics`),
@@ -63,8 +50,7 @@ render(){
             <a href={this.state.artistsLinks[2]}>  
             <span className="caption">{<TopArtistList number={2}/>}</span>
             </a>
-               
-                
+                           
             </div>
             
         </div>
