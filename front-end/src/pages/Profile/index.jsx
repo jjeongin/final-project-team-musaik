@@ -8,16 +8,31 @@ import placeHolder from '../../img/album.jpeg'
 import React, {useEffect,useState} from 'react';
 import axios from 'axios';
 import SpotPlayer from '../../components/SpotPlayer';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 import FavArtists from '../../components/Albums/FavArtists';
 
+
+
+
 function Profile() {
+
+  const [loading, setLoad ]= useState(false)
+
+  useEffect(() =>{
+    setLoad(true)
+
+    setTimeout(() => {
+      setLoad(false)
+
+    },750)
+  }, [])
 
   // get Searched songs
   const [search, setSearch] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/getSearch')
+      axios.get('/api/getSearch')
           .then(res => {
             setSearch([...search,...res.data])
           });
@@ -25,7 +40,7 @@ function Profile() {
   // get recently played songs
   const [songs, setSongs] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/get_saved')
+      axios.get('/api/get_saved')
           .then(res => {
             setSongs([...songs,...res.data])
           });
@@ -33,7 +48,7 @@ function Profile() {
   // get user name
   const [user1, setUser1] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/user_info')
+      axios.get('/api/user_info')
           .then(res => {
             setUser1([user1,[res.data['display_name']]])
           });
@@ -41,7 +56,7 @@ function Profile() {
   // get user follower info
   const [followers, setFollowers] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/user_info')
+      axios.get('/api/user_info')
           .then(res => {
             setFollowers([followers,res.data['followers']['total']])
           });
@@ -49,7 +64,7 @@ function Profile() {
   // get user profile image
   const [profile, setProfile] = useState([]);
     useEffect(() => {
-      axios.get('http://localhost:8080/api/user_info')
+      axios.get('/api/user_info')
           .then(res => {
             setProfile([profile,res.data['images'][0]['url']])
           });
@@ -68,7 +83,7 @@ function Profile() {
 const [Track, SetTrack] = useState([]);
 
     useEffect(() => {
-      axios.get('http://localhost:8080/api/track')
+      axios.get('/api/track')
           .then(res => {
             SetTrack([res.body])
           });
@@ -144,6 +159,24 @@ useEffect(() => {
 
 
   return (
+    <div className="app">
+    {
+
+      loading ? 
+
+      <div className="appName">
+      <ClipLoader
+        color={"#ADD8E6"}
+        loading={loading}
+        size={40}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+      </div>
+
+
+      :
+    
     <div className="Profile">
         <UserAvatar text={user1[1]} image={profile[1]} />
         <UserNumbers followers={followers[1]} following={followers[1]}/>
@@ -156,6 +189,8 @@ useEffect(() => {
             <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
         </div>
        <NavBar />
+    </div>
+    }
     </div>
   );
 }

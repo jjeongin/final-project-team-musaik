@@ -1,10 +1,11 @@
 import './Albums.css';
 import placeHolder from '../../img/album.jpeg'
-
+import {useState, useEffect} from "react"
 
 
 
 function Albums({text, image1,image2,image3}){
+
     
     return(
         <div className='Carousel'>
