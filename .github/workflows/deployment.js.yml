@@ -38,6 +38,7 @@ jobs:
     - name: Create config.env file
       # Creates an 'config.env' file with environment variables
       run: |
+        cd back-end
         touch config.env
         echo NODE_ENV=${{ secrets.NODE_ENV }} >> config.env
         echo ROOT_URL=${{ secrets.ROOT_URL }} >> config.env
