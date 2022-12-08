@@ -249,6 +249,7 @@ app.get('/top_artists', (req, res) => {
         })
 });
 
+
 app.get('/api/top', (req,res) =>{
   spotifyApi.getMyTopTracks()
   .then(function(data) {
@@ -259,6 +260,7 @@ app.get('/api/top', (req,res) =>{
   });
   
 })
+
 
 
 app.get('/api/getSearched', (req,res) =>{
@@ -310,6 +312,27 @@ app.get('/top_artists_pics', (req, res) => {
     }, function(err) {
         console.log('Something went wrong!', err);
     })
+});
+
+app.get ('/top_artists_links', (req, res) => {
+  const token = req.session.user.access_token;
+
+  spotifyApi.setAccessToken(token);
+  spotifyApi.getMyTopArtists({
+      limit: 3,
+      offset: 0,
+      time_range: 'long_term'
+  })
+  .then(function(data) {
+      let topArtists = data.body.items;
+      let topArtistsLinks=[];
+      topArtists.forEach(function(artist, index) {
+      topArtistsLinks[index]=artist.external_urls.spotify
+      })
+      res.send(topArtistsLinks);
+  }, function(err) {
+      console.log('Something went wrong!', err);
+  })
 });
 
 if (process.env.NODE_ENV == 'production') {
