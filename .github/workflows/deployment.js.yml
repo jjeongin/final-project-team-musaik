@@ -19,7 +19,7 @@ jobs:
     
     - name: Install dependencies
       run: | 
-        npm install
+        git config --global url."git@github.com:".insteadOf git://github.com/ && npm install
         cd back-end
         npm install
         cd ../front-end
