@@ -39,13 +39,13 @@ jobs:
       # Creates an 'config.env' file with environment variables
       run: |
         cd back-end
-        touch config.env
-        echo NODE_ENV=${{ secrets.NODE_ENV }} >> config.env
-        echo ROOT_URL=${{ secrets.ROOT_URL }} >> config.env
-        echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> config.env
-        echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> config.env
-        echo SESSION_SECRET=${{ secrets.SESSION_SECRET }} >> config.env
-        echo DB_CONNECTION_STRING=${{ secrets.DB_CONNECTION_STRING }} >> config.env
+        touch .env
+        echo NODE_ENV=${{ secrets.NODE_ENV }} >> .env
+        echo ROOT_URL=${{ secrets.ROOT_URL }} >> .env
+        echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
+        echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
+        echo SESSION_SECRET=${{ secrets.SESSION_SECRET }} >> .env
+        echo DB_CONNECTION_STRING=${{ secrets.DB_CONNECTION_STRING }} >> .env
 
   deploy:
     runs-on: self-hosted
