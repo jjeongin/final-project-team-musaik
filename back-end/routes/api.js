@@ -4,7 +4,7 @@ const { Session } = require('../models/Session');
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    redirectUri: 'http://localhost:8080/callback'
+    redirectUri: process.env.ROOT_URL + '/callback'
 });
 
 router.post('/create-session', async (req, res) => { 
@@ -100,12 +100,6 @@ router.post('/change-song', async (req, res) => {
 
 router.get('/playlist-search', async (req, res) => {
     const user = req.session.user;
-
-    const spotifyApi = new SpotifyWebApi({
-        clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET,
-        redirectUri: 'http://localhost:8080/callback/'
-    });
 
     spotifyApi.setAccessToken(user.access_token);
     spotifyApi.setRefreshToken(user.refresh_token);
