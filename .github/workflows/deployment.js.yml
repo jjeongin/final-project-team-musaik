@@ -13,7 +13,7 @@ jobs:
     - name: Use Node.js 18
       uses: actions/setup-node@v3.5.0
       with:
-        node-version: '18.x' # Change according to the installed version
+        node-version: '18.x' 
         cache: 'npm'
    
     - name: Install dependencies
