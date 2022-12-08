@@ -25,7 +25,7 @@ function Home() {
 
   const [search, setSearch] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/getSearch')
+      axios.get('/api/getSearch')
           .then(res => {
             setSearch([...search,...res.data])
           });
@@ -33,7 +33,7 @@ function Home() {
   // get recently played songs
   const [songs, setSongs] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/get_saved')
+      axios.get('/api/get_saved')
           .then(res => {
             setSongs([...songs,...res.data])
           });
@@ -50,7 +50,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/rec')
+    axios.get('/api/rec')
         .then(res => {
           setRecs([...recs,...res.data])
         });
@@ -64,7 +64,7 @@ const getUser = async () => {
 
 const [profile, setProfile] = useState([]);
     useEffect(() => {
-      axios.get('http://localhost:8080/api/user_info')
+      axios.get('/api/user_info')
           .then(res => {
             setProfile([profile,res.data['images'][0]['url']])
           });

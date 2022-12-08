@@ -32,7 +32,7 @@ function Profile() {
   // get Searched songs
   const [search, setSearch] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/getSearch')
+      axios.get('/api/getSearch')
           .then(res => {
             setSearch([...search,...res.data])
           });
@@ -40,7 +40,7 @@ function Profile() {
   // get recently played songs
   const [songs, setSongs] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/get_saved')
+      axios.get('/api/get_saved')
           .then(res => {
             setSongs([...songs,...res.data])
           });
@@ -48,7 +48,7 @@ function Profile() {
   // get user name
   const [user1, setUser1] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/user_info')
+      axios.get('/api/user_info')
           .then(res => {
             setUser1([user1,[res.data['display_name']]])
           });
@@ -56,7 +56,7 @@ function Profile() {
   // get user follower info
   const [followers, setFollowers] = useState([]);
   useEffect(() => {
-      axios.get('http://localhost:8080/api/user_info')
+      axios.get('/api/user_info')
           .then(res => {
             setFollowers([followers,res.data['followers']['total']])
           });
@@ -64,7 +64,7 @@ function Profile() {
   // get user profile image
   const [profile, setProfile] = useState([]);
     useEffect(() => {
-      axios.get('http://localhost:8080/api/user_info')
+      axios.get('/api/user_info')
           .then(res => {
             setProfile([profile,res.data['images'][0]['url']])
           });
@@ -83,7 +83,7 @@ function Profile() {
 const [Track, SetTrack] = useState([]);
 
     useEffect(() => {
-      axios.get('http://localhost:8080/api/track')
+      axios.get('/api/track')
           .then(res => {
             SetTrack([res.body])
           });
