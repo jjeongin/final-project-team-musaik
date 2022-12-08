@@ -1,3 +1,5 @@
+//front end for showing albums
+
 import './Albums.css';
 import placeHolder from '../../img/album.jpeg'
 import {useState, useEffect} from "react"
@@ -6,7 +8,6 @@ import {useState, useEffect} from "react"
 
 function Albums({text, image1,image2,image3}){
 
-    
     return(
         <div className='Carousel'>
             <h2 className='Category-Name'>{text}</h2>

@@ -1,3 +1,5 @@
+//front end for showing fav artists
+
 import './Albums.css';
 import TopArtistList from '../../components/TopArtistList';
 import React from 'react';

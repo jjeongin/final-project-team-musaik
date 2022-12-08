@@ -1,3 +1,5 @@
+//routes for api
+
 const router = require('express').Router();
 const SpotifyWebApi = require('spotify-web-api-node');
 const { Session } = require('../models/Session');
@@ -11,11 +13,11 @@ router.post('/create-session', async (req, res) => {
     const accessToken = req.session.user.access_token;
     spotifyApi.setAccessToken(accessToken);
 
-    // get current user's id
+    //get current user's id
     const host = await spotifyApi.getMe();
     const host_id = host.body.id;
 
-    // get tracks from the selected playlist
+    //get tracks from the selected playlist
     const playlist_tracks = await spotifyApi.getPlaylistTracks(req.body.playlistId);
     const playlist_length = playlist_tracks.body.items.length;
     const session_tracks = [];
@@ -24,14 +26,14 @@ router.post('/create-session', async (req, res) => {
     }
 
     try {
-        // save the created session to database
+        //save the created session to database
         const session = await Session.create({
             host: host_id,
             playlist: session_tracks,
             listeners: [],
             listener_count: 0,
         })
-        // send the created session to client
+        //send the created session to client
         return res.json({
             session: session,
             status: 'success',

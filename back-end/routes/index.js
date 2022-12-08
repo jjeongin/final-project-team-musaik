@@ -1,3 +1,5 @@
+//routes for index
+
 const router = require('express').Router();
 const SpotifyWebApi = require('spotify-web-api-node');
 
@@ -9,6 +11,8 @@ router.get('/api/profile', (req,res) =>{
       clientSecret: process.env.CLIENT_SECRET,
       redirectUri: process.env.ROOT_URL + '/callback'
     });
+
+    //get top artists
 
     spotifyApi.setAccessToken(user.access_token);
     spotifyApi.setRefreshToken(user.refresh_token);

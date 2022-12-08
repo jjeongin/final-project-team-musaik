@@ -1,3 +1,5 @@
+//added the skip song, current song functionality
+
 import React, {useState, useRef, useEffect} from 'react'
 import PlayerDetails from './PlayerDetails';
 import PlayerControls from './PlayerControls';
@@ -23,7 +25,6 @@ function Player(props){
                 if (temp > props.songs.length - 1) {
                     temp = 0;
                 }
-
                 return temp;
             });
         } else {
@@ -34,7 +35,6 @@ function Player(props){
                 if (temp < 0) {
                     temp = props.songs.length - 1;
                 }
-
                 return temp;
             });
         }

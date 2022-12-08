@@ -1,3 +1,5 @@
+//utility imports
+
 require("dotenv").config({ path: "./config.env" });
 const fs = require("fs");
 const Post = require("./models.Post");
@@ -11,7 +13,6 @@ const importData = async () => {
     try {
         await Post.create(posts);
         console.log("Data Sucessfully imported");
-
 
         process.exit();
     } catch{
