@@ -8,11 +8,26 @@ import placeHolder from '../../img/album.jpeg'
 import React, {useEffect,useState} from 'react';
 import axios from 'axios';
 import SpotPlayer from '../../components/SpotPlayer';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 import FavArtists from '../../components/Albums/FavArtists';
 
+
+
+
 function Profile() {
+
+  const [loading, setLoad ]= useState(false)
+
+  useEffect(() =>{
+    setLoad(true)
+
+    setTimeout(() => {
+      setLoad(false)
+
+    },750)
+  }, [])
 
   // get Searched songs
   const [search, setSearch] = useState([]);
@@ -144,6 +159,24 @@ useEffect(() => {
 
 
   return (
+    <div className="app">
+    {
+
+      loading ? 
+
+      <div className="appName">
+      <ClipLoader
+        color={"#ADD8E6"}
+        loading={loading}
+        size={40}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+      </div>
+
+
+      :
+    
     <div className="Profile">
         <UserAvatar text={user1[1]} image={profile[1]} />
         <UserNumbers followers={followers[1]} following={followers[1]}/>
@@ -156,6 +189,8 @@ useEffect(() => {
             <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
         </div>
        <NavBar />
+    </div>
+    }
     </div>
   );
 }
