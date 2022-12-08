@@ -7,9 +7,21 @@ import RadioMatch from '../../components/RadioMatch';
 import {useEffect,useState} from 'react';
 import axios from 'axios';
 import SpotPlayer from '../../components/SpotPlayer';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 function Home() {
+
+  const [loading, setLoad ]= useState(false)
+
+  useEffect(() =>{
+    setLoad(true)
+
+    setTimeout(() => {
+      setLoad(false)
+
+    },750)
+  }, [])
 
   const [search, setSearch] = useState([]);
   useEffect(() => {
@@ -122,7 +134,27 @@ useEffect(() => {
 // {unreadMessages.length > 0 &&        <h2>          You have {unreadMessages.length} unread messages.        </h2>      }
 
   return (
-    <><div className="Home">
+    <div className="app">
+    {
+
+      loading ? 
+
+      <div className="appName">
+      <ClipLoader
+        color={"#ADD8E6"}
+        loading={loading}
+        size={40}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+      </div>
+  :
+    <>
+    
+
+    
+
+    <div className="Home">
       <div className="home-content">
         <RadioMatch img1={profile[1]} img2={recs[4]} />
         <Albums text={"Playlists"} image1={lists[1]} image2={lists[0]} image3={lists[2]} />
@@ -133,8 +165,10 @@ useEffect(() => {
             <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
         </div>
 
-    </div><NavBar /></> 
+    </div><NavBar /></> }
+    </div>
   );
 }
 
 export default Home;
+
