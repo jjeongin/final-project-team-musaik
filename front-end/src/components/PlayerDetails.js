@@ -1,3 +1,5 @@
+//added song title and artist description
+
 import React from 'react';
 
 function PlayerDetails(props){

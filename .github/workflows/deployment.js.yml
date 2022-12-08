@@ -1,14 +1,13 @@
 name: Build & Deploy
-
 # Controls when the workflow will run
 on:
   push:
     branches: [ "master" ] # Will run on push to the "master" branch
-
+ 
 jobs:
   build:
     runs-on: self-hosted # The type of runner that the job will run on
-
+ 
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js 18
@@ -16,15 +15,15 @@ jobs:
       with:
         node-version: '18.x' # Change according to the installed version
         cache: 'npm'
-    
+   
     - name: Install dependencies
-      run: | 
+      run: |
         git config --global url."git@github.com:".insteadOf git://github.com/ && npm install
         cd back-end
         npm install
         cd ../front-end
         npm install
-
+ 
     - name: Creating a Production Build of React App
       env:
         CI: false
@@ -52,7 +51,7 @@ jobs:
     runs-on: self-hosted
     needs: [build, create-env-file] # Run only after the 'build' and 'create-envfile' job is completed
     steps:
-    - name: Deploy to production 
+    - name: Deploy to production
       # Starts your node js app in 'PM2'
       run: |
         pm2 stop deployment.config.js
