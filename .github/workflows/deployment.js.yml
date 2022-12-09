@@ -46,7 +46,6 @@ jobs:
         echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
         echo SESSION_SECRET=${{ secrets.SESSION_SECRET }} >> .env
         echo DB_CONNECTION_STRING=${{ secrets.DB_CONNECTION_STRING }} >> .env
-
   deploy:
     runs-on: self-hosted
     needs: [build, create-env-file] # Run only after the 'build' and 'create-envfile' job is completed
