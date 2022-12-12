@@ -6,6 +6,10 @@ The Musaik team has a vision of making connection through music a much easier pr
 ### Description
 New music discovery is a souless, intensive experience. If you want to find new artists, you'll have to sift through playlist on top of playlist for hours. Musaik will connect users through streaming parties and auto-match chats. Users will discover new music easily and enjoyably.
 
+### Deployment
+Our app is now running at https://www.musaik.ml.
+- CI & CD is also implemented using GitHub Actions.
+
 ### How to Run
 How to run our app on your computer.
 1. Download npm if it hasn't been installed.
@@ -52,10 +56,6 @@ cd back-end
 npm start
 ```
 Now MUSAIK is running on http://localhost:8080.
-
-### Deployment
-Our app is now running at https://www.musaik.ml.
-- CI/CD is also implemented using GitHub Actions.
 
 ### Core team members
 - [Ahmad Almesned](https://github.com/Ahmadhcs)
