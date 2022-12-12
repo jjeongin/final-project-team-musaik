@@ -7,19 +7,18 @@ The Musaik team has a vision of making connection through music a much easier pr
 New music discovery is a souless, intensive experience. If you want to find new artists, you'll have to sift through playlist on top of playlist for hours. Musaik will connect users through streaming parties and auto-match chats. Users will discover new music easily and enjoyably.
 
 ### How to Run
-How to run the app locally.
-1. Download npm if it isn't installed on your computer.
+How to run our app on your computer.
+1. Download npm if it hasn't been installed.
 ```
-# check if it's already installed
-node -v
+# check if npm is already installed
 npm -v
 
-# install npm on your computer
+# if not, install npm on your computer
 npm install -g npm
 ```
 2. Install all the requirements.
 ```
-# root
+# root directory
 npm install 
 
 # front-end
@@ -36,7 +35,7 @@ npm install
 npm run build
 ```
 4. Create a ```.env``` file under the root directory with necessary credentials. For the vaules with [], you need to provide your own credentials. 
-* CLIENT_ID & CLIENT_SECRET: Your dedicated ID and secret key from Spotify Developer account
+* CLIENT_ID, CLIENT_SECRET: Your dedicated ID and secret key from Spotify Developer account
 * SESSION_SECRET: Your secret key for expression session
 * DB_CONNECTION_STRING: MongoDB connection string
 ```
@@ -53,6 +52,10 @@ cd back-end
 npm start
 ```
 Now MUSAIK is running on http://localhost:8080.
+
+### Deployment
+Our app is now running at http://www.musaik.ml.
+- CI/CD is also implemented using GitHub Actions.
 
 ### Core team members
 - [Ahmad Almesned](https://github.com/Ahmadhcs)
