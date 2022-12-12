@@ -54,7 +54,7 @@ npm start
 Now MUSAIK is running on http://localhost:8080.
 
 ### Deployment
-Our app is now running at http://www.musaik.ml.
+Our app is now running at https://www.musaik.ml.
 - CI/CD is also implemented using GitHub Actions.
 
 ### Core team members
