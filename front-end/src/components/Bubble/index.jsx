@@ -22,10 +22,10 @@ function Bubble({session, id, click}){
                 currentTrack != null 
                 ? 
                     <div onClick={click} className={`bubble bubble-${id}`} style={{backgroundImage:`url(${currentTrack['album']['images'][0]['url']})`}}>
-                    <p className='host'>@{hostId} is playing</p>
-                    <p className='track-title'>{currentTrack['name']}</p>
-                    <p className='track-artist'>by {currentTrack['artists'][0]['name']}</p>
-                </div>
+                        <p className='host'>@{hostId} is playing</p>
+                        <p className='track-title'>{currentTrack['name']}</p>
+                        <p className='track-artist'>by {currentTrack['artists'][0]['name']}</p>
+                    </div>
                 : <div/>
             }
         </div>

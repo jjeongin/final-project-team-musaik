@@ -11,35 +11,22 @@ router.get('/pin-playlists', async (req, res) => {
     spotifyApi.setAccessToken(user.access_token);
     spotifyApi.setRefreshToken(user.refresh_token);
 
-
-
     const me = await spotifyApi.getMe();    
-    console.log(me.body);
     const playlist = await spotifyApi.getUserPlaylists(me.body.id);
-
-      
-        console.log("---------------+++++++++++++++++++++++++")
         let playlists = playlist.body.items;
-    
-        const playlist_array =  []
-        // runs loop to obtain three
-        //images and place them in row
-        for(let i=0; i<3;i++){
-
-            playlist_array.push(playlists[i].images[0]["url"])
-
-      
-      }
-
-        console.log(playlist_array)
-
-
-        res.json({
-        playlists:playlist_array
-        })
+        const playlist_array =  [];
         
-
+        for (let i = 0; i < 3;i++){
+            console.log(playlists[i]);
+            playlist_info = {
+                'image': playlists[i].images[0]["url"],
+                'id': playlists[i].id,
+            }
+            playlist_array.push(playlist_info)
+        }
+    res.json({
+        playlists:playlist_array
+    })
 });
-
     
 module.exports = router;

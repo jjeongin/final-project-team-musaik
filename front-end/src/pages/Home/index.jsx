@@ -50,95 +50,51 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    axios.get('/api/rec')
-        .then(res => {
-          setRecs([...recs,...res.data])
-        });
-}, []);
+      axios.get('/api/rec')
+          .then(res => {
+            setRecs([...recs,...res.data])
+          });
+  }, []);
 
 
-const getUser = async () => {
-  const user = await axios.get('/user');
-  return user.data;
-};
+  const getUser = async () => {
+    const user = await axios.get('/user');
+    return user.data;
+  };
 
-const [profile, setProfile] = useState([]);
-    useEffect(() => {
+  const [profile, setProfile] = useState([]);
+  useEffect(() => {
       axios.get('/api/user_info')
           .then(res => {
             setProfile([profile,res.data['images'][0]['url']])
           });
   }, []);
 
-const [user, setUser] = useState(null);
-const [accessToken, setAccessToken] = useState(null);
-const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
-const [currentSession, setCurrentSession] = useState(null); // currently joined session
-const [sessions, setSessions] = useState([]); // top sessions in bubbles
+  const [user, setUser] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
+  const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
 
-const [playlists, setPlaylists] = useState([]);
-const [open, setOpen] = useState(false);
+  useEffect(() => {
+    getUser().then((user) => {
+        setUser(user);
+        setAccessToken(user.access_token);
+    });
+  }, []);
 
-useEffect(() => {
-  getUser().then((user) => {
-      setUser(user);
-      setAccessToken(user.access_token);
-  });
-}, []);
+  // set the track to play
+  const setTrack = (trackId) => {
+    setTrackUri("spotify:track:" + trackId);
+  }
 
-// set the track to play
-const setTrack = (trackId) => {
-  setTrackUri("spotify:track:" + trackId);
-}
-
-const setPlaylingList = (playlistId) => {
-  setOpen(!open);
-  setTrackUri("spotify:playlist:" + playlistId);
-  axios.post('/sessions/create-session', {
-      playlistId: playlistId,
-  }).then((res) => {
-      setCurrentSession(res.data);
-  });
-}
-
-// change currently playing session when each session is clicked
-const changeCurrentSession = (session) => {
-  setCurrentSession(session);
-  setTrack(session.playlist[0]);
-}
-
-//open dropdown
-const openDropdown = () => {
-  setOpen(!open);
-  console.log(playlists);
-}
-
-// get top sessions
-useEffect(() => {
-  axios.get('/sessions/top-sessions')
-      .then(res => {
-          setSessions(res.data.sessions);
-      });
-}, []);
-
-// get user's playlists
-useEffect(() => {
-  axios.get('/sessions/playlist-search')
-      .then(res => {
-          const resLists = res.data;
-          setPlaylists(resLists);
-      });
-}, []);
-
-
-// {unreadMessages.length > 0 &&        <h2>          You have {unreadMessages.length} unread messages.        </h2>      }
+  const setPlayList = (playlistId) => {
+    setTrackUri("spotify:playlist:" + playlistId);
+  }
+  console.log(recs);
 
   return (
     <div className="app">
     {
-
       loading ? 
-
       <div className="appName">
       <ClipLoader
         color={"#ADD8E6"}
@@ -150,21 +106,20 @@ useEffect(() => {
       </div>
   :
     <>
-    
-
-    
-
     <div className="Home">
       <div className="home-content">
-        <RadioMatch img1={profile[1]} img2={recs[4]} />
-        <Albums text={"Playlists"} image1={lists[1]} image2={lists[0]} image3={lists[2]} />
-        <Albums text={"Recommendations Based on Your Taste"} image1={recs[4]} image2={recs[0]} image3={recs[2]} />
+        {
+          recs.length >= 5 ?
+          <RadioMatch img1={profile[1]} img2={recs[4]['image']} />
+          : <div/>
+        }
+        <Albums text={"Playlists"} click={(playlist) => setPlayList(playlist.id)} songs={lists} />
+        <Albums text={"Recommendations Based on Your Taste"} click={(song) => setTrack(song.id)} songs={recs} />
       </div>
 
       <div className="Player-Container">
-            <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
-        </div>
-
+          <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
+      </div>
     </div><NavBar /></> }
     </div>
   );
