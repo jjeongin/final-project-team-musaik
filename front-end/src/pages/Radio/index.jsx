@@ -120,7 +120,7 @@ function Radio(props) {
                 <Bubble className={`bubble_${i+1}`} click={() => changeCurrentSession(session)} session={session} id={i+1}/>
             ))}
         </div>
-         <div className="Player-Container">
+        <div className="Player-Container">
             <SpotPlayer accessToken={accessToken} trackUri={trackUri} />
         </div>
         <NavBar/>

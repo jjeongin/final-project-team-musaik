@@ -17,15 +17,11 @@ import FavArtists from '../../components/Albums/FavArtists';
 
 
 function Profile() {
-
   const [loading, setLoad ]= useState(false)
-
   useEffect(() =>{
     setLoad(true)
-
     setTimeout(() => {
       setLoad(false)
-
     },750)
   }, [])
 
@@ -42,6 +38,7 @@ function Profile() {
   useEffect(() => {
       axios.get('/api/get_saved')
           .then(res => {
+            console.log(res.data)
             setSongs([...songs,...res.data])
           });
   }, []);
@@ -92,78 +89,26 @@ const [Track, SetTrack] = useState([]);
   useEffect(() => {
   }, [Track])
 
-const [user, setUser] = useState(null);
-const [accessToken, setAccessToken] = useState(null);
-const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
-const [currentSession, setCurrentSession] = useState(null); // currently joined session
-const [sessions, setSessions] = useState([]); // top sessions in bubbles
+  const [user, setUser] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
+  const [trackUri, setTrackUri] = useState("spotify:track:4iV5W9uYEdYUVa79Axb7Rh"); // default track
 
-const [playlists, setPlaylists] = useState([]);
-const [open, setOpen] = useState(false);
+  useEffect(() => {
+      getUser().then((user) => {
+          setUser(user);
+          setAccessToken(user.access_token);
+      });
+  }, []);
 
-useEffect(() => {
-    getUser().then((user) => {
-        setUser(user);
-        setAccessToken(user.access_token);
-    });
-}, []);
-
-// set the track to play
-const setTrack = (trackId) => {
-    setTrackUri("spotify:track:" + trackId);
-}
-
-
-
-// change currently playing session when each session is clicked
-const changeCurrentSession = (session) => {
-    setCurrentSession(session);
-    setTrack(session.playlist[0]);
-}
-
-
-const setPlaylingList = (playlistId) => {
-  setOpen(!open);
-  setTrackUri("spotify:playlist:" + playlistId);
-  axios.post('/sessions/create-session', {
-      playlistId: playlistId,
-  }).then((res) => {
-      setCurrentSession(res.data);
-  });
-}
-//open dropdown
-const openDropdown = () => {
-    setOpen(!open);
-    console.log(playlists);
-}
-
-// get top sessions
-useEffect(() => {
-    axios.get('/sessions/top-sessions')
-        .then(res => {
-            setSessions(res.data.sessions);
-        });
-}, []);
-
-// get user's playlists
-useEffect(() => {
-    axios.get('/sessions/playlist-search')
-        .then(res => {
-            const resLists = res.data;
-            setPlaylists(resLists);
-        });
-}, []);
-
-
-  
-
+  // set the track to play
+  const setTrack = (trackId) => {
+      setTrackUri("spotify:track:" + trackId);
+  }
 
   return (
     <div className="app">
     {
-
       loading ? 
-
       <div className="appName">
       <ClipLoader
         color={"#ADD8E6"}
@@ -173,17 +118,14 @@ useEffect(() => {
         data-testid="loader"
       />
       </div>
-
-
       :
-    
     <div className="Profile">
         <UserAvatar text={user1[1]} image={profile[1]} />
         <UserNumbers followers={followers[1]} following={followers[1]}/>
 
         <div className='Album-Card'>
           <FavArtists text={"Favorite Artists"} image={placeHolder} label = {''}/>
-          <Albums text={"Recently Played"} image1={songs[1]} image2={songs[2]} image3={songs[0]}/>
+          <Albums text={"Recently Played"} click={(song) => setTrack(song.id)} songs={songs}/>
         </div>
         <div className="Player-Container">
             <SpotPlayer accessToken={accessToken} trackUri={trackUri} />

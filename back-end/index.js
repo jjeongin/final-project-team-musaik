@@ -176,12 +176,15 @@ app.get('/api/rec', (req, res) =>{
           })
         .then(function(data) {
           let recommendations = data.body;
-          let top3 = []
-          for(let i =0; i<3; i++){
-                // console.log(recommendations.tracks[i].href);
-                top3.push(recommendations.tracks[i].album.images[0]['url'], recommendations.tracks[i].href)
+          let top5 = [];
+          for(let i =0; i<5; i++){
+                song = {
+                  'image': recommendations.tracks[i].album.images[0]['url'],
+                  'id': recommendations.tracks[i].id,
+                }
+                top5.push(song);
           }
-           res.json(top3)
+          res.json(top5)
         }, function(err) {
           console.log("Something went wrong!", err);
         });
@@ -204,19 +207,23 @@ app.get('/api/user_info', (req,res) =>{
 app.get('/api/get_saved', (req, res) =>{
   const user = req.session.user;
   spotifyApi.setAccessToken(user.access_token);
-   spotifyApi.getMyRecentlyPlayedTracks({
-        limit : 5
-    }).then(function(data) {
-    let songs =[]
-    let images  = []
-    let song = data.body.items 
-    for(let i=0; i<5;i++){
-        //songs.push(song[i].track['album']['artists'][0].name) returns names of recently played
-        // songs.push(song[i].track.name)
-        images.push(song[i].track.album.images[0].url)
+  spotifyApi.getMyRecentlyPlayedTracks({
+      limit : 5
+  }).then(function(data) {
+    let songs = [];
+    for (let i = 0; i < 5;i++){
+      song = {
+        'image': data.body.items[i].track.album.images[0].url,
+        'id': data.body.items[i].track.id,
+      }
+      console.log(song);
+      songs.push(song);
     }
-    res.json(images)
-    })
+    console.log(songs);
+    res.json(
+      songs
+    );
+  })
 })
 
 
