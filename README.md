@@ -7,7 +7,7 @@ The Musaik team has a vision of making connection through music a much easier pr
 New music discovery is a souless, intensive experience. If you want to find new artists, you'll have to sift through playlist on top of playlist for hours. Musaik will connect users through streaming parties and auto-match chats. Users will discover new music easily and enjoyably.
 
 ### Deployment
-Our app is now running at https://www.musaik.ml.
+~~Our app is now running at https://www.musaik.ml.~~ (deprecated from 01/2023)
 - CI & CD is also implemented using GitHub Actions.
 
 ### How to Run
