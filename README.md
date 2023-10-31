@@ -55,7 +55,6 @@ DB_CONNECTION_STRING=[YOUR_DB_CONNECTION_STRING]
 cd back-end
 npm start
 ```
-Now MUSAIK is running on http://localhost:8080.
 
 ### Core team members
 - [Ahmad Almesned](https://github.com/Ahmadhcs)
